@@ -1,0 +1,21 @@
+# Install LiteLLM in a separate Python environment, then load .env into that
+# process and run: litellm --config infra/litellm/config.yaml --host 127.0.0.1 --port 4000
+# Upstream IDs use LiteLLM's provider/model syntax. Agent aliases stay stable.
+model_list:
+  - model_name: supervisor
+    litellm_params:
+      model: os.environ/SUPERVISOR_UPSTREAM_MODEL
+  - model_name: code
+    litellm_params:
+      model: os.environ/CODE_UPSTREAM_MODEL
+  - model_name: general
+    litellm_params:
+      model: os.environ/GENERAL_UPSTREAM_MODEL
+  - model_name: review
+    litellm_params:
+      model: os.environ/REVIEW_UPSTREAM_MODEL
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+router_settings:
+  num_retries: 1
+  timeout: 90

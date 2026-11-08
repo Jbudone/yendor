@@ -1,0 +1,16 @@
+game/[Ll]ibrary/
+game/[Tt]emp/
+game/[Oo]bj/
+game/[Ll]ogs/
+game/[Uu]ser[Ss]ettings/
+game/[Bb]uilds/
+game/.vs/
+game/*.csproj
+game/*.sln*
+node_modules/
+.env
+.env.*
+!.env.example
+.runs/
+artifacts/
+*.log

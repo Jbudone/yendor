@@ -1,0 +1,11 @@
+{
+  "id": "copper-wild-waystone",
+  "prompt": "Original stylized fantasy waystone, single freestanding weathered sandstone monolith, broad readable silhouette, carved concentric rings, recessed turquoise crystal core, copper vine accents, moss around base, warm stone and cool magical contrast, handcrafted painterly surfaces, no text, no logos, isolated game prop, flat grounded base",
+  "target_polycount": 5000,
+  "scale_meters": [1.5, 3.0, 1.2],
+  "pivot": "base-center",
+  "texture_budget": "one 2048 PBR material set",
+  "collision": "simple authored convex proxy",
+  "status": "brief",
+  "acceptance": ["Recognizable at 40 meters", "No floating fragments", "No baked ground plane", "Checked scale and normals", "Record task ID, source and generation date before import"]
+}
