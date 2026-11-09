@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "yen",
+  "project_id": "03541d5a-0350-444f-b5e7-91afda85fc29"
+}
