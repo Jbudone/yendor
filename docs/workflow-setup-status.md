@@ -93,6 +93,9 @@ adopted. No paid model or asset requests have been made during this setup.
 - Beads history was pushed to the public repository's Dolt data ref. Native
   bootstrap restores that task graph on a fresh clone; initial seeding remains
   idempotent rather than a second authority.
+- A disposable fresh-clone bootstrap restored all twelve tasks, preserving task
+  IDs. Evidence: artifacts/pilots/task-restore.json. This verifies GitHub task
+  recovery; it does not back up ignored local histories, credentials or artifacts.
 
 ## Live/account/environment gates
 

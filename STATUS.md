@@ -10,7 +10,8 @@ authority; query it instead of copying the full backlog here.
 
 Prior verified gameplay checks are recorded in `docs/qa/foundation.md`; they are
 historical evidence, not proof for changed source. A rendered/manual feel pass
-is still required. Live model/Meshy/tracing credentials and a licensed CI runner
-remain account/environment gates. Research is indexed by `docs/workflow-research-ledger.md`.
+is still required. Live model/Meshy/tracing credentials remain account gates.
+The licensed CI runner is registered; final CI evidence is recorded in the setup
+status. Research is indexed by `docs/workflow-research-ledger.md`.
 
 Normal fresh-session request: “Pick up Yendor” or “Work on task yen-…”.
