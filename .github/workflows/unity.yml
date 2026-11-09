@@ -15,6 +15,9 @@ jobs:
     if: vars.YENDOR_UNITY_CI == 'true'
     runs-on: [self-hosted, linux, yendor-unity]
     timeout-minutes: 45
+    env:
+      # Do not cache the developer account's unrelated package cache.
+      NPM_CONFIG_CACHE: ${{ runner.temp }}/yendor-npm-cache
     steps:
       - uses: actions/checkout@v4
         with:

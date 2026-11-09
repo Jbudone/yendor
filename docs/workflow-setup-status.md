@@ -81,7 +81,18 @@ adopted. No paid model or asset requests have been made during this setup.
   label yendor-unity. Unity CI is restricted to owner-controlled main/master
   pushes and manual runs; PR checks use GitHub-hosted runners.
 
-Hosted CI results are appended only once observed.
+- Hosted Node/Gitleaks checks passed for setup commit 4dc6dac:
+  https://github.com/Jbudone/yendor/actions/runs/42576852702.
+- Unity CI passed every verification/build/player-smoke step and uploaded its
+  artifact, then stalled in setup-node's post-job cache of the developer's 7.8 GB
+  npm cache. That run was cancelled; the workflow now scopes NPM_CONFIG_CACHE to
+  runner.temp instead. Its replacement run must be observed separately.
+- Master branch protection requires the actual `node` check and PR-based changes;
+  force pushes/deletions are disabled. External-contributor workflows require
+  approval, and the local Unity workflow has no PR trigger.
+- Beads history was pushed to the public repository's Dolt data ref. Native
+  bootstrap restores that task graph on a fresh clone; initial seeding remains
+  idempotent rather than a second authority.
 
 ## Live/account/environment gates
 

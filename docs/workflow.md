@@ -46,8 +46,8 @@ bootstrap verifies the pinned digest before extracting named binaries.
 ```sh
 npm ci
 npm run bootstrap
-# Fresh clone only; never reinitialize a populated database:
-.tools/bin/bd init --prefix yen --skip-agents --skip-hooks --non-interactive
+# Fresh clone: restore the shared task graph; never reinitialize a populated DB:
+.tools/bin/bd bootstrap --yes
 npm run tasks:seed
 npm run hooks:install
 git lfs install --local --skip-repo
@@ -190,7 +190,9 @@ npm run workflow -- backup
 ```
 
 Local native Beads backup is configured at .workflow/beads-backup and was synced.
-This is a same-machine recovery copy, not off-machine disaster recovery. Choose
+The task graph is also pushed to the public repository's Dolt data ref;
+use `bd dolt pull`/`bd dolt push` to coordinate changes across machines.
+The local backup is a same-machine recovery copy, not independent disaster recovery. Choose
 an external destination and rehearse restore in a disposable database before
 claiming that protection. .beads/issues.jsonl export is not a native backup.
 

@@ -26,8 +26,8 @@ npm run workflow -- recall "seed replay"
 npm run agents -- --task-id yen-ID --single combat "A bounded task"
 ```
 
-On a fresh clone initialize Beads with `.tools/bin/bd init --prefix yen
---skip-agents --skip-hooks --non-interactive`, then run `npm run tasks:seed`.
+On a fresh clone restore the shared task graph with `.tools/bin/bd bootstrap
+--yes`, then run `npm run tasks:seed` only to add missing initial tasks.
 Existing checkouts retain their database. Never reinitialize a populated store.
 Gitleaks runs on commits, pushes and CI. Full-history scanning must pass before
 public publication. Keys belong only in ignored `.env`; account activation and
