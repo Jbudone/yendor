@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "profiles": {
+    "code": { "modelEnv": "MODEL_CODE", "capabilities": ["tools", "text"], "runner": "mastra" },
+    "reasoning": { "modelEnv": "MODEL_REASONING", "capabilities": ["tools", "text"], "runner": "mastra" },
+    "review": { "modelEnv": "MODEL_REVIEW", "capabilities": ["tools", "text"], "runner": "mastra" },
+    "general": { "modelEnv": "MODEL_GENERAL", "capabilities": ["tools", "text"], "runner": "mastra" },
+    "vision": { "modelEnv": "MODEL_VISION", "capabilities": ["tools", "text", "image"], "runner": "manual-visual-review" }
+  },
+  "externalWorkers": {
+    "devin": { "enabled": false, "reason": "Session adapter, account and Unity environment must be verified." },
+    "antigravity": { "enabled": false, "reason": "Local client integration requires an installed authenticated client." }
+  },
+  "policy": { "maxDelegations": 8, "maxSteps": 12, "workerMaxSteps": 5, "timeoutMs": 600000, "concurrentWriters": 1 }
+}

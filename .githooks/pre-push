@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+node tools/secret-scan.mjs history
+git lfs pre-push "$@"
+if [ "${YENDOR_PREPUSH_UNITY:-0}" = 1 ]; then
+  node --env-file-if-exists=.env tools/unity.mjs validate
+  node --env-file-if-exists=.env tools/unity.mjs test
+fi

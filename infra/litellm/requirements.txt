@@ -1,0 +1,2 @@
+# Installed in .tools/litellm, independently from the game and Node studio.
+litellm[proxy]==1.108.3

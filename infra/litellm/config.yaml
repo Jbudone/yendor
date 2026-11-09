@@ -4,18 +4,23 @@
 model_list:
   - model_name: supervisor
     litellm_params:
+      api_key: os.environ/OPENROUTER_API_KEY
       model: os.environ/SUPERVISOR_UPSTREAM_MODEL
   - model_name: code
     litellm_params:
+      api_key: os.environ/OPENROUTER_API_KEY
       model: os.environ/CODE_UPSTREAM_MODEL
   - model_name: general
     litellm_params:
+      api_key: os.environ/OPENROUTER_API_KEY
       model: os.environ/GENERAL_UPSTREAM_MODEL
   - model_name: review
     litellm_params:
+      api_key: os.environ/OPENROUTER_API_KEY
       model: os.environ/REVIEW_UPSTREAM_MODEL
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
 router_settings:
   num_retries: 1
   timeout: 90
+# Keep automatic cross-model fallbacks off for the initial routing comparison.

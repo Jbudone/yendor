@@ -7,6 +7,32 @@ specialist agents, LiteLLM, Unity AI and Meshy.
 Start with [the shared context](CONTEXT.md), [the first expedition design](docs/design/first-expedition.md)
 and [the agent architecture](docs/adr/0001-development-agents.md).
 
+## Working together
+
+Open this project in Codex and say **“Pick up Yendor”** or name a Beads task.
+`AGENTS.md` supplies startup instructions; `STATUS.md` links current work.
+Use a fresh thread for a new task and keep the same thread for connected work.
+The coordinator maintains decisions and handoffs so you do not need to repeat
+project history. See [the workflow guide](docs/workflow.md) and
+[setup status](docs/workflow-setup-status.md).
+
+```sh
+npm ci
+npm run bootstrap                  # pinned Linux x64 Beads, Agent Mail, Gitleaks
+npm run hooks:install              # staged/history Gitleaks and fast checks
+npm start                         # local mail and current tasks
+npm run workflow -- task ready --json
+npm run workflow -- recall "seed replay"
+npm run agents -- --task-id yen-ID --single combat "A bounded task"
+```
+
+On a fresh clone initialize Beads with `.tools/bin/bd init --prefix yen
+--skip-agents --skip-hooks --non-interactive`, then run `npm run tasks:seed`.
+Existing checkouts retain their database. Never reinitialize a populated store.
+Gitleaks runs on commits, pushes and CI. Full-history scanning must pass before
+public publication. Keys belong only in ignored `.env`; account activation and
+Unity licensing remain local setup steps.
+
 ## Play the greybox
 
 Open `game/` with Unity **6000.6.0f1**, open

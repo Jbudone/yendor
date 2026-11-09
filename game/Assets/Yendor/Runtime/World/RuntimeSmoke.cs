@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 
 namespace Yendor
@@ -66,6 +67,10 @@ namespace Yendor
             Teleport(run.Player, run.ExitPosition);
             run.Interact();
             Require(run.Ended, "Extraction failed.");
+            var diagnostics = FindFirstObjectByType<RunDiagnostics>();
+            Require(diagnostics, "Missing run diagnostics.");
+            string report = diagnostics.WriteReport();
+            Require(File.Exists(Path.Combine(report, "run.json")), "Diagnostic report was not written.");
         }
     }
 }

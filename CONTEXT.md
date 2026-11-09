@@ -58,6 +58,12 @@ Secrets stay in local environment files, outside Unity Assets. Meshy requests
 record source briefs and task IDs; assets are reviewed before importing. Unity
 AI is activated inside the Editor against the user's linked Cloud project.
 
+The durable workflow is specified in docs/adr/0002-project-workflow.md. Fresh
+sessions follow AGENTS.md and STATUS.md. Beads owns task execution state; Agent
+Mail connects independent coding clients. Scoped task history is persisted in
+local LibSQL; source-linked project notes stay versioned and are retrieved only
+when relevant. Validation evidence is tied to source/build identity.
+
 ## First milestone
 
 A readable 5–10 minute expedition: choose a route, discover one useful interaction,

@@ -1,0 +1,16 @@
+[config]
+model = "openrouter/anthropic/claude-sonnet-5.5"
+fallback_models = []
+num_retries = 1
+max_model_tokens = 16000
+
+[pr_reviewer]
+num_max_findings = 5
+extra_instructions = """
+Yendor is a Unity expedition roguelike shooter. Report concrete correctness defects.
+Flag loss of seed-input reproducibility, double death accounting, broken asset
+references, handwritten scene/prefab YAML, unsupported test claims, stale source
+writes, and retrying an ambiguous paid generation. Compilation, runtime checks,
+rendered inspection and manual feel tests provide different evidence. Do not
+claim tests ran without evidence. Review is advisory; do not edit or merge code.
+"""

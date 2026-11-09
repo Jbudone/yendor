@@ -1,0 +1,67 @@
+[
+  {
+    "id": "direction",
+    "status": "accepted",
+    "source": "CONTEXT.md",
+    "date": "2026-11-08",
+    "tags": [
+      "vision",
+      "camera",
+      "runtime"
+    ],
+    "text": "Yendor is a third-person expedition roguelike shooter built in Unity. Models assist development; the game must run without AI services.",
+    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+  },
+  {
+    "id": "seed-contract",
+    "status": "accepted",
+    "source": "CONTEXT.md",
+    "date": "2026-11-08",
+    "tags": [
+      "seed",
+      "replay",
+      "determinism"
+    ],
+    "text": "A seed currently controls decoration and enemy-position inputs; topology is fixed. This does not guarantee exact cross-machine gameplay replay.",
+    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+  },
+  {
+    "id": "scene-authoring",
+    "status": "accepted",
+    "source": "CONTEXT.md",
+    "date": "2026-11-08",
+    "tags": [
+      "scene",
+      "prefab",
+      "unity"
+    ],
+    "text": "Author scenes and prefabs through Editor tooling. Preserve asset meta identity; never manually rewrite Unity scene or prefab YAML.",
+    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+  },
+  {
+    "id": "verification",
+    "status": "accepted",
+    "source": "docs/qa/foundation.md",
+    "date": "2026-11-08",
+    "tags": [
+      "test",
+      "visual",
+      "playtest"
+    ],
+    "text": "Compilation, runtime smoke, rendered inspection and manual feel testing establish different things. Report each independently and link actual evidence.",
+    "sourceHash": "cb472863b4903c4d54a314477a10dc20ab17eddfb75faba09dbec0288a91e7b2"
+  },
+  {
+    "id": "task-authority",
+    "status": "accepted",
+    "source": "docs/adr/0002-project-workflow.md",
+    "date": "2026-11-08",
+    "tags": [
+      "task",
+      "memory",
+      "beads"
+    ],
+    "text": "Beads is the local task authority. GitHub issues present user-facing work when connected. Avoid independent backlogs or automatic promotion of agent observations to decisions.",
+    "sourceHash": "ceb0352008dac7e5f8e24e93e289349319e618d6292e88e410ca7d3d2f55315e"
+  }
+]

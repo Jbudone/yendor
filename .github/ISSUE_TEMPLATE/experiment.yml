@@ -1,0 +1,19 @@
+name: Experiment
+description: Try a testable design hypothesis
+title: '[Experiment] '
+body:
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: What should we learn?
+    validations:
+      required: true
+  - type: textarea
+    id: trial
+    attributes:
+      label: Smallest useful trial and comparison
+      description: Include how to try it, what to observe, and keep/revise/discard criteria.
+  - type: textarea
+    id: decision
+    attributes:
+      label: Outcome and decision

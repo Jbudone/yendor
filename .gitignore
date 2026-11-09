@@ -14,6 +14,11 @@ node_modules/
 .runs/
 artifacts/
 *.log
+.tools/
+.workflow/
+.worktrees/
+.mcp.json
+infra/local/*.env
 
 # Beads / Dolt files (added by bd init)
 .dolt/
@@ -21,3 +26,5 @@ artifacts/
 .beads-credential-key
 .beads/proxieddb/
 *.gate.lock*
+# Machine-local Beads backup destinations and receipts.
+.beads/dolt-backup*.json

@@ -1,0 +1,48 @@
+name: Unity verification
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+permissions:
+  contents: read
+concurrency:
+  group: unity-${{ github.repository }}
+  cancel-in-progress: false
+jobs:
+  unity:
+    # Dedicated local runner executes owner-controlled branch pushes/manual runs only.
+    # PR checks stay on GitHub-hosted runners; this workflow has no PR event.
+    if: vars.YENDOR_UNITY_CI == 'true'
+    runs-on: [self-hosted, linux, yendor-unity]
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run unity:validate
+        env:
+          UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+      - run: npm run unity:test
+        env:
+          UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+      - run: npm run unity:smoke
+        env:
+          UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+      - run: npm run unity:audit
+        env:
+          UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+      - run: npm run unity:build
+        env:
+          UNITY_EDITOR_PATH: ${{ vars.UNITY_EDITOR_PATH }}
+      - run: npm run player:smoke
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unity-evidence-${{ github.sha }}
+          path: artifacts/runs/
+          retention-days: 14

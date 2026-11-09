@@ -21,7 +21,7 @@ export const roles = {
   },
   qa: {
     description: 'Reviews changes and runs Unity compile/scene validation. Returns pass/fail evidence, reproducible bugs and remaining gaps.',
-    scopes: ['docs/qa'],
+    scopes: ['docs/qa', 'game/Assets/Yendor/Tests'],
     focus: 'Distinguish compilation, automated runtime checks, visual inspection and playtesting. Never infer a pass from absent output.'
   },
   design: {
@@ -32,7 +32,8 @@ export const roles = {
 };
 
 export function modelFor(role, env = process.env) {
-  const alias = env[`MODEL_${role.toUpperCase()}`] || env.MODEL_DEFAULT;
+  const profile = { combat: 'CODE', systems: 'CODE', world: 'CODE', art: 'GENERAL', design: 'REASONING', qa: 'REVIEW', supervisor: 'REASONING' }[role];
+  const alias = env[`MODEL_${role.toUpperCase()}`] || env[`MODEL_${profile}`] || env.MODEL_DEFAULT;
   if (!alias) throw new Error(`Set MODEL_${role.toUpperCase()} or MODEL_DEFAULT to a LiteLLM model alias`);
   if (!env.LITELLM_API_KEY) throw new Error('Set LITELLM_API_KEY in the local .env');
   return { providerId: 'litellm', modelId: alias, url: env.LITELLM_BASE_URL || 'http://127.0.0.1:4000/v1', apiKey: env.LITELLM_API_KEY, api: 'chat' };

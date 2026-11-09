@@ -1,0 +1,7 @@
+{
+  "name": "Yendor.Tests.Editor",
+  "references": ["Yendor.Runtime"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

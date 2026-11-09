@@ -1,0 +1,3 @@
+title = "Yendor secret scanning"
+[extend]
+useDefault = true

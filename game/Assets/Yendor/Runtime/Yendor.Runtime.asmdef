@@ -1,0 +1,5 @@
+{
+  "name": "Yendor.Runtime",
+  "rootNamespace": "Yendor",
+  "autoReferenced": true
+}

@@ -2,18 +2,48 @@
   "name": "yendor",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.18" },
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
     "test": "node --test tools/tests/*.test.mjs",
     "agents": "node --env-file-if-exists=.env tools/studio/run.mjs",
     "doctor": "node --env-file-if-exists=.env tools/doctor.mjs",
     "unity:validate": "node --env-file-if-exists=.env tools/unity.mjs validate",
     "unity:build": "node --env-file-if-exists=.env tools/unity.mjs build",
-    "meshy": "node --env-file-if-exists=.env tools/meshy-cli.mjs"
+    "meshy": "node --env-file-if-exists=.env tools/meshy-cli.mjs",
+    "workflow": "node --env-file-if-exists=.env tools/workflow.mjs",
+    "start": "node --env-file-if-exists=.env tools/workflow.mjs start",
+    "check": "node tools/check.mjs",
+    "unity:test": "node --env-file-if-exists=.env tools/unity.mjs test",
+    "unity:smoke": "node --env-file-if-exists=.env tools/unity.mjs smoke",
+    "unity:audit": "node --env-file-if-exists=.env tools/unity.mjs audit",
+    "mail": "node --env-file-if-exists=.env tools/mail.mjs",
+    "hooks:install": "node tools/install-hooks.mjs",
+    "bootstrap": "node tools/bootstrap.mjs",
+    "secrets:staged": "node tools/secret-scan.mjs staged",
+    "secrets:history": "node tools/secret-scan.mjs history",
+    "pilot:mail": "node tools/pilots/mail.mjs",
+    "pilot:studio": "node tools/pilots/studio.mjs",
+    "tasks:seed": "node tools/seed-tasks.mjs",
+    "unity:prepare": "node tools/prepare-verification.mjs",
+    "gateway": "node --env-file-if-exists=.env tools/gateway.mjs",
+    "gateway:start": "node --env-file-if-exists=.env tools/gateway.mjs start",
+    "player:smoke": "node tools/player-smoke.mjs",
+    "github:publish-tasks": "node tools/github-sync.mjs"
   },
   "dependencies": {
-    "@mastra/core": "1.74.0",
-    "@mastra/observability": "1.18.3",
+    "@mastra/core": "1.82.0",
+    "@mastra/langfuse": "1.6.5",
+    "@mastra/libsql": "1.29.0",
+    "@mastra/memory": "1.41.0",
+    "@mastra/observability": "1.23.1",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@opentelemetry/api": "1.9.1",
     "zod": "4.6.7"
+  },
+  "overrides": {
+    "@opentelemetry/exporter-trace-otlp-http": "0.219.0",
+    "@opentelemetry/otlp-exporter-base": "0.219.0"
   }
 }

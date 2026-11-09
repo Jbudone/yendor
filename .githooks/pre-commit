@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+node tools/secret-scan.mjs staged
+node tools/check.mjs
+git diff --cached --check

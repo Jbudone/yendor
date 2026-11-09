@@ -1,6 +1,8 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { root } from './unity.mjs';
+import { atomicJSON, hash } from './workflow/core.mjs';
+import { randomUUID } from 'node:crypto';
 
 async function request(path, { method = 'GET', body, fetcher = fetch } = {}) {
   const key = process.env.MESHY_API_KEY;
@@ -25,12 +27,21 @@ export function previewPayload(brief) {
   return { mode: 'preview', prompt: brief.prompt, ai_model: 'meshy-7.1', should_remesh: true, topology: 'triangle', target_polycount: brief.target_polycount };
 }
 
-export async function submitPreview(briefPath, options) {
+export async function submitPreview(briefPath, { recordRoot = root, ...options } = {}) {
   const brief = JSON.parse(await readFile(briefPath, 'utf8'));
   const payload = previewPayload(brief);
-  const response = await request('/openapi/v2/text-to-3d', { ...options, method: 'POST', body: payload });
-  const dir = resolve(root, '.runs', 'meshy');
+  const dir = resolve(recordRoot, '.runs', 'meshy');
   await mkdir(dir, { recursive: true });
-  await writeFile(resolve(dir, `${Date.now()}.json`), JSON.stringify({ brief: briefPath, submittedAt: new Date().toISOString(), payload, response }, null, 2));
-  return response;
+  const recordPath = resolve(dir, `${Date.now()}-${randomUUID()}.json`);
+  const intent = { brief: briefPath, briefHash: hash(JSON.stringify(brief)), submittedAt: new Date().toISOString(), payload, state: 'submitting' };
+  await atomicJSON(recordPath, intent);
+  try {
+    const response = await request('/openapi/v2/text-to-3d', { ...options, method: 'POST', body: payload });
+    await atomicJSON(recordPath, { ...intent, state: 'submitted', response });
+    return { ...response, recordPath };
+  } catch (error) {
+    // A lost response or failed post-response disk write can follow a paid acceptance.
+    await atomicJSON(recordPath, { ...intent, state: 'ambiguous', error: error.message, recovery: 'Check Meshy dashboard/provider logs before resubmitting.' });
+    throw new Error(`${error.message}; submission may have succeeded. Reconcile ${recordPath} before retrying.`);
+  }
 }

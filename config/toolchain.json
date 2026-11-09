@@ -1,0 +1,28 @@
+{
+  "beads": {
+    "version": "1.3.4",
+    "url": "https://github.com/gastownhall/beads/releases/download/v1.3.4/beads_1.3.4_linux_amd64.tar.gz",
+    "sha256": "175c26904bde3ff9168d2282ff6b56f17b17f60c22fa5acb3dacc9fb3465303a",
+    "members": [
+      "bd"
+    ]
+  },
+  "agent-mail": {
+    "version": "0.3.40",
+    "url": "https://github.com/Dicklesworthstone/mcp_agent_mail_rust/releases/download/v0.3.40/mcp-agent-mail-x86_64-unknown-linux-musl.tar.xz",
+    "sha256": "cd7784066ced9e53f52d20cd5785f5c785c05cd5a2d214a3165348eb67703c56",
+    "members": [
+      "am",
+      "mcp-agent-mail"
+    ],
+    "verification": "Upstream minisign manifest signature verified during initial installation; archive digest pinned here."
+  },
+  "gitleaks": {
+    "version": "8.30.1",
+    "url": "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz",
+    "sha256": "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb",
+    "members": [
+      "gitleaks"
+    ]
+  }
+}

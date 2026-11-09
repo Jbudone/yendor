@@ -1,0 +1,20 @@
+name: Feature
+description: Specify a bounded player or developer outcome
+title: '[Feature] '
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome and motivation
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria and required evidence
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies, scope and relevant decisions

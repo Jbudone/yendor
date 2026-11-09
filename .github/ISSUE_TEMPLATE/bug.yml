@@ -1,0 +1,21 @@
+name: Bug
+description: Reproduce a gameplay or tooling problem
+title: '[Bug] '
+labels: [bug]
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include build ID, seed, platform and any useful clip or diagnostic bundle.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and scope
+      description: Logs, captures, frequency, and whether it also occurs in another build.

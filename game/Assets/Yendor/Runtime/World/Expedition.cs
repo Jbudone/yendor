@@ -19,10 +19,13 @@ namespace Yendor
         float finishedAt;
         static int? nextSeed;
         readonly System.Collections.Generic.List<Material> materials = new();
+        Material materialTemplate;
 
         void Awake() { Instance = this; if (nextSeed.HasValue) Seed = nextSeed.Value; }
         void Start()
         {
+            materialTemplate = Resources.Load<Material>("YendorGreybox");
+            if (!materialTemplate) throw new System.InvalidOperationException("Missing YendorGreybox material resource. Create the greybox render resources in the Editor.");
             startedAt = Time.time;
             RenderSettings.fog = true;
             RenderSettings.fogColor = new Color(.15f, .26f, .28f);
@@ -97,7 +100,7 @@ namespace Yendor
         {
             var item = GameObject.CreatePrimitive(kind); item.name = label;
             item.transform.position = position; item.transform.localScale = size;
-            var material = new Material(Shader.Find("Standard")); material.color = color;
+            var material = new Material(materialTemplate); material.color = color;
             materials.Add(material); item.GetComponent<Renderer>().sharedMaterial = material;
             return item;
         }
