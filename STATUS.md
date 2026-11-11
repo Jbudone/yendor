@@ -7,7 +7,8 @@ Beads owns execution state; query `node tools/workflow.mjs task ready --json`.
 ## Current coordination boundary
 
 2026-11-11: `yen-7mm` preparation complete; coordinator Codex, direct execution.
-Started 05:47 UTC; saved before 06:17 checkpoint; paid calls zero. No explicit
+Started 05:47 UTC; final publication 06:49 UTC exceeded the 06:17 checkpoint
+while awaiting final Git action approval. Paid calls zero. No explicit
 pause. [Draft integration PR #19](https://github.com/Jbudone/yendor/pull/19)
 combines source #13, reporting #17 and local playtest/review records in isolated
 `.worktrees/yen-7mm`. All 67 game files preserved; 11 direct Node cases and

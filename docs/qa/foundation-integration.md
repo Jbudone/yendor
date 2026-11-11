@@ -3,6 +3,8 @@
 Coordinator Codex, direct execution, started 2026-11-11 05:47 UTC.
 Checkpoint 06:17 UTC; paid calls zero. This increment prepares a draft candidate;
 mainline merge and manual foundation acceptance remain separate boundaries.
+Final Git action approval delayed publication until 06:49 UTC, beyond the
+checkpoint. No new subsystem was started; the remaining work was recording results.
 
 Combined local preparation/review head `090a40c` (includes source PR #13 head
 `41ea2d4`) with reporting PR #17 head `cfa6d26`. The conflict-free merge is
