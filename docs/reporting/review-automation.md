@@ -6,6 +6,11 @@ It remains advisory and cannot merge code. During inspection on November 11,
 `YENDOR_AI_REVIEW` and the GitHub `OPENROUTER_API_KEY` secret were absent;
 previous review jobs were skipped. No live model review is claimed.
 
+The [hosted readiness check](https://github.com/Jbudone/yendor/actions/runs/42955121902)
+passed for PR #17: disabled state was reported and the model job was skipped.
+The [hosted Node check](https://github.com/Jbudone/yendor/actions/runs/42955121784)
+also passed for reporting commit `6b7e841`.
+
 Every eligible PR now gets a no-cost readiness job. The model job runs only
 when enabled, prerequisites are present and the PR is from this repository.
 It makes reviews only: automatic description rewriting and improvements are off.
