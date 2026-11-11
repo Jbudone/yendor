@@ -48,10 +48,24 @@ namespace Yendor
             var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             Require(enemies.Length == 7, "Expected seven revenants.");
             Require(Physics.Raycast(run.ExitPosition + Vector3.up * 4, Vector3.down, 6), "No ground at extraction.");
-            var health = enemies[0].GetComponent<Health>();
+            // Generated enemies share a scene root; hierarchy order preserves spawn
+            // order instead of depending on unsorted object-discovery results.
+            Array.Sort(enemies, (left, right) => left.transform.GetSiblingIndex().CompareTo(right.transform.GetSiblingIndex()));
+            Debug.Log($"YENDOR_SMOKE_WORLD: seed={run.Seed} enemies={string.Join(";", Array.ConvertAll(enemies, enemy => enemy.transform.position.ToString("F3")))}");
+            // Prefer an ambient wet target to exercise the regression: water may
+            // already have applied before this synchronous fixture runs.
+            var target = Array.Find(enemies, enemy => enemy.GetComponent<Health>().Wet) ?? enemies[0];
+            var health = target.GetComponent<Health>();
+            Require(health && !health.Dead, "Elemental smoke target must be alive.");
+            Debug.Log($"YENDOR_SMOKE_PRECONDITION: seed={run.Seed} selectedSibling={target.transform.GetSiblingIndex()} position={target.transform.position.ToString("F3")} ambientWet={health.Wet} health={health.Current}");
+            // No frame elapses between setup and assertions. Ambient surfaces
+            // cannot reapply wet until after this synchronous check returns.
+            health.Wet = false;
+            Require(!health.Wet, "Dry smoke precondition was not established.");
             health.Damage(10, Element.Ember);
             Require(health.BurningUntil > Time.time, "Dry ember hit did not ignite.");
             health.Wet = true;
+            Require(health.Wet, "Wet smoke precondition was not established.");
             float before = health.Current;
             health.Damage(10, Element.Storm);
             Require(Mathf.Approximately(before - health.Current, 20), "Wet storm multiplier failed.");
