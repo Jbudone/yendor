@@ -6,6 +6,25 @@ Beads owns execution state; query `node tools/workflow.mjs task ready --json`.
 
 ## Current coordination boundary
 
+2026-11-11: `yen-kk5` preparation complete; manual acceptance awaits a human
+on a graphics-enabled desktop. Coordinator Codex (CLI identity Josh Braendel),
+direct execution; started 04:49 UTC, saved before the 05:19 checkpoint.
+Starting revision `41ea2d4`; zero paid calls. No explicit user pause.
+
+Playtest packet: `docs/playtests/foundation-controls.md`. The exact CI player is
+preserved at `artifacts/pilots/yen-kk5/player/Yendor.x86_64`; its full bundle hash
+matches the passing build, and all 67 recorded game files match this checkout.
+Verification: `artifacts/pilots/yen-kk5/readiness.json`. Launch instructions,
+source-derived controls, guided checks and result fields are ready. Human session,
+clips, rendered inspection and frame timing are unrun; `yen-kk5` remains open
+in blocked state for that evidence, not complete. No new Unity jobs launched;
+existing processes and dirty documentation preserved. No merge or publication.
+
+Next action: run the packet on the desktop and return F8 reports, clips and
+observations. Diagnose observed failures before expanding into combat tuning.
+The three-fresh-player expedition diagnostic and `yen-g8n` timing remain separate.
+Beads retains the outcome brief, source identity and stopping boundary.
+
 2026-11-11: `yen-0r8` complete; coordinator Codex, direct execution. Started
 04:05 UTC, completed 04:20 before the 04:35 checkpoint. Paid calls zero.
 No explicit user pause. No merge, release or new running Unity task job.
