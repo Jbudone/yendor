@@ -50,3 +50,14 @@ from current evidence. Label local-only artifact paths and missing verification.
 Specific blockers and gates. Link Beads/public issue for execution detail.
 Include a GitHub Release link only when a verified playable checkpoint exists.
 ```
+
+## Progress report maintenance
+
+At completed outcomes or blockers, update the feature notes and pinned roadmap
+issue, and add a dated report under `updates/` when there is a meaningful result.
+Include observed progress, new features, findings, next work and evidence links.
+When visuals change, include an actual inspected capture with build GUID, seed,
+renderer and date; label concept art and diagrams separately. Never claim manual
+feel or hardware performance from a virtual display capture. Link the latest
+report from the index and keep prior reports as dated records. Reconcile GitHub
+discussion into Beads and accepted design decisions before implementing new scope.

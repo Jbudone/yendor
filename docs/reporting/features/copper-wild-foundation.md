@@ -38,5 +38,6 @@ readability remain pending. Public references:
 [foundation playtest / yen-kk5](https://github.com/Jbudone/yendor/issues/4) and
 [rendered/performance baseline / yen-g8n](https://github.com/Jbudone/yendor/issues/5).
 
-The [timed Health tests](timed-health-lifecycle.md) are a separate pending-verification
-increment. No playable GitHub Release is claimed by this page.
+The [timed Health tests](timed-health-lifecycle.md) passed local Unity verification
+and runtime smoke on a recorded source snapshot. Broader integrated CI and manual
+acceptance remain pending. No playable GitHub Release is claimed by this page.

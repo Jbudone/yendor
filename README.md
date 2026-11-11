@@ -1,5 +1,10 @@
 # Yendor
 
+[Interactive roadmap](https://github.com/Jbudone/yendor/issues/15) ·
+[Illustrated progress report](docs/reporting/updates/2026-11-11.md) ·
+[Feature notes](docs/reporting/README.md) · [PR-Agent setup](docs/reporting/review-automation.md)
+
+
 A third-person expedition roguelike shooter: systemic discovery, inviting wilds,
 and fast movement combat. Built with Unity; developed with a Mastra supervisor,
 specialist agents, LiteLLM, Unity AI and Meshy.

@@ -1,0 +1,75 @@
+{
+  "task": "yen-lmb",
+  "verifiedTestCommit": "14afb5cd79f13200ed8f80e3ad76397c7bd25c27",
+  "testSourceHash": "51ba64266ec859ffa999eb36d470f75ed7930a076ec8487b708574970adf88d0",
+  "testRun": "2026-11-11T03-35-17-749Z-273354a8",
+  "tests": [
+    {
+      "fullname": "Yendor.Tests.HealthLifecycleTests.BurningDealsSevenDamagePerSecondThenExpires",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthLifecycleTests.LethalBurnEmitsOneDeathAcrossLaterFramesAndHits",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthLifecycleTests.WetExpiryRestoresNormalStormDamageAndAllowsIgnition",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthLifecycleTests.WetExtinguishesOnUpdateAndBurnDoesNotResumeAfterDrying",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthSequenceTests.GeneratedLegalHistoriesPreserveHealthAndDeathRules(17)",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthSequenceTests.GeneratedLegalHistoriesPreserveHealthAndDeathRules(171)",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthSequenceTests.GeneratedLegalHistoriesPreserveHealthAndDeathRules(1717)",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthSequenceTests.IndependentOracleDetectsAndReducesDeliberatelyFaultyAdapters(1)",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthSequenceTests.IndependentOracleDetectsAndReducesDeliberatelyFaultyAdapters(2)",
+      "result": "Passed"
+    },
+    {
+      "fullname": "Yendor.Tests.HealthSequenceTests.IndependentOracleDetectsAndReducesDeliberatelyFaultyAdapters(3)",
+      "result": "Passed"
+    }
+  ],
+  "smokeRun": "2026-11-11T03-36-05-272Z-3fa5183d",
+  "smokePassed": true,
+  "buildRun": "2026-11-11T03-42-02-880Z-7b50f959",
+  "buildSourceHash": "3b6a7f197b622420269a58dbd39db97e9633119a567d71b2c708e99d37cf712e",
+  "buildGuid": "78d3415d530b4caa99a856b08907116d",
+  "bundleHash": "9b87cf54157cbb8317dc424c12d5ceb7a4fe25b4edd7846b612fc53af444d5e4",
+  "nodeTests": {
+    "passed": 11,
+    "failed": 0
+  },
+  "limitations": [
+    "Headless Editor evidence; no rendered/manual feel/performance acceptance.",
+    "Smoke emitted known UnityEditor.Search.SearchDatabase startup ArgumentOutOfRangeException; smoke assertions completed and process exited 0.",
+    "Fault sensitivity reviewed analytically; no production source mutation experiment."
+  ],
+  "hostedCI": {
+    "url": "https://github.com/Jbudone/yendor/actions/runs/42954712829",
+    "commit": "14afb5cd79f13200ed8f80e3ad76397c7bd25c27",
+    "validation": "passed",
+    "tests": {
+      "passed": 10,
+      "failed": 0
+    },
+    "smoke": "failed: Dry ember hit did not ignite.",
+    "followUpTask": "yen-0r8",
+    "cause": "Unproven; inspect dry precondition and unsorted enemy selection."
+  }
+}

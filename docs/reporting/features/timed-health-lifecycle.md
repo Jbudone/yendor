@@ -1,42 +1,40 @@
 # Timed Health lifecycle tests
 
-Status: **Implemented in worker source; verification blocked**
-Last reviewed: 2026-11-10 UTC
+Status: **Verified locally; committed**
+Last reviewed: 2026-11-11 UTC
 Task: [yen-pmd / issue #8](https://github.com/Jbudone/yendor/issues/8)
-Source: worker commit `599bf7d`; not included in reporting baseline `b3dc709`.
+Source: local commit `14afb5c`; worker source `599bf7d`.
 
 ## Result and scope
 
-Four Unity lifecycle tests were authored to exercise real Awake/Update dispatch
-and elapsed engine frames: burn rate and expiry, wet extinguishing without burn
-resumption, wet expiry restoring normal Storm damage and ignition, and exactly one
-death from lethal burning across later frames and hits.
+Four Unity tests exercise actual Awake/Update dispatch and engine frames:
+burn rate/expiry, extinguishing without burn resumption, wet expiry restoring
+normal Storm damage and ignition, and one death from lethal burning across
+later frames and hits. Runtime behavior is unchanged.
 
-The fixture uses controlled engine time (`Time.captureDeltaTime = 1/60`) across
-actual player-loop frames; it is not a wall-clock performance test.
-
-This is test coverage for the accepted elemental rules, not new gameplay behavior
-or a claim of passed runtime coverage. See the
-[interaction language](../../../CONTEXT.md#domain-language) and
-[foundation gate](../../design/first-expedition.md#slice-target).
+The fixture uses `Time.captureDeltaTime = 1/60`; it verifies simulation behavior,
+not wall-clock performance or movement feel. Rules remain those in the
+[interaction language](../../../CONTEXT.md#domain-language).
 
 ## Evidence
 
-The local-only worker commit contains `HealthLifecycleTests.cs` and its `.meta` file. The
-coordinator reports four tests copied into the primary checkout as uncommitted
-changes. [PR #13](https://github.com/Jbudone/yendor/pull/13) remains unmerged at
-this checkpoint; worker source must not be described as integrated release source.
+All ten Unity tests passed on 2026-11-11, including the four lifecycle tests and
+six existing generated-history/oracle cases. Runtime smoke passed on the same
+source hash; syntax and 11 Node tests passed, as did staged secret scanning.
+The [QA record](../../qa/timed-health-lifecycle.md) preserves exact run IDs,
+source identity, reproduction commands and limitations. [Hosted Unity CI](https://github.com/Jbudone/yendor/actions/runs/42954712829)
+also passed all ten tests but failed subsequent smoke with “Dry ember hit did not
+ignite.” Full local logs remain in ignored artifacts; hosted artifacts are
+available from that CI run while retained. The full workflow is not green.
 
-The Unity test launch at `2026-11-10T05:30:58Z` failed with `ENOENT` before runtime
-verification. No pass is claimed for the four new tests. The coordinator reports
-11 passing Node tests; those do not exercise Unity lifecycle behavior. Run details
-remain in Beads and local-only ignored `artifacts/`; no remotely available runtime
-result is asserted here. Historical synchronous Health test results in the
-[setup record](../../workflow-setup-status.md#verified-evidence) cover different tests.
+The launch blocker was diagnosed: this host's npm sandbox hides the home-based
+Unity installation. Direct execution of the project Node CLI succeeded; sandbox
+configuration was unchanged. Smoke emitted the previously recorded UnityEditor
+SearchDatabase startup exception while gameplay assertions completed.
 
 ## Remaining acceptance
 
-Resolve the Unity launch environment, run the four tests against a recorded source
-identity, inspect their results and integrate the reviewed source. Update this page
-with durable CI evidence when available. No production mutation experiment was run. This reporting page does not close
-`yen-pmd` or claim a release.
+`yen-pmd` is complete locally. The commit is pushed in PR #13 and hosted test evidence is available.
+Resolve the CI smoke inconsistency (`yen-0r8`) before integration. No production source mutation experiment, rendered
+inspection, player build or manual feel pass was performed. This increment does
+not accept the broader foundation milestone or create a playable release.
