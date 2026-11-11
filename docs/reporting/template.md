@@ -61,3 +61,12 @@ renderer and date; label concept art and diagrams separately. Never claim manual
 feel or hardware performance from a virtual display capture. Link the latest
 report from the index and keep prior reports as dated records. Reconcile GitHub
 discussion into Beads and accepted design decisions before implementing new scope.
+
+## Roadmap presentation
+
+Use the Copper Wild palette and the illustrated Now / Next / Later milestone
+map. Keep current blockers and linked actions visible in native Markdown; artwork
+and colour support comprehension, rather than carrying the only copy of status.
+Label aspirational art separately from actual gameplay. Update the map and text
+together when a milestone changes; retain the five accepted milestone gates.
+Artwork prompts and tool provenance live beside the assets.
