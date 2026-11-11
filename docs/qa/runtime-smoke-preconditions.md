@@ -34,8 +34,8 @@ Health, water, world generation and accepted interaction rules are unchanged.
 
 ## Hosted verification and limitations
 
-A fresh full Unity CI run is required for integration. Do not replace the earlier
-failed run with a passing narrative; record its successor explicitly.
+The final full Unity CI successor is recorded below. The earlier failed run
+and intermediate passing iteration remain visible for their exact sources.
 Headless tests do not establish rendered quality, manual feel or hardware timing.
 The known UnityEditor SearchDatabase startup exception remains in local smoke
 logs; gameplay assertions passed and the process exited successfully.
@@ -51,7 +51,7 @@ player smoke. A stronger evidence comparison found the same seven positions in
 a different player log order: hierarchy-based ordering had not normalized the
 packaged player's root objects. The follow-up uses starting coordinates instead.
 The earlier passing workflow is retained as evidence for its exact source, not
-as proof of the follow-up. Fresh verification is required for the final change.
+as proof of the follow-up. The final change was verified in the successor recorded below.
 
 ## Final coordinate-order local acceptance
 
@@ -59,4 +59,26 @@ The follow-up passed fresh-copy smoke in `2026-11-11T04-13-11-242Z-1a35f746`
 and all ten Unity tests in `2026-11-11T04-13-36-732Z-56128bd4`, on source hash
 `9892680939d26d1032210f92f2290c056f6cb75d84c35e47084b32a9ac53ef5d`.
 The only changed game file remains RuntimeSmoke.cs; no metadata identities changed.
-Full hosted verification of this final ordering is still pending.
+Full hosted verification of this final ordering passed as recorded below.
+
+## Final hosted acceptance
+
+[Full Unity CI 42957926313](https://github.com/Jbudone/yendor/actions/runs/42957926313)
+passed at `696edb2e9dafa5ace5bcb9b73e65b1eda8f2e9c2`: validation, all ten tests,
+Editor smoke, asset audit, Linux build, packaged-player smoke and artifact upload.
+Every mode verified source hash
+`dae4cf7745e9799bf5b9228b007348164fc71fa39c31df6ef4afcb73c0af2aae`.
+Build GUID: `58e54fd84e464cd8b5b701f3b4fd047a`; player bundle hash:
+`d6f3ba6cf7338190ff6fbfdf1fabfae181498f709c671cb1cb1b5e61207ff298`.
+
+The final local and hosted manifests have identical game file hashes. The ordered
+seed-43117 signature, containing all seven enemy positions, matches exactly in
+local Editor, hosted Editor and packaged player logs. Both hosted smoke modes
+selected the naturally wet enemy at (-5, 1, 14), normalized it for the dry check,
+then passed wet damage, death-once and extraction checks. This remains one seed.
+
+Hosted logs/XML/manifests are linked from the run and retained locally under
+`artifacts/pilots/yen-0r8/ci-42957926313/`. The first green iteration and its
+ordering limitation remain under `ci-42957389692/`. Later QA/reporting updates
+change documentation hashes; the exact tested source and game file hashes above
+remain the acceptance identities. No manual feel or hardware acceptance.
