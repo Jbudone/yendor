@@ -8,24 +8,26 @@ A readable 5–10 minute expedition: choose a route, exploit an interaction,
 recover the relic, and escape—or learn from the run that ends in death.
 
 [💬 Discuss priorities](https://github.com/Jbudone/yendor/issues/15) ·
-[📖 Latest illustrated report](updates/2026-11-11.md) ·
+[📖 Latest progress report](updates/2026-11-11-smoke.md) ·
 [🧭 Feature notes](README.md)
 
 _Original AI-generated roadmap illustration. Aspirational concept art; the
 [actual greybox](updates/2026-11-11.md#what-the-game-looks-like-today) looks different._
 
-![Milestone map. Now: Foundation, finish CI smoke and human controls. Next: Combat feel. Later in order: Systemic roguelike, Exploration, Beauty. Ten tests pass; these are milestones, not delivery dates.](images/expedition-roadmap.svg)
+![Milestone map. Now: Foundation checks pass; finish human controls and camera. Next: Combat feel. Later in order: Systemic roguelike, Exploration, Beauty. Ten tests pass; these are milestones, not delivery dates.](images/expedition-roadmap.svg)
 
 ## 🟠 Now · finish the foundation
 
 The greybox is implemented. **All ten Unity tests pass locally and in CI.**
-The hosted smoke check still needs fixing, and the controls need a human playtest.
+[Full Unity CI](https://github.com/Jbudone/yendor/actions/runs/42957926313) is green, including the packaged-player smoke check.
+The controls and camera now need a human playtest.
 
 | Next action | What success looks like |
 | --- | --- |
-| [🔧 Fix the smoke inconsistency · #16](https://github.com/Jbudone/yendor/issues/16) | Dry/wet preconditions are reproducible and the hosted smoke check passes. |
 | [🎮 Playtest controls & camera · #4](https://github.com/Jbudone/yendor/issues/4) | Movement, aiming, dash, double jump and restart feel clear and dependable. |
 | [🌿 Inspect the rendered baseline · #5](https://github.com/Jbudone/yendor/issues/5) | Readability is reviewed and performance is measured on a named machine. |
+
+**Recently completed:** [reproducible dry/wet smoke checks · #16](https://github.com/Jbudone/yendor/issues/16).
 
 [See the evidence →](features/timed-health-lifecycle.md)
 
@@ -81,4 +83,4 @@ owns milestone scope. Beads owns execution; GitHub is the discussion front door.
 work, separate from the gameplay milestone sequence.
 
 _No delivery dates or playable-release claim. Updated at outcome/blocker boundaries
-under the [reporting convention](template.md). Last refreshed November 11, 2026 · `yen-pyw`._
+under the [reporting convention](template.md). Last refreshed November 11, 2026 · `yen-0r8`._

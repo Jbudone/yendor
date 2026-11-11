@@ -1,9 +1,9 @@
 # Copper Wild foundation
 
-Status: **Implemented; historical CI verified; manual acceptance pending**
-Last reviewed: 2026-11-10 UTC
+Status: **Implemented; CI verified; manual acceptance pending**
+Last reviewed: 2026-11-11 UTC
 Task: Foundation follow-ups remain in Beads; reporting task `yen-ei3`.
-Source: historical verified checkpoint `6700bfe`; reporting baseline `b3dc709`.
+Source: fresh full verification at `696edb2`; historical checkpoint `6700bfe`.
 
 ## Result and scope
 
@@ -17,6 +17,12 @@ This establishes primitives. Placeholder geometry, limited encounters and missin
 relic escalation/itemization mean the full 5–10 minute milestone is not accepted.
 
 ## Evidence
+
+[Fresh full Unity CI](https://github.com/Jbudone/yendor/actions/runs/42957926313) passed validation, ten Unity tests, Editor smoke,
+asset audit, Linux build and packaged-player smoke at `696edb2`. The fixture
+now establishes explicit dry/wet preconditions; matching ordered seed/position
+logs were checked in local Editor, hosted Editor and packaged player.
+
 
 The [successful Unity CI run](https://github.com/Jbudone/yendor/actions/runs/42579329482)
 at source `6700bfe` completed verification, Linux build, packaged-player smoke and
@@ -32,12 +38,12 @@ scope and limitations, with newer integration evidence in the setup record.
 
 ## Remaining acceptance
 
-Verify the integrated current source and perform the manual camera, aiming, dash,
+Review/integrate the verified source and perform the manual camera, aiming, dash,
 double-jump, restart and encounter pass. Rendered inspection and fresh-player
 readability remain pending. Public references:
 [foundation playtest / yen-kk5](https://github.com/Jbudone/yendor/issues/4) and
 [rendered/performance baseline / yen-g8n](https://github.com/Jbudone/yendor/issues/5).
 
 The [timed Health tests](timed-health-lifecycle.md) passed local Unity verification
-and runtime smoke on a recorded source snapshot. Broader integrated CI and manual
-acceptance remain pending. No playable GitHub Release is claimed by this page.
+and full hosted CI on a recorded source snapshot. Broader manual
+acceptance remains pending. No playable GitHub Release is claimed by this page.

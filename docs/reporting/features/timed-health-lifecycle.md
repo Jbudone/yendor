@@ -1,9 +1,9 @@
 # Timed Health lifecycle tests
 
-Status: **Verified locally; committed**
+Status: **Verified locally and in CI**
 Last reviewed: 2026-11-11 UTC
 Task: [yen-pmd / issue #8](https://github.com/Jbudone/yendor/issues/8)
-Source: local commit `14afb5c`; worker source `599bf7d`.
+Source: tests `14afb5c`, worker `599bf7d`; full verification at `696edb2`.
 
 ## Result and scope
 
@@ -22,10 +22,12 @@ All ten Unity tests passed on 2026-11-11, including the four lifecycle tests and
 six existing generated-history/oracle cases. Runtime smoke passed on the same
 source hash; syntax and 11 Node tests passed, as did staged secret scanning.
 The [QA record](../../qa/timed-health-lifecycle.md) preserves exact run IDs,
-source identity, reproduction commands and limitations. [Hosted Unity CI](https://github.com/Jbudone/yendor/actions/runs/42954712829)
-also passed all ten tests but failed subsequent smoke with “Dry ember hit did not
-ignite.” Full local logs remain in ignored artifacts; hosted artifacts are
-available from that CI run while retained. The full workflow is not green.
+source identity, reproduction commands and limitations. [Fresh full Unity CI](https://github.com/Jbudone/yendor/actions/runs/42957926313) passed at `696edb2`: ten tests, runtime smoke,
+asset audit, Linux build and packaged-player smoke. The earlier run
+`42954712829` passed tests but failed smoke because its target was already wet;
+`yen-0r8` corrected the fixture preconditions. The [follow-up report](../updates/2026-11-11-smoke.md)
+records the reproduction and cross-runtime ordering check. Local logs remain
+ignored artifacts; hosted artifacts are linked from the CI run while retained.
 
 The launch blocker was diagnosed: this host's npm sandbox hides the home-based
 Unity installation. Direct execution of the project Node CLI succeeded; sandbox
@@ -34,7 +36,7 @@ SearchDatabase startup exception while gameplay assertions completed.
 
 ## Remaining acceptance
 
-`yen-pmd` is complete locally. The commit is pushed in PR #13 and hosted test evidence is available.
-Resolve the CI smoke inconsistency (`yen-0r8`) before integration. No production source mutation experiment, rendered
-inspection, player build or manual feel pass was performed. This increment does
-not accept the broader foundation milestone or create a playable release.
+`yen-pmd` and the smoke-fixture follow-up are verified. Source remains under
+review in PR #13; human controls/camera, readability and hardware performance
+remain broader foundation gates. No production mutation campaign or manual
+feel acceptance is claimed. No playable release has been published.
