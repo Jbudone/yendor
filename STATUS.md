@@ -6,6 +6,15 @@ Beads owns execution state; query `node tools/workflow.mjs task ready --json`.
 
 ## Current coordination boundary
 
+2026-11-11: `yen-7mm` in progress; coordinator Codex, direct execution.
+Start 05:47 UTC; checkpoint 06:17 UTC; paid-call allowance zero. User said
+proceed; no explicit pause. Preparing an isolated combined PR #13/#17 integration
+candidate, preserving the primary dirty documentation. Acceptance: unchanged
+recorded game hashes, Node/secret checks and full hosted Unity gate at the exact
+candidate. Next boundary: reviewable draft integration PR and gate disposition;
+mainline merge, human acceptance and gameplay tuning are outside this increment.
+Worktree `.worktrees/yen-7mm`; Beads retains execution detail.
+
 2026-11-11: `yen-w06` review complete; coordinator Codex, direct execution.
 Started 05:21 UTC; saved before the 05:51 checkpoint, paid calls zero.
 Review: `docs/qa/pr-foundation-review.md`; evidence: `artifacts/pilots/yen-w06/`.
