@@ -6,6 +6,18 @@ Beads owns execution state; query `node tools/workflow.mjs task ready --json`.
 
 ## Current coordination boundary
 
+2026-11-11: `yen-w06` review complete; coordinator Codex, direct execution.
+Started 05:21 UTC; saved before the 05:51 checkpoint, paid calls zero.
+Review: `docs/qa/pr-foundation-review.md`; evidence: `artifacts/pilots/yen-w06/`.
+No blocking correctness defect found in exact PR #13/#17 changes. Twenty-three
+existing-evidence checks pass; trial merge is conflict-free and preserves all
+67 tested game-file hashes. Raw reporting head predates the smoke fix: integrate
+source first, then reporting; never replace source with raw reporting head.
+This is coordinator review, not an independent review, Unity rerun or acceptance.
+No merge/push/review posted, new Unity jobs or accepted gameplay changes.
+Next boundary: authorized integration with current checks, or desktop playtest
+below. No explicit pause; existing dirty documentation remains preserved.
+
 2026-11-11: `yen-kk5` preparation complete; manual acceptance awaits a human
 on a graphics-enabled desktop. Coordinator Codex (CLI identity Josh Braendel),
 direct execution; started 04:49 UTC, saved before the 05:19 checkpoint.
