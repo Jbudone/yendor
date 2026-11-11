@@ -16,6 +16,52 @@ status. Research is indexed by `docs/workflow-research-ledger.md`.
 
 ## Current coordination boundary
 
+2026-11-11 04:20 UTC: `yen-0r8` complete, coordinator Codex/direct. Full Unity
+CI [42957926313](https://github.com/Jbudone/yendor/actions/runs/42957926313)
+passed at `696edb2`: validation, 10 tests, smoke, audit, Linux build and packaged
+player smoke. Source PR #13 now includes final code plus QA documentation at
+`7dffb54`; tested game bytes unchanged by later docs. Local/hosted/player ordered
+seed-43117 positions match exactly; accepted gameplay and asset metadata unchanged.
+The fixture had selected a wet enemy for a dry assertion; explicit dry/wet setup
+fixes it. Intermediate sibling-order CI passed but comparison exposed player
+ordering differences; final position ordering verified in the successor above.
+
+Roadmap issue #15 and reporting PR #17 updated (`cfa6d26`); latest report:
+docs/reporting/updates/2026-11-11-smoke.md. Issue #16 closed. Node checks and
+reporter readiness pass; live model reviews remain disabled (`yen-wco`). Evidence:
+docs/qa/runtime-smoke-preconditions.md and artifacts/pilots/yen-0r8/.
+Start 04:05 UTC; completed before 04:35 checkpoint; paid calls zero. No merge,
+release, scene edits or manual feel claim. Existing primary diff preserved;
+reporting refreshed. One report push failed remotely; confirmed unchanged remote
+head and successful isolated retry, no source/ownership conflict. No new running
+Unity/capture task jobs; old workers untouched. No explicit pause. Next boundary:
+review source/report PRs and human controls/camera playtest (`yen-kk5`), plus
+hardware/readability baseline (`yen-g8n`); reviewer model/budget remains pending.
+
+
+2026-11-11 04:05 UTC: user resumed orchestration; `yen-0r8` claimed by Codex,
+direct execution in isolated .worktrees/yen-0r8 at `a2862e3`. Outcome: diagnose
+and fix smoke dry/wet fixture preconditions, verify local tests/smoke and hosted
+CI. Checkpoint 04:35 UTC; paid allowance zero. No explicit pause. Scope excludes
+new gameplay or review-model activation; prior docs/reporting diff preserved.
+Next: instrument selected enemy and reproduce the wet-start assumption.
+
+
+2026-11-11 04:01 UTC: `yen-pyw` roadmap styling published in commit `2346ec0`
+on reporting PR #17; pinned issue #15 updated. Coordinator Codex, direct mode;
+start 03:56, completed before 04:26 checkpoint. Copper Wild concept banner plus
+coloured Now/Next/Later milestone map, current actions and collapsible later
+plans. Art/diagram visually inspected; GitHub Markdown rendering retains two
+alt-labelled images and three detail sections. Public assets HTTP200 and hashes
+match inspected files. One user-requested built-in ImageGen call; zero CLI/API,
+Meshy or reviewer paid submissions. Scope unchanged, no gameplay/Unity commands,
+merge or release. Primary prior diff retained; reporting refreshed and accepted
+presentation preference added to source-linked memory. Evidence:
+artifacts/pilots/yen-pyw/. Next boundary: review styled roadmap; `yen-wco`
+provider/model budget decision and `yen-0r8` CI smoke fix remain outstanding.
+No explicit pause or running task job.
+
+
 2026-11-11: coordinator Codex, task `yen-lmb`, direct execution; start 03:41 UTC,
 checkpoint 04:11 UTC, paid calls zero. Published source/test commit `14afb5c` in
 [PR #13](https://github.com/Jbudone/yendor/pull/13); illustrated reporting and
