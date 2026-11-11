@@ -6,14 +6,19 @@ Beads owns execution state; query `node tools/workflow.mjs task ready --json`.
 
 ## Current coordination boundary
 
-2026-11-11: `yen-7mm` in progress; coordinator Codex, direct execution.
-Start 05:47 UTC; checkpoint 06:17 UTC; paid-call allowance zero. User said
-proceed; no explicit pause. Preparing an isolated combined PR #13/#17 integration
-candidate, preserving the primary dirty documentation. Acceptance: unchanged
-recorded game hashes, Node/secret checks and full hosted Unity gate at the exact
-candidate. Next boundary: reviewable draft integration PR and gate disposition;
-mainline merge, human acceptance and gameplay tuning are outside this increment.
-Worktree `.worktrees/yen-7mm`; Beads retains execution detail.
+2026-11-11: `yen-7mm` preparation complete; coordinator Codex, direct execution.
+Started 05:47 UTC; saved before 06:17 checkpoint; paid calls zero. No explicit
+pause. [Draft integration PR #19](https://github.com/Jbudone/yendor/pull/19)
+combines source #13, reporting #17 and local playtest/review records in isolated
+`.worktrees/yen-7mm`. All 67 game files preserved; 11 direct Node cases and
+Gitleaks pass. npm wrapper runs skip the binary fixture; direct runs cover it.
+[Full integrated Unity CI](https://github.com/Jbudone/yendor/actions/runs/42969260953)
+passed at `8437f91`; 23 local artifact/hash/XML/bundle checks pass. Later report
+and STATUS changes are documentation only. Evidence `artifacts/pilots/yen-7mm/`;
+report `docs/qa/foundation-integration.md`. Primary dirty documents preserved.
+Next boundary: choose/merge the combined candidate or original ordered PRs,
+then desktop acceptance below. No mainline merge, paid call or gameplay tuning.
+Original PRs remain open; human gates remain pending. Beads has execution detail.
 
 2026-11-11: `yen-w06` review complete; coordinator Codex, direct execution.
 Started 05:21 UTC; saved before the 05:51 checkpoint, paid calls zero.
