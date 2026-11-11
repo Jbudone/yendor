@@ -1,0 +1,7 @@
+{
+  "task": "yen-pyw",
+  "tool": "built-in image_gen",
+  "prompt": "Use case: stylized-concept. Asset type: a panoramic editorial illustration banner for the Yendor game development roadmap on GitHub. Create original atmospheric Copper Wild expedition art: an inviting copper-green forest where ancient stone ruins and subtle old machinery have grown into roots; a winding path leads from a foreground waystone to a distant turquoise beacon and ruin containing the Starheart. A small cloaked wayfarer seen from behind provides scale. Beautiful layered shapes, bold readable silhouette, lush painterly gouache and fine screenprinted grain, crafted fantasy field-guide style, restrained details, sophisticated deep pine, verdigris, warm copper, soft gold and turquoise. Wide panoramic composition about 3:1, generous breathable sky and clear visual path through the scene. The image is aspirational concept illustration, not a screenshot. No text, no lettering, no UI, no logos, no watermark, no imitation of an existing game's characters or distinctive assets.",
+  "purpose": "Aspirational roadmap illustration; not gameplay or accepted art direction",
+  "asset": "copper-wild-roadmap-art.png"
+}

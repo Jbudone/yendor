@@ -1,0 +1,50 @@
+{
+  "task": "yen-0r8",
+  "testedCommit": "696edb2e9dafa5ace5bcb9b73e65b1eda8f2e9c2",
+  "ci": "https://github.com/Jbudone/yendor/actions/runs/42957926313",
+  "status": "passed",
+  "modes": [
+    {
+      "id": "2026-11-11T04-14-46-094Z-c2c2a47c",
+      "kind": "unity-validate",
+      "sourceHash": "dae4cf7745e9799bf5b9228b007348164fc71fa39c31df6ef4afcb73c0af2aae",
+      "buildGuid": null,
+      "bundleHash": null
+    },
+    {
+      "id": "2026-11-11T04-15-06-918Z-d98eb11a",
+      "kind": "unity-test",
+      "sourceHash": "dae4cf7745e9799bf5b9228b007348164fc71fa39c31df6ef4afcb73c0af2aae",
+      "buildGuid": null,
+      "bundleHash": null
+    },
+    {
+      "id": "2026-11-11T04-15-29-612Z-02a5efca",
+      "kind": "unity-smoke",
+      "sourceHash": "dae4cf7745e9799bf5b9228b007348164fc71fa39c31df6ef4afcb73c0af2aae",
+      "buildGuid": null,
+      "bundleHash": null
+    },
+    {
+      "id": "2026-11-11T04-15-42-343Z-c7886f70",
+      "kind": "unity-audit",
+      "sourceHash": "dae4cf7745e9799bf5b9228b007348164fc71fa39c31df6ef4afcb73c0af2aae",
+      "buildGuid": null,
+      "bundleHash": null
+    },
+    {
+      "id": "2026-11-11T04-15-54-946Z-a8c0a766",
+      "kind": "unity-build",
+      "sourceHash": "dae4cf7745e9799bf5b9228b007348164fc71fa39c31df6ef4afcb73c0af2aae",
+      "buildGuid": "58e54fd84e464cd8b5b701f3b4fd047a",
+      "bundleHash": "d6f3ba6cf7338190ff6fbfdf1fabfae181498f709c671cb1cb1b5e61207ff298"
+    }
+  ],
+  "testsPassed": 10,
+  "packagedPlayerPassed": true,
+  "orderedSeedSignatureMatch": true,
+  "seed": 43117,
+  "signature": "YENDOR_SMOKE_WORLD: seed=43117 enemies=(-3.000, 1.000, 4.000);(5.000, 1.000, 9.000);(-5.000, 1.000, 14.000);(4.000, 1.000, 19.000);(-6.000, 1.000, 24.000);(6.000, 1.000, 29.000);(-5.000, 1.000, 34.000)",
+  "scope": "RuntimeSmoke fixture only; Health/Surface/Expedition/metadata unchanged",
+  "limitation": "One seed; headless assertions, not manual feel or hardware timing"
+}

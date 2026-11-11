@@ -62,6 +62,20 @@
       "beads"
     ],
     "text": "Beads is the local task authority. GitHub issues present user-facing work when connected. Avoid independent backlogs or automatic promotion of agent observations to decisions.",
-    "sourceHash": "ceb0352008dac7e5f8e24e93e289349319e618d6292e88e410ca7d3d2f55315e"
+    "sourceHash": "19ff0da9fa13b65f5ddbf7a49f3fa94f318c027d2cd6445f652d1fcc1a1442a5"
+  },
+  {
+    "id": "github-reporting",
+    "status": "accepted",
+    "source": "docs/adr/0002-project-workflow.md",
+    "date": "2026-11-10",
+    "tags": [
+      "roadmap",
+      "reporting",
+      "release",
+      "github"
+    ],
+    "text": "Maintain GitHub-readable roadmap and feature notes at outcome/blocker boundaries. Show implementation, verification and release separately with source evidence. GitHub Releases represent verified playable checkpoints; Beads remains task authority and accepted design owns milestone gates.",
+    "sourceHash": "19ff0da9fa13b65f5ddbf7a49f3fa94f318c027d2cd6445f652d1fcc1a1442a5"
   }
 ]
