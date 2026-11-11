@@ -1,151 +1,41 @@
 # Current project state
 
-The Copper Wild greybox exists. Current milestone: finish foundation verification,
-then improve combat feel. Read `CONTEXT.md` for direction and
-`docs/design/first-expedition.md` for milestone gates.
-
-The local workflow is installed and verified with synthetic model/real Unity checks. `docs/workflow-setup-status.md` records
-verified integrations and account/environment requirements. Beads is the task
-authority; query it instead of copying the full backlog here.
-
-Prior verified gameplay checks are recorded in `docs/qa/foundation.md`; they are
-historical evidence, not proof for changed source. A rendered/manual feel pass
-is still required. Live model/Meshy/tracing credentials remain account gates.
-The licensed CI runner is registered; final CI evidence is recorded in the setup
-status. Research is indexed by `docs/workflow-research-ledger.md`.
+Yendor's Copper Wild greybox exists. Finish foundation acceptance, then improve
+combat feel. Direction: `CONTEXT.md` and `docs/design/first-expedition.md`.
+Beads owns execution state; query `node tools/workflow.mjs task ready --json`.
 
 ## Current coordination boundary
 
-2026-11-11 04:20 UTC: `yen-0r8` complete, coordinator Codex/direct. Full Unity
-CI [42957926313](https://github.com/Jbudone/yendor/actions/runs/42957926313)
-passed at `696edb2`: validation, 10 tests, smoke, audit, Linux build and packaged
-player smoke. Source PR #13 now includes final code plus QA documentation at
-`7dffb54`; tested game bytes unchanged by later docs. Local/hosted/player ordered
-seed-43117 positions match exactly; accepted gameplay and asset metadata unchanged.
-The fixture had selected a wet enemy for a dry assertion; explicit dry/wet setup
-fixes it. Intermediate sibling-order CI passed but comparison exposed player
-ordering differences; final position ordering verified in the successor above.
+2026-11-11: `yen-0r8` complete; coordinator Codex, direct execution. Started
+04:05 UTC, completed 04:20 before the 04:35 checkpoint. Paid calls zero.
+No explicit user pause. No merge, release or new running Unity task job.
 
-Roadmap issue #15 and reporting PR #17 updated (`cfa6d26`); latest report:
-docs/reporting/updates/2026-11-11-smoke.md. Issue #16 closed. Node checks and
-reporter readiness pass; live model reviews remain disabled (`yen-wco`). Evidence:
-docs/qa/runtime-smoke-preconditions.md and artifacts/pilots/yen-0r8/.
-Start 04:05 UTC; completed before 04:35 checkpoint; paid calls zero. No merge,
-release, scene edits or manual feel claim. Existing primary diff preserved;
-reporting refreshed. One report push failed remotely; confirmed unchanged remote
-head and successful isolated retry, no source/ownership conflict. No new running
-Unity/capture task jobs; old workers untouched. No explicit pause. Next boundary:
-review source/report PRs and human controls/camera playtest (`yen-kk5`), plus
-hardware/readability baseline (`yen-g8n`); reviewer model/budget remains pending.
+The smoke fixture selected an already-wet enemy for a dry assertion. It now
+sets dry/wet preconditions explicitly and uses starting-position ordering.
+Accepted gameplay, seed generation and asset metadata are unchanged.
 
+[Full Unity CI](https://github.com/Jbudone/yendor/actions/runs/42957926313)
+passed at `696edb2`: validation, ten tests, Editor smoke, audit, Linux build,
+packaged-player smoke and artifact upload. Ordered seed-43117 positions match
+local Editor, hosted Editor and player. QA/status-only commits follow that code.
+Source is published in [PR #13](https://github.com/Jbudone/yendor/pull/13).
+Evidence: `docs/qa/runtime-smoke-preconditions.md`, `artifacts/pilots/yen-0r8/`.
+The failed baseline and intermediate hierarchy-order limitation remain recorded.
 
-2026-11-11 04:05 UTC: user resumed orchestration; `yen-0r8` claimed by Codex,
-direct execution in isolated .worktrees/yen-0r8 at `a2862e3`. Outcome: diagnose
-and fix smoke dry/wet fixture preconditions, verify local tests/smoke and hosted
-CI. Checkpoint 04:35 UTC; paid allowance zero. No explicit pause. Scope excludes
-new gameplay or review-model activation; prior docs/reporting diff preserved.
-Next: instrument selected enemy and reproduce the wet-start assumption.
+The [illustrated roadmap](https://github.com/Jbudone/yendor/issues/15) and latest
+report `docs/reporting/updates/2026-11-11-smoke.md` are updated in
+[PR #17](https://github.com/Jbudone/yendor/pull/17), reporting commit `cfa6d26`.
+Issue #16 is closed. Node/readiness checks pass; live PR-Agent reviews remain
+disabled pending a selected model and provider-capped key (`yen-wco` / issue #18).
 
+Next boundary: review source/report PRs, human controls/camera acceptance
+(`yen-kk5` / #4), and hardware/readability baseline (`yen-g8n` / #5).
+Headless assertions do not establish manual feel or hardware performance.
+Known Editor SearchDatabase startup exception remains recorded.
 
-2026-11-11 04:01 UTC: `yen-pyw` roadmap styling published in commit `2346ec0`
-on reporting PR #17; pinned issue #15 updated. Coordinator Codex, direct mode;
-start 03:56, completed before 04:26 checkpoint. Copper Wild concept banner plus
-coloured Now/Next/Later milestone map, current actions and collapsible later
-plans. Art/diagram visually inspected; GitHub Markdown rendering retains two
-alt-labelled images and three detail sections. Public assets HTTP200 and hashes
-match inspected files. One user-requested built-in ImageGen call; zero CLI/API,
-Meshy or reviewer paid submissions. Scope unchanged, no gameplay/Unity commands,
-merge or release. Primary prior diff retained; reporting refreshed and accepted
-presentation preference added to source-linked memory. Evidence:
-artifacts/pilots/yen-pyw/. Next boundary: review styled roadmap; `yen-wco`
-provider/model budget decision and `yen-0r8` CI smoke fix remain outstanding.
-No explicit pause or running task job.
-
-
-2026-11-11: coordinator Codex, task `yen-lmb`, direct execution; start 03:41 UTC,
-checkpoint 04:11 UTC, paid calls zero. Published source/test commit `14afb5c` in
-[PR #13](https://github.com/Jbudone/yendor/pull/13); illustrated reporting and
-PR-Agent readiness in [PR #17](https://github.com/Jbudone/yendor/pull/17).
-PR #14 was superseded, not merged. No release or merge was performed.
-
-[Interactive roadmap](https://github.com/Jbudone/yendor/issues/15) is pinned and
-supports comments/reactions. The [latest illustrated report](docs/reporting/updates/2026-11-11.md)
-shows an inspected Linux player capture and evidence. Local ten Unity tests,
-smoke and build passed. Hosted validation/ten tests passed but smoke failed with
-“Dry ember hit did not ignite”; investigate `yen-0r8` / issue #16, no blind retry.
-Reporting Node checks and the no-cost reviewer readiness check passed.
-
-PR-Agent installed; model reviews remain disabled awaiting selected model and
-provider-enforced spending cap/key. Do not copy general local credentials or
-start paid calls implicitly. No explicit user pause. Next boundary: configure and
-verify one capped review when clarified, resolve CI smoke before integration,
-then manual controls/camera acceptance. Human feel and hardware performance
-remain unverified; captures used Xvfb/Mesa llvmpipe.
-
-
-2026-11-11 03:38 UTC: `yen-pmd` complete locally; coordinator Codex, direct mode.
-Commit `14afb5c` contains four Health lifecycle tests and their QA record; runtime
-unchanged. Fresh-copy Unity tests passed 10/10 and runtime smoke passed on source
-hash `51ba6426…`; syntax/11 Node tests and staged secret scan passed. Root cause
-of npm ENOENT: local npm sandbox hides the home-based Unity executable; direct
-project Node CLI succeeds, sandbox unchanged. Known Editor SearchDatabase startup
-exception remains in smoke log; no rendered/manual feel/build acceptance.
-Evidence: docs/qa/timed-health-lifecycle.md and
-artifacts/pilots/yen-pmd/resume-2026-11-11/. Reporting pages refreshed locally.
-Started 03:34 UTC; completed before 04:04 checkpoint; paid calls zero. Prior diff
-preserved; no merge or release. No explicit pause or new running verification job.
-Next boundary: publish/review the isolated verification commit and refresh CI;
-then foundation manual controls/camera acceptance (`yen-kk5`). PR #14 reporting
-changes need synchronization with these local updates before integration.
-
-2026-11-10: `yen-ei3` complete, reporting pages published for review in PR #14
-(stack on unmerged #13), source `d1f435e`. Entry points: docs/reporting/roadmap.md
-and docs/reporting/README.md; coordinator updates at outcome/blocker boundaries.
-Two fresh agents authored pages and independently assessed Unity access/reviewed
-claims. Secret scans, syntax/11 Node tests, 27 local link targets and ADR memory
-hashes passed. Published isolated branch; exact reporting files copied to primary,
-prior diff preserved. No merge, release tag, Unity launch or paid call. Read-only
-Unity assessment: executable/interpreter/libraries present, ENOENT cause unresolved;
-no Unity connector exposed, interactive/rendered acceptance unverified. Evidence:
-artifacts/pilots/yen-ei3/. No explicit pause. Next boundary: review reporting PR;
-`yen-pmd` remains incomplete, with launch diagnosis as next bounded gameplay action.
-
-2026-11-10 05:32 UTC: `yen-pmd` saved incomplete at checkpoint; coordinator Codex.
-Two fresh native workers implemented/reviewed four actual-frame Health tests in
-isolated worktrees. Worker commit `599bf7d`; exact files copied to primary as
-uncommitted additions; runtime unchanged. Syntax/11 Node tests pass. Unity test
-launch failed with `spawn .../Editor/Unity ENOENT` despite executable presence;
-no compilation, test XML or smoke evidence. One attempt; no retry. Evidence:
-`artifacts/pilots/yen-pmd/handoff.md` and `verification.json`. Start 04:38 UTC;
-05:08 target exceeded (launch 05:30:58); stopped at discovery and saved state.
-Paid calls zero; no explicit user pause. No new running jobs; existing background
-processes untouched. Next boundary: diagnose launch environment, then fresh-copy
-Unity tests and smoke; task remains incomplete. Prior documentation diff preserved.
-
-2026-11-10: user resumed orchestration with bounded delegation. `yen-m27` complete:
-PR #13 Node failure was HTTP 504 downloading pinned Gitleaks; one failed-job retry
-passed on `b3dc709` (run 42579814055, attempt 2). Local syntax/11 Node tests pass.
-Two fresh native agents diagnosed/reviewed; coordinator Codex retained sole source
-ownership. Runner online/idle and required `node` protection verified read-only.
-Evidence: `artifacts/pilots/yen-m27/`. Paid calls zero; no new Unity run or merge.
-Started 03:53 UTC; completed before 04:23 checkpoint. No explicit pause active.
-Next boundary: select a separate outcome; foundation manual feel/rendered evidence
-remains outstanding. Prior documentation diff below is preserved and uncommitted.
-
-2026-11-09: the user resumed implementation of the fresh-session handoff. Selected
-increment: `yen-l2x`, durable outcome/pause/checkpoint rules; coordinator: Codex
-(Beads claim uses local identity Josh Braendel). Starting source: `b3dc709`.
-Execution: direct coordinator, documentation only; paid allowance zero.
-State: documentation increment complete; `npm run check` passed (11 tests plus
-syntax), diff whitespace and ADR memory hashes checked, recall returned a non-stale
-record. Evidence: `artifacts/pilots/yen-l2x/verification.json`. Next boundary:
-review this diff; select a separate outcome before CI integration, execution-guard
-code or live pilots. This is a completed boundary, not a new user pause.
-The earlier blanket pause is superseded for this increment; no services or existing
-background jobs are changed. See docs/workflow.md for subsequent outcome briefs.
-
-PR #13 remains unmerged. Node run 42579814055 is now green after the transient
-download failure retry. Hosted checks cover committed source, not this uncommitted
-documentation diff. Historical Unity evidence remains tied to `6700bfe`.
+Prior primary documentation edits remain uncommitted and preserved; reporting
+files are refreshed from their isolated branch. Earlier coordination history is
+retained in Beads and `git show ebd0ecc:STATUS.md`. Existing workers were untouched.
+Workflow/integration details: `docs/workflow.md`, `docs/workflow-setup-status.md`.
 
 Normal fresh-session request: “Pick up Yendor” or “Work on task yen-…”.
