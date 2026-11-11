@@ -48,16 +48,21 @@ namespace Yendor
             var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             Require(enemies.Length == 7, "Expected seven revenants.");
             Require(Physics.Raycast(run.ExitPosition + Vector3.up * 4, Vector3.down, 6), "No ground at extraction.");
-            // Generated enemies share a scene root; hierarchy order preserves spawn
-            // order instead of depending on unsorted object-discovery results.
-            Array.Sort(enemies, (left, right) => left.transform.GetSiblingIndex().CompareTo(right.transform.GetSiblingIndex()));
+            // Starting positions are distinct on this authored route. Root sibling
+            // indices are not reliable ordering keys in the packaged player.
+            Array.Sort(enemies, (left, right) => {
+                Vector3 a = left.transform.position, b = right.transform.position;
+                int order = a.z.CompareTo(b.z);
+                if (order == 0) order = a.x.CompareTo(b.x);
+                return order == 0 ? a.y.CompareTo(b.y) : order;
+            });
             Debug.Log($"YENDOR_SMOKE_WORLD: seed={run.Seed} enemies={string.Join(";", Array.ConvertAll(enemies, enemy => enemy.transform.position.ToString("F3")))}");
             // Prefer an ambient wet target to exercise the regression: water may
             // already have applied before this synchronous fixture runs.
             var target = Array.Find(enemies, enemy => enemy.GetComponent<Health>().Wet) ?? enemies[0];
             var health = target.GetComponent<Health>();
             Require(health && !health.Dead, "Elemental smoke target must be alive.");
-            Debug.Log($"YENDOR_SMOKE_PRECONDITION: seed={run.Seed} selectedSibling={target.transform.GetSiblingIndex()} position={target.transform.position.ToString("F3")} ambientWet={health.Wet} health={health.Current}");
+            Debug.Log($"YENDOR_SMOKE_PRECONDITION: seed={run.Seed} position={target.transform.position.ToString("F3")} ambientWet={health.Wet} health={health.Current}");
             // No frame elapses between setup and assertions. Ambient surfaces
             // cannot reapply wet until after this synchronous check returns.
             health.Wet = false;

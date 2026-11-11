@@ -12,14 +12,14 @@ A fresh local instrumented baseline reproduced it in run
 a wet target for an assertion that assumed it was dry. The instrumentation patch
 is retained locally and its file hash matches that run's source manifest.
 
-The fixture now orders generated actors by their scene-root sibling order,
+The fixture now orders generated actors by their distinct starting positions (z, x, y),
 prefers an ambient wet actor to exercise this regression, and explicitly
 establishes dry then wet conditions before synchronous elemental assertions.
 It logs the seed, initial enemy positions and target's ambient status. No frame
 elapses between setup and assertions, so surfaces cannot reapply wet mid-check.
 Health, water, world generation and accepted interaction rules are unchanged.
 
-## Local acceptance
+## First local acceptance (hierarchy-order iteration)
 
 - Fixed smoke passed: `2026-11-11T04-07-06-556Z-f9849cc0`.
   It selected the same wet revenant, then verified ignition, doubled wet Storm
@@ -43,3 +43,20 @@ logs; gameplay assertions passed and the process exited successfully.
 Full local command logs, reproduction patch and structured evidence are under
 `artifacts/pilots/yen-0r8/`; full run logs/XML are in
 `.worktrees/yen-0r8/artifacts/runs/<run-id>/`. No paid calls or gameplay redesign.
+
+## Cross-runtime ordering finding
+
+The first fix passed full CI run `42957389692` at `0f313bb`, including packaged
+player smoke. A stronger evidence comparison found the same seven positions in
+a different player log order: hierarchy-based ordering had not normalized the
+packaged player's root objects. The follow-up uses starting coordinates instead.
+The earlier passing workflow is retained as evidence for its exact source, not
+as proof of the follow-up. Fresh verification is required for the final change.
+
+## Final coordinate-order local acceptance
+
+The follow-up passed fresh-copy smoke in `2026-11-11T04-13-11-242Z-1a35f746`
+and all ten Unity tests in `2026-11-11T04-13-36-732Z-56128bd4`, on source hash
+`9892680939d26d1032210f92f2290c056f6cb75d84c35e47084b32a9ac53ef5d`.
+The only changed game file remains RuntimeSmoke.cs; no metadata identities changed.
+Full hosted verification of this final ordering is still pending.
