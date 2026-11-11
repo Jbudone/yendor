@@ -1,21 +1,55 @@
 name: Advisory AI review
 on:
   pull_request:
-    types: [opened, synchronize, ready_for_review]
+    types: [opened, reopened, synchronize, ready_for_review]
 permissions:
   contents: read
   pull-requests: write
+concurrency:
+  group: advisory-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
 jobs:
-  review:
-    # One opt-in reviewer using the selected OpenRouter account; never a merge gate.
-    if: vars.YENDOR_AI_REVIEW == 'true' && !github.event.pull_request.draft && github.event.pull_request.head.repo.full_name == github.repository
+  readiness:
     runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.preflight.outputs.ready }}
+    steps:
+      - name: Report reviewer readiness without model calls
+        id: preflight
+        env:
+          ENABLED: ${{ vars.YENDOR_AI_REVIEW }}
+          MODEL: ${{ vars.YENDOR_AI_REVIEW_MODEL }}
+          BUDGET_CONFIRMED: ${{ vars.YENDOR_AI_REVIEW_BUDGET_CONFIRMED }}
+          PROVIDER_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        shell: bash
+        run: |
+          echo 'ready=false' >> "$GITHUB_OUTPUT"
+          if [[ "$ENABLED" != true ]]; then
+            echo 'PR-Agent is installed but disabled. No model call was made.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if [[ "$BUDGET_CONFIRMED" != true || "$MODEL" != openrouter/* || -z "$PROVIDER_KEY" ]]; then
+            echo 'PR-Agent blocked: configure the model, capped provider key and budget confirmation. No model call was made.' >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
+          echo 'PR-Agent prerequisites present. A posted review is still required to prove a successful model call.' >> "$GITHUB_STEP_SUMMARY"
+  review:
+    needs: readiness
+    # Advisory only. Same-repository PRs; no checkout or execution of PR code.
+    if: needs.readiness.outputs.ready == 'true' && !github.event.pull_request.draft && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Review through PR-Agent
         uses: The-PR-Agent/pr-agent@a76cb9111b6a944094e874b3d467c4e546946e7b
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENROUTER.KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          CONFIG.MODEL: ${{ vars.YENDOR_AI_REVIEW_MODEL }}
+          CONFIG.FALLBACK_MODELS: '[]'
+          CONFIG.NUM_RETRIES: '0'
+          CONFIG.OUTPUT_RUN_DETAILS: 'true'
           GITHUB_ACTION_CONFIG.AUTO_REVIEW: 'true'
           GITHUB_ACTION_CONFIG.AUTO_DESCRIBE: 'false'
           GITHUB_ACTION_CONFIG.AUTO_IMPROVE: 'false'

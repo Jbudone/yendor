@@ -36,3 +36,17 @@ on health/status rules before wider adoption.
 
 Continue to use Unity AI and Meshy as authoring tools, separate from runtime.
 Deferred/rejected research candidates remain recorded, not automatically adopted.
+
+## 2026-11-10 — GitHub roadmap and feature reporting
+
+The user requested a maintained roadmap and feature release pages in GitHub.
+Keep a concise human-facing roadmap and feature notes under docs/reporting,
+linked from README. Update them at completed outcomes and material blockers;
+record what changed, how to try it, source/build identity, actual testing and
+remaining acceptance. Distinguish implemented, verified and released states.
+Use GitHub Releases for verified playable checkpoints; pending test work does
+not become a released feature. Beads retains task authority and the accepted
+first-expedition design retains milestone authority. Reporting is a view of
+those records, not a second backlog. Do not publish ignored local evidence as
+though it were remotely available. This decision authorizes repository reporting,
+not new hosting, GitHub token permissions or paid integrations.
