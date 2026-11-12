@@ -28,8 +28,7 @@ the expedition; R uses the same seed and N chooses the next one.
 ## Useful feedback
 
 Tell us what changed your decisions, what still felt flat, and the single most
-annoying failure. One honest run is more useful than completing every row of a
-long checklist. If an issue occurs, F8 saves a screenshot and report; preserve the
+annoying failure. If an issue occurs, F8 saves a screenshot and report; preserve the
 build GUID, seed, chosen core, phase and nearby events with the observation.
 A short clip helps with movement/camera or attack readability problems.
 

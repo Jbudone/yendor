@@ -29,8 +29,12 @@ twenty Unity tests, validation and smoke passed; coordinator audited logs/XML/ga
 hashes. Exploration worker `56588bc` integrated; all three fresh workers are finished.
 Twenty-six tests, validation and smoke pass; actual scene replay, physical route
 traversal and persistent F8 are covered. Coordinator audited logs/XML/game bytes.
-Final delivery is active: asset audit, Linux build, packaged-player smoke,
-rendered capture and source-safe Editor sync. Third checkpoint remains 04:29 UTC.
+Asset audit, Linux build and packaged-player smoke pass. Exact player GUID
+`f7476776753c49c09ed7acb96820a3e6` is preserved and rehashed at primary
+`artifacts/playtest-latest/`. Rendered normal-input captures confirm Tempest,
+overlook Heartwood (125 life) and Return phase/three hunters. Build source
+`e44dca4`; later report/images only. Publication and source-safe Editor sync
+active; third checkpoint remains 04:29 UTC.
 Stop on failed acceptance evidence, ownership conflict, ambiguous paid side effect,
 scope expansion, per-increment checkpoint or user pause; preserve running jobs.
 

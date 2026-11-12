@@ -98,3 +98,33 @@ F8 identifies GUID `58e54fd84e464cd8b5b701f3b4fd047a`, seed 43117, source
 not a new gameplay result or hardware performance. The initial unfocused capture
 failed to send inputs; explicit isolated X focus fixed that, and F8 plus movement
 position were then verified. The primary interactive Editor was not modified.
+
+## Integrated build and rendered inspection
+
+Build source `e44dca4e4b1cb7b1221c31a9555cabf347b7b83f`; gameplay files match
+final worker `56588bc`. Later reporting/images are documentation only.
+Build GUID `f7476776753c49c09ed7acb96820a3e6`; 247-file bundle SHA-256
+`084446674704dbe03f539337fe0da72c1595b245d69eeed7145021200da16a34`.
+Exact player and rehashed copy are local-only at `artifacts/playtest-latest/`
+in the primary checkout; launch with `./artifacts/playtest-latest/play.sh`.
+No GitHub Release is implied.
+
+Integrated source hash `165a2d5ff48cbc6ecc767d57386c8ddbbba0a8ba439e0e64a8a25e82f173b60f`.
+Asset audit `2026-11-12T04-10-00-259Z-d1de0ed8` and Linux build
+`2026-11-12T04-10-36-238Z-fedd243c` pass. Packaged-player smoke confirms
+matching GUID/bundle. Full logs/manifests are preserved under integration worktree
+`artifacts/runs/`, with primary player/log/manifest copies in `artifacts/playtest-latest/`.
+The runner used the idle worker project after byte-for-byte Assets/Packages/
+ProjectSettings equality checks. No mutable Library was shared with a running
+worker or the primary Editor.
+
+Coordinator inspected actual frames in primary local-only
+`artifacts/gameplay-batch/verified-capture/`: Tempest selected; x=19.895,
+y=4.080,z=9.524 on the deck; Heartwood collected (125 life, one supply); relic
+recovered, Return phase, alarm true, three hunters and ten enemies. F8 GUID
+matches the exact player. Renderer llvmpipe/OpenGL, 1280x720, seed 43117.
+Published PNGs are exact copies. The initial new capture stopped near a full-life
+salve and did not collect Heartwood; the route was adjusted and the first attempt
+retained. Mouse-look, subjective feel, audio mix, hardware timing and human
+acceptance remain unverified. Known Editor SearchDatabase startup exception
+remains in Editor logs; no runtime exception observed during these player captures.
