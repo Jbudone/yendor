@@ -10,7 +10,7 @@
       "runtime"
     ],
     "text": "Yendor is a third-person expedition roguelike shooter built in Unity. Models assist development; the game must run without AI services.",
-    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
   },
   {
     "id": "seed-contract",
@@ -23,7 +23,7 @@
       "determinism"
     ],
     "text": "A seed currently controls decoration and enemy-position inputs; topology is fixed. This does not guarantee exact cross-machine gameplay replay.",
-    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
   },
   {
     "id": "scene-authoring",
@@ -36,7 +36,7 @@
       "unity"
     ],
     "text": "Author scenes and prefabs through Editor tooling. Preserve asset meta identity; never manually rewrite Unity scene or prefab YAML.",
-    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
   },
   {
     "id": "verification",

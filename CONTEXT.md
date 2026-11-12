@@ -38,7 +38,12 @@ are later design decisions. AI currently assists development, not live gameplay.
 Unity 6000.6.0f1. A built-in-render-pipeline greybox with a generated forest/ruin
 route, third-person orbit camera, double jump, dash, hitscan carbine, ember attack,
 storm pulse, pursuing enemies, water/oil surfaces, relic recovery, extraction,
-death, and same/next seed restart. Generated geometry is placeholder art. The
+death, and same/next seed restart. The gameplay batch adds melee/ranged/flanker
+roles with attack telegraphs and combat feedback, three exclusive tactical cores,
+healing/maximum-life supplies, a rewarded elevated overlook, objective beacons and
+a bounded Starheart return alarm. Same-seed replay resets run power and preserves
+physical offerings and initial enemy positions; F8 diagnostics survives reloads.
+Generated geometry is placeholder art. The
 visual target requires a later URP lighting/material/environment pass.
 
 Runtime source lives in game/Assets/Yendor/Runtime. Editor builders live under

@@ -24,9 +24,13 @@ Integration branch `gameplay/expedition-batch` starts at master `12cc7c9` in
 `.worktrees/gameplay-batch`. Combat integrated at `4023f12` (worker `9142a4d`), with
 fourteen Unity tests, validation and smoke passed; coordinator log/XML/game-hash
 audit saved in `artifacts/pilots/yen-gh7/coordinator-audit.json`.
-Current worker task `yen-7a1` owns `.worktrees/yen-7a1`, starting `4023f12`.
-Second increment starts 03:38 UTC; checkpoint 04:18 UTC. Next boundary:
-review/merge pickups and then fresh exploration worker.
+Pickups integrated at `d9b15cc` (worker `efcef8d`), with
+twenty Unity tests, validation and smoke passed; coordinator audited logs/XML/game
+hashes. Exploration worker `56588bc` integrated; all three fresh workers are finished.
+Twenty-six tests, validation and smoke pass; actual scene replay, physical route
+traversal and persistent F8 are covered. Coordinator audited logs/XML/game bytes.
+Final delivery is active: asset audit, Linux build, packaged-player smoke,
+rendered capture and source-safe Editor sync. Third checkpoint remains 04:29 UTC.
 Stop on failed acceptance evidence, ownership conflict, ambiguous paid side effect,
 scope expansion, per-increment checkpoint or user pause; preserve running jobs.
 
