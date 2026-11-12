@@ -10,7 +10,7 @@
       "runtime"
     ],
     "text": "Yendor is a third-person expedition roguelike shooter built in Unity. Models assist development; the game must run without AI services.",
-    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
   },
   {
     "id": "seed-contract",
@@ -23,7 +23,7 @@
       "determinism"
     ],
     "text": "A seed currently controls decoration and enemy-position inputs; topology is fixed. This does not guarantee exact cross-machine gameplay replay.",
-    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
   },
   {
     "id": "scene-authoring",
@@ -36,7 +36,7 @@
       "unity"
     ],
     "text": "Author scenes and prefabs through Editor tooling. Preserve asset meta identity; never manually rewrite Unity scene or prefab YAML.",
-    "sourceHash": "b8d54e741bdf49d5536046422cd85655127f9934ee5cbf1f2150249b17554221"
+    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
   },
   {
     "id": "verification",
@@ -77,5 +77,18 @@
     ],
     "text": "Maintain GitHub-readable roadmap and feature notes at outcome/blocker boundaries. Show implementation, verification and release separately with source evidence. GitHub Releases represent verified playable checkpoints; Beads remains task authority and accepted design owns milestone gates.",
     "sourceHash": "19ff0da9fa13b65f5ddbf7a49f3fa94f318c027d2cd6445f652d1fcc1a1442a5"
+  },
+  {
+    "id": "gameplay-batch-2026-11-12",
+    "status": "accepted",
+    "source": "docs/design/first-expedition.md",
+    "sourceHash": "5a69ecaee04d22bf923786cd89aa3a9652541ba769327fba303a5928893e7200",
+    "tags": [
+      "gameplay",
+      "sequential-workers",
+      "playtest",
+      "milestone"
+    ],
+    "text": "User authorized several substantial gameplay increments before another playtest, using fresh subagents one at a time. Batch is mixed combat/feedback, deterministic pickups/build choices, optional exploration and Starheart return pressure. Old manual foundation gate is deferred as an implementation prerequisite for this batch; feel/performance/fresh-player acceptance remains unpassed. Source: user instruction 2026-11-12 and linked design batch."
   }
 ]

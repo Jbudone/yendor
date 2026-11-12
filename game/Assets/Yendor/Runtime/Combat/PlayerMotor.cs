@@ -6,16 +6,63 @@ namespace Yendor
     public sealed class PlayerMotor : MonoBehaviour
     {
         public Camera View;
+        public RunBuild Build { get; } = new RunBuild();
         public float Speed = 9;
+        public float HitVisibleUntil { get; private set; }
+        public float HurtVisibleUntil { get; private set; }
+        public float KillVisibleUntil { get; private set; }
+        public string LastKill { get; private set; }
+        public bool LastHitKilled { get; private set; }
+        AudioSource voice;
+        AudioClip shotSound, hitSound, killSound, hurtSound;
         public float DashReadyAt { get; private set; }
         public float StormReadyAt { get; private set; }
-        float yaw, pitch = 13, vertical, shotAt, emberAt, dashUntil;
+        float yaw, pitch = 13, vertical, shotAt, emberAt, dashUntil, nextHurtCueAt;
         int jumps;
         Vector3 dashDirection;
         CharacterController motor;
         Health health;
 
-        void Awake() { motor = GetComponent<CharacterController>(); health = GetComponent<Health>(); }
+        void Awake()
+        {
+            motor = GetComponent<CharacterController>(); health = GetComponent<Health>();
+            voice = gameObject.AddComponent<AudioSource>(); voice.spatialBlend = 0; voice.volume = .22f;
+            shotSound = Tone(180, .055f); hitSound = Tone(650, .065f);
+            killSound = Tone(960, .16f); hurtSound = Tone(90, .15f);
+            health.Damaged += (amount, element) => {
+                HurtVisibleUntil = Time.time + .4f;
+                if (Time.time >= nextHurtCueAt) { voice.PlayOneShot(hurtSound); nextHurtCueAt = Time.time + .3f; }
+            };
+        }
+        static AudioClip Tone(float frequency, float duration)
+        {
+            const int rate = 22050;
+            var data = new float[Mathf.CeilToInt(rate * duration)];
+            for (int i = 0; i < data.Length; i++)
+            {
+                float envelope = 1f - i / (float)data.Length;
+                data[i] = Mathf.Sin(i * frequency * 2 * Mathf.PI / rate) * envelope * envelope * Mathf.Min(1, i / 40f);
+            }
+            var clip = AudioClip.Create("Procedural combat cue", data.Length, 1, rate, false);
+            clip.SetData(data, 0); return clip;
+        }
+        public void ConfirmKill(string role)
+        {
+            LastKill = role; KillVisibleUntil = Time.time + 1.3f;
+            voice.PlayOneShot(killSound);
+        }
+        void ConfirmHit(Health target, float damage, Element element)
+        {
+            bool alive = !target.Dead;
+            target.Damage(damage, element);
+            if (!alive || target.GetComponent<Enemy>() == null) return;
+            HitVisibleUntil = Time.time + .16f; LastHitKilled = target.Dead;
+            if (!target.Dead) voice.PlayOneShot(hitSound);
+        }
+        void OnDestroy()
+        {
+            foreach (var clip in new[] { shotSound, hitSound, killSound, hurtSound }) if (clip) Destroy(clip);
+        }
         void Start() { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
 
         void Update()
@@ -47,18 +94,9 @@ namespace Yendor
             vertical -= 26 * Time.deltaTime;
             motor.Move(((Time.time < dashUntil ? dashDirection * 29 : move * Speed) + Vector3.up * vertical) * Time.deltaTime);
             if (transform.position.y < -12) health.Damage(1000, Element.Kinetic);
-            if (Input.GetMouseButton(0) && Time.time >= shotAt) { shotAt = Time.time + .14f; Fire(Element.Kinetic, 15); }
-            if (Input.GetMouseButton(1) && Time.time >= emberAt) { emberAt = Time.time + .65f; Fire(Element.Ember, 22); }
-            if (Input.GetKeyDown(KeyCode.Q) && Time.time >= StormReadyAt)
-            {
-                StormReadyAt = Time.time + 5;
-                foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
-                    if (Vector3.Distance(transform.position, enemy.transform.position) < 14)
-                    {
-                        enemy.GetComponent<Health>().Damage(28, Element.Storm);
-                        Expedition.Beam(transform.position + Vector3.up, enemy.transform.position + Vector3.up, Color.cyan);
-                    }
-            }
+            if (Input.GetMouseButton(0)) TryFire(Element.Kinetic, Time.time, Expedition.Instance.Ended);
+            if (Input.GetMouseButton(1)) TryFire(Element.Ember, Time.time, Expedition.Instance.Ended);
+            if (Input.GetKeyDown(KeyCode.Q)) TryStorm(Time.time, Expedition.Instance.Ended);
             if (Input.GetKeyDown(KeyCode.E)) Expedition.Instance.Interact();
         }
 
@@ -74,15 +112,40 @@ namespace Yendor
             View.transform.SetPositionAndRotation(pivot + offset.normalized * distance, look);
         }
 
+        public bool TryFire(Element element, float now, bool runEnded)
+        {
+            if (runEnded || health.Dead || !View || element == Element.Storm) return false;
+            if (now < (element == Element.Ember ? emberAt : shotAt)) return false;
+            if (element == Element.Ember) emberAt = now + Build.ShotInterval(element);
+            else shotAt = now + Build.ShotInterval(element);
+            Fire(element, Build.Damage(element));
+            return true;
+        }
+
+        public bool TryStorm(float now, bool runEnded)
+        {
+            if (runEnded || health.Dead || now < StormReadyAt) return false;
+            StormReadyAt = now + Build.StormCooldown;
+            foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+                if (Vector3.Distance(transform.position, enemy.transform.position) < Build.StormRadius)
+                {
+                    ConfirmHit(enemy.GetComponent<Health>(), Build.Damage(Element.Storm), Element.Storm);
+                    Expedition.Beam(transform.position + Vector3.up, enemy.transform.position + Vector3.up, Color.cyan);
+                }
+            return true;
+        }
+
         void Fire(Element element, float damage)
         {
+            voice.PlayOneShot(shotSound, element == Element.Ember ? .7f : .45f);
             Vector3 target = View.transform.position + View.transform.forward * 100;
             if (Physics.Raycast(View.ViewportPointToRay(new Vector3(.5f, .5f)), out var aim, 100, ~(1 << 2))) target = aim.point;
             Vector3 muzzle = transform.position + Vector3.up * 1.4f + transform.forward * .6f;
             if (Physics.Raycast(muzzle, (target - muzzle).normalized, out var hit, 100, ~(1 << 2)))
             {
                 target = hit.point;
-                hit.collider.GetComponentInParent<Health>()?.Damage(damage, element);
+                var targetHealth = hit.collider.GetComponentInParent<Health>();
+                if (targetHealth) ConfirmHit(targetHealth, damage, element);
                 hit.collider.GetComponentInParent<Surface>()?.Apply(element);
             }
             Expedition.Beam(muzzle, target, element == Element.Ember ? new Color(1, .4f, .08f) : new Color(.7f, 1, .85f));

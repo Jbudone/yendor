@@ -1,87 +1,54 @@
 # Current project state
 
-Yendor's Copper Wild greybox exists. Finish foundation acceptance, then improve
-combat feel. Direction: `CONTEXT.md` and `docs/design/first-expedition.md`.
-Beads owns execution state; query `node tools/workflow.mjs task ready --json`.
+Yendor is a Unity third-person expedition shooter. Accepted direction:
+`CONTEXT.md` and `docs/design/first-expedition.md`. Beads owns execution detail.
+Query `node tools/workflow.mjs task ready --json`.
 
-## Current coordination boundary
+## Current outcome and authorization
 
-2026-11-11: `yen-7mm` preparation complete; coordinator Codex, direct execution.
-Started 05:47 UTC; final publication 06:49 UTC exceeded the 06:17 checkpoint
-while awaiting final Git action approval. Paid calls zero. No explicit
-pause. [Draft integration PR #19](https://github.com/Jbudone/yendor/pull/19)
-combines source #13, reporting #17 and local playtest/review records in isolated
-`.worktrees/yen-7mm`. All 67 game files preserved; 11 direct Node cases and
-Gitleaks pass. npm wrapper runs skip the binary fixture; direct runs cover it.
-[Full integrated Unity CI](https://github.com/Jbudone/yendor/actions/runs/42969260953)
-passed at `8437f91`; 23 local artifact/hash/XML/bundle checks pass. Later report
-and STATUS changes are documentation only. Evidence `artifacts/pilots/yen-7mm/`;
-report `docs/qa/foundation-integration.md`. Primary dirty documents preserved.
-Next boundary: choose/merge the combined candidate or original ordered PRs,
-then desktop acceptance below. No mainline merge, paid call or gameplay tuning.
-Original PRs remain open; human gates remain pending. Beads has execution detail.
+2026-11-12: user reports the foundation feels unchanged and explicitly authorizes
+several substantial gameplay iterations before the next playtest, with each chunk
+sent to a fresh subagent, one at a time. This supersedes the old manual-foundation
+prerequisite for this batch. Human feel, rendered performance and fresh-player
+acceptance remain unpassed; no evidence is invented.
 
-2026-11-11: `yen-w06` review complete; coordinator Codex, direct execution.
-Started 05:21 UTC; saved before the 05:51 checkpoint, paid calls zero.
-Review: `docs/qa/pr-foundation-review.md`; evidence: `artifacts/pilots/yen-w06/`.
-No blocking correctness defect found in exact PR #13/#17 changes. Twenty-three
-existing-evidence checks pass; trial merge is conflict-free and preserves all
-67 tested game-file hashes. Raw reporting head predates the smoke fix: integrate
-source first, then reporting; never replace source with raw reporting head.
-This is coordinator review, not an independent review, Unity rerun or acceptance.
-No merge/push/review posted, new Unity jobs or accepted gameplay changes.
-Next boundary: authorized integration with current checks, or desktop playtest
-below. No explicit pause; existing dirty documentation remains preserved.
+Coordinator Codex uses native sequential delegation, isolated worker worktrees,
+and serial review/integration. External paid-call allowance zero. No explicit
+pause. Continue automatically through these named increments after verified results:
 
-2026-11-11: `yen-kk5` preparation complete; manual acceptance awaits a human
-on a graphics-enabled desktop. Coordinator Codex (CLI identity Josh Braendel),
-direct execution; started 04:49 UTC, saved before the 05:19 checkpoint.
-Starting revision `41ea2d4`; zero paid calls. No explicit user pause.
+1. `yen-gh7`: three enemy roles, attack telegraphs, combat feedback and cooldown HUD.
+2. `yen-7a1`: deterministic pickups and tactical run-modifier choices.
+3. `yen-kn2`: rewarded optional route and Starheart return pressure.
 
-Playtest packet: `docs/playtests/foundation-controls.md`. The exact CI player is
-preserved at `artifacts/pilots/yen-kk5/player/Yendor.x86_64`; its full bundle hash
-matches the passing build, and all 67 recorded game files match this checkout.
-Verification: `artifacts/pilots/yen-kk5/readiness.json`. Launch instructions,
-source-derived controls, guided checks and result fields are ready. Human session,
-clips, rendered inspection and frame timing are unrun; `yen-kk5` remains open
-in blocked state for that evidence, not complete. No new Unity jobs launched;
-existing processes and dirty documentation preserved. No merge or publication.
+Integration branch `gameplay/expedition-batch` starts at master `12cc7c9` in
+`.worktrees/gameplay-batch`. Combat integrated at `4023f12` (worker `9142a4d`), with
+fourteen Unity tests, validation and smoke passed; coordinator log/XML/game-hash
+audit saved in `artifacts/pilots/yen-gh7/coordinator-audit.json`.
+Pickups integrated at `d9b15cc` (worker `efcef8d`), with
+twenty Unity tests, validation and smoke passed; coordinator audited logs/XML/game
+hashes. Exploration worker `56588bc` integrated; all three fresh workers are finished.
+Twenty-six tests, validation and smoke pass; actual scene replay, physical route
+traversal and persistent F8 are covered. Coordinator audited logs/XML/game bytes.
+Asset audit, Linux build and packaged-player smoke pass. Exact player GUID
+`f7476776753c49c09ed7acb96820a3e6` is preserved and rehashed at primary
+`artifacts/playtest-latest/`. Rendered normal-input captures confirm Tempest,
+overlook Heartwood (125 life) and Return phase/three hunters. Build source
+`e44dca4`; later report/images only. Publication and source-safe Editor sync
+active; third checkpoint remains 04:29 UTC.
+Stop on failed acceptance evidence, ownership conflict, ambiguous paid side effect,
+scope expansion, per-increment checkpoint or user pause; preserve running jobs.
 
-Next action: run the packet on the desktop and return F8 reports, clips and
-observations. Diagnose observed failures before expanding into combat tuning.
-The three-fresh-player expedition diagnostic and `yen-g8n` timing remain separate.
-Beads retains the outcome brief, source identity and stopping boundary.
+## Established baseline and evidence
 
-2026-11-11: `yen-0r8` complete; coordinator Codex, direct execution. Started
-04:05 UTC, completed 04:20 before the 04:35 checkpoint. Paid calls zero.
-No explicit user pause. No merge, release or new running Unity task job.
+Combined foundation PR #19 merged to master `12cc7c9` on 2026-11-12.
+[Node](https://github.com/Jbudone/yendor/actions/runs/43145761860) and
+[full Unity verification](https://github.com/Jbudone/yendor/actions/runs/43145762111)
+passed, including Linux build and packaged-player smoke. Integration evidence:
+`artifacts/pilots/yen-7mm/`; prior playtest packet:
+`docs/playtests/foundation-controls.md`. `yen-kk5` still awaits human evidence;
+hardware timing and three-fresh-player diagnostic remain separate.
 
-The smoke fixture selected an already-wet enemy for a dry assertion. It now
-sets dry/wet preconditions explicitly and uses starting-position ordering.
-Accepted gameplay, seed generation and asset metadata are unchanged.
-
-[Full Unity CI](https://github.com/Jbudone/yendor/actions/runs/42957926313)
-passed at `696edb2`: validation, ten tests, Editor smoke, audit, Linux build,
-packaged-player smoke and artifact upload. Ordered seed-43117 positions match
-local Editor, hosted Editor and player. QA/status-only commits follow that code.
-Source is published in [PR #13](https://github.com/Jbudone/yendor/pull/13).
-Evidence: `docs/qa/runtime-smoke-preconditions.md`, `artifacts/pilots/yen-0r8/`.
-The failed baseline and intermediate hierarchy-order limitation remain recorded.
-
-The [illustrated roadmap](https://github.com/Jbudone/yendor/issues/15) and latest
-report `docs/reporting/updates/2026-11-11-smoke.md` are updated in
-[PR #17](https://github.com/Jbudone/yendor/pull/17), reporting commit `cfa6d26`.
-Issue #16 is closed. Node/readiness checks pass; live PR-Agent reviews remain
-disabled pending a selected model and provider-capped key (`yen-wco` / issue #18).
-
-Next boundary: review source/report PRs, human controls/camera acceptance
-(`yen-kk5` / #4), and hardware/readability baseline (`yen-g8n` / #5).
-Headless assertions do not establish manual feel or hardware performance.
-Known Editor SearchDatabase startup exception remains recorded.
-
-Prior primary documentation edits remain uncommitted and preserved; reporting
-files are refreshed from their isolated branch. Earlier coordination history is
-retained in Beads and `git show ebd0ecc:STATUS.md`. Existing workers were untouched.
-Workflow/integration details: `docs/workflow.md`, `docs/workflow-setup-status.md`.
-
-Normal fresh-session request: “Pick up Yendor” or “Work on task yen-…”.
+Primary checkout stays on `workflow/finalize-verification`; pre-existing dirty
+documents, open Editor and other worktrees are preserved. Playtest delivery must
+identify the NEW build explicitly. Prior STATUS saved locally as
+`artifacts/status-before-gameplay-batch.md`; historical details remain in Beads.

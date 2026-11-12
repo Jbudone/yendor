@@ -8,33 +8,34 @@ A readable 5–10 minute expedition: choose a route, exploit an interaction,
 recover the relic, and escape—or learn from the run that ends in death.
 
 [💬 Discuss priorities](https://github.com/Jbudone/yendor/issues/15) ·
-[📖 Latest progress report](updates/2026-11-11-smoke.md) ·
+[📖 Latest progress report](updates/2026-11-12-gameplay.md) ·
 [🧭 Feature notes](README.md)
 
 _Original AI-generated roadmap illustration. Aspirational concept art; the
 [actual greybox](updates/2026-11-11.md#what-the-game-looks-like-today) looks different._
 
-![Milestone map. Now: Foundation checks pass; finish human controls and camera. Next: Combat feel. Later in order: Systemic roguelike, Exploration, Beauty. Ten tests pass; these are milestones, not delivery dates.](images/expedition-roadmap.svg)
+![Milestone map. Now: automated foundation and gameplay prototypes; next human expedition. Combat, core choices and exploration now have implementations. Beauty remains later. Twenty-six tests pass; these are milestones, not delivery dates.](images/expedition-roadmap.svg)
 
-## 🟠 Now · finish the foundation
+## 🟠 Now · play the expanded expedition
 
-The greybox is implemented. **All ten Unity tests pass locally and in CI.**
-[Full Unity CI](https://github.com/Jbudone/yendor/actions/runs/42957926313) is green, including the packaged-player smoke check.
-The controls and camera now need a human playtest.
+The user authorized three substantial gameplay increments before the next test.
+Mixed combat, tactical core choices and rewarded exploration/return pressure are
+implemented. **All 26 Unity tests pass.** The automated foundation is integrated;
+human feel and the first-expedition milestone remain open.
 
-| Next action | What success looks like |
+| What changed | Next evidence |
 | --- | --- |
-| [🎮 Playtest controls & camera · #4](https://github.com/Jbudone/yendor/issues/4) | Movement, aiming, dash, double jump and restart feel clear and dependable. |
-| [🌿 Inspect the rendered baseline · #5](https://github.com/Jbudone/yendor/issues/5) | Readability is reviewed and performance is measured on a named machine. |
+| Three enemy roles, telegraphs and combat feedback | Human combat feel and readability |
+| Three exclusive seeded cores and meaningful supplies | Do different choices change tactics? |
+| Ramped overlook/cache and a three-hunter Starheart alarm | Does the detour help, and does the return feel different? |
 
-**Recently completed:** [reproducible dry/wet smoke checks · #16](https://github.com/Jbudone/yendor/issues/16).
-
-[See the evidence →](features/timed-health-lifecycle.md)
+[Try one expedition →](../playtests/gameplay-batch.md) ·
+[Read the gameplay report →](updates/2026-11-12-gameplay.md)
 
 ## 🟢 Next · make combat feel great
 
-Tune acceleration, aim, camera collision and dash. Add stronger hit feedback and
-enemy telegraphs, then introduce ranged and flanking pressure.
+Mixed roles, telegraphs and hit feedback now exist. Use the next playtest to identify
+the highest-impact movement, camera, weapon or encounter change.
 
 **We move on when:** a two-minute arena stays fun without loot.
 
@@ -83,4 +84,4 @@ owns milestone scope. Beads owns execution; GitHub is the discussion front door.
 work, separate from the gameplay milestone sequence.
 
 _No delivery dates or playable-release claim. Updated at outcome/blocker boundaries
-under the [reporting convention](template.md). Last refreshed November 11, 2026 · `yen-0r8`._
+under the [reporting convention](template.md). Last refreshed November 12, 2026 · gameplay batch._

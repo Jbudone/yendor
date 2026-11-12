@@ -1,7 +1,7 @@
 # Yendor
 
 [Interactive roadmap](https://github.com/Jbudone/yendor/issues/15) ·
-[Illustrated progress report](docs/reporting/updates/2026-11-11.md) ·
+[Illustrated progress report](docs/reporting/updates/2026-11-12-gameplay.md) ·
 [Feature notes](docs/reporting/README.md) · [PR-Agent setup](docs/reporting/review-automation.md)
 
 
