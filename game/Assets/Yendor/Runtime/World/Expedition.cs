@@ -9,6 +9,11 @@ namespace Yendor
         public PlayerMotor Player { get; private set; }
         public int Seed = 43117;
         public int Kills;
+        public int TotalEnemies { get; private set; }
+        public int ReturnEnemiesSpawned { get; private set; }
+        public bool AlarmRaised { get; private set; }
+        public string Phase => Ended ? (escaped ? "Escaped" : "Lost") : HasRelic ? "Return" : "Outbound";
+        public Vector3 OverlookCachePosition => new Vector3(20, 4.85f, 11);
         public bool Ended { get; private set; }
         public bool HasRelic { get; private set; }
         public Vector3 RelicPosition { get; private set; }
@@ -57,6 +62,7 @@ namespace Yendor
         void BuildWorld()
         {
             var random = new System.Random(Seed);
+            var detourTrees = new System.Collections.Generic.List<GameObject>();
             Shape("Moss plateau", PrimitiveType.Cube, new Vector3(0, -1, 5), new Vector3(100, 2, 110), new Color(.21f, .32f, .22f));
             Shape("Pilgrim path", PrimitiveType.Cube, new Vector3(0, .015f, 0), new Vector3(8, .03f, 66), new Color(.45f, .4f, .28f));
             for (int i = 0; i < 90; i++)
@@ -65,9 +71,11 @@ namespace Yendor
                 float z = (float)random.NextDouble() * 96 - 42;
                 if (Mathf.Abs(x) < 8 || (new Vector2(x, z - 30)).magnitude < 17) continue;
                 float height = 5 + (float)random.NextDouble() * 7;
-                Shape("Copperpine trunk", PrimitiveType.Cylinder, new Vector3(x, height / 2, z), new Vector3(.7f, height / 2, .7f), new Color(.27f, .22f, .17f));
+                var trunk = Shape("Copperpine trunk", PrimitiveType.Cylinder, new Vector3(x, height / 2, z), new Vector3(.7f, height / 2, .7f), new Color(.27f, .22f, .17f));
                 var crown = Shape("Copperpine crown", PrimitiveType.Sphere, new Vector3(x, height, z), new Vector3(5, 6, 5), new Color(.18f + (float)random.NextDouble() * .12f, .4f, .3f));
                 Destroy(crown.GetComponent<Collider>());
+                // Consume the full original decoration stream before clearing the authored loop.
+                if (x > 7 && x < 28 && z > -18 && z < 39) { detourTrees.Add(trunk); detourTrees.Add(crown); }
             }
             for (int side = -1; side <= 1; side += 2)
                 for (int i = 0; i < 5; i++)
@@ -86,7 +94,57 @@ namespace Yendor
                 var pool = Shape(i == 0 ? "Rain pool" : "Oil seep", PrimitiveType.Cylinder, new Vector3(i == 0 ? -4 : 4, .09f, 14 + i * 12), new Vector3(8, .07f, 8), Color.cyan);
                 var surface = pool.AddComponent<Surface>(); surface.Water = i == 0;
             }
+            foreach (var tree in detourTrees) { tree.SetActive(false); Destroy(tree); }
+            BuildOverlook();
+            BuildLandmarks();
             for (int i = 0; i < 7; i++) SpawnEnemy(new Vector3((i % 2 == 0 ? -1 : 1) * (3 + random.Next(5)), 1, 4 + i * 5), i);
+        }
+
+        void BuildOverlook()
+        {
+            var stone = new Color(.49f, .42f, .31f);
+            Shape("Overlook south approach", PrimitiveType.Cube, new Vector3(11.5f, -.2f, -12), new Vector3(23, .5f, 6), stone);
+            Ramp("Overlook ascent", new Vector3(20, .05f, -12), new Vector3(20, 4, 4), stone);
+            Shape("Heartwood overlook deck", PrimitiveType.Cube, new Vector3(20, 3.75f, 11), new Vector3(6, .5f, 14.4f), stone);
+            Ramp("Overlook descent", new Vector3(20, 4, 18), new Vector3(20, .05f, 32), stone);
+            Shape("Overlook north approach", PrimitiveType.Cube, new Vector3(11.5f, -.2f, 33), new Vector3(23, .5f, 4), stone);
+            // Solid foundations and broad ramps keep this an authored route, not floating jump pads.
+            Shape("Overlook foundation", PrimitiveType.Cube, new Vector3(20, 1.75f, 11), new Vector3(5.7f, 3.5f, 13.8f), stone);
+            foreach (float z in new[] { 7f, 15f })
+                Shape("Overlook firing cover", PrimitiveType.Cube, new Vector3(17.3f, 4.7f, z), new Vector3(.6f, 1.4f, 2.5f), stone);
+            Shape("Overlook outer parapet", PrimitiveType.Cube, new Vector3(23.1f, 4.4f, 11), new Vector3(.4f, .8f, 14), stone);
+            foreach (var point in new[] { new Vector3(5, 0, -15.6f), new Vector3(22.5f, 0, -12), new Vector3(22.5f, 4, 11), new Vector3(22.5f, 0, 33), new Vector3(5, 0, 35.6f) })
+            {
+                Shape("Amber overlook trail cairn", PrimitiveType.Cylinder, point + Vector3.up * .6f, new Vector3(.7f, .6f, .7f), stone);
+                var cue = Shape("Amber overlook trail light", PrimitiveType.Sphere, point + Vector3.up * 1.4f, Vector3.one * .65f, new Color(1, .6f, .15f));
+                Destroy(cue.GetComponent<Collider>());
+            }
+            SpawnPickup("overlook-heartwood", PickupKind.Heartwood, OverlookCachePosition + Vector3.back * 1.5f);
+            SpawnPickup("overlook-salve", PickupKind.Salve, OverlookCachePosition + Vector3.forward * 1.5f);
+        }
+
+        void Ramp(string name, Vector3 start, Vector3 end, Color color)
+        {
+            Vector3 delta = end - start;
+            float angle = -Mathf.Atan2(delta.y, delta.z) * Mathf.Rad2Deg;
+            var ramp = Shape(name, PrimitiveType.Cube, (start + end) * .5f - Vector3.up * (.25f * Mathf.Cos(angle * Mathf.Deg2Rad)), new Vector3(6, .5f, delta.magnitude + .4f), color);
+            ramp.transform.rotation = Quaternion.Euler(angle, 0, 0);
+        }
+
+        void BuildLandmarks()
+        {
+            Beacon("Starheart gold spire", new Vector3(0, 0, 42), new Color(1, .73f, .15f));
+            Beacon("Waystone turquoise spire", new Vector3(0, 0, -31), new Color(.15f, 1, .9f));
+        }
+
+        void Beacon(string name, Vector3 position, Color color)
+        {
+            foreach (float side in new[] { -1f, 1f })
+                Shape(name + " pylon", PrimitiveType.Cube, position + new Vector3(side * 3.6f, 3, 0), new Vector3(.8f, 6, .8f), color * .65f);
+            var crown = Shape(name + " crown", PrimitiveType.Sphere, position + Vector3.up * 8, new Vector3(2, 2, 2), color);
+            Destroy(crown.GetComponent<Collider>());
+            var beam = Shape(name + " beacon", PrimitiveType.Cylinder, position + Vector3.up * 13, new Vector3(.3f, 6, .3f), color);
+            Destroy(beam.GetComponent<Collider>());
         }
 
         void BuildPickups()
@@ -119,7 +177,7 @@ namespace Yendor
             return closest;
         }
 
-        void SpawnEnemy(Vector3 position, int ordinal)
+        Enemy SpawnEnemy(Vector3 position, int ordinal)
         {
             var enemy = new GameObject("Briar revenant"); enemy.transform.position = position;
             var cc = enemy.AddComponent<CharacterController>(); cc.center = Vector3.up; cc.height = 2; cc.radius = .55f;
@@ -127,7 +185,8 @@ namespace Yendor
             var size = role == EnemyRole.Brute ? new Vector3(1.35f, 1.1f, 1.35f) : role == EnemyRole.Spitter ? new Vector3(.85f, 1.3f, .85f) : new Vector3(.7f, .8f, .7f);
             var body = Shape("Revenant shell", role == EnemyRole.Spitter ? PrimitiveType.Cube : PrimitiveType.Capsule, position + Vector3.up, size, new Color(.65f, .2f, .32f));
             Destroy(body.GetComponent<Collider>()); body.transform.SetParent(enemy.transform, true);
-            enemy.AddComponent<Health>(); enemy.AddComponent<Enemy>().Configure(role, ordinal);
+            enemy.AddComponent<Health>(); var actor = enemy.AddComponent<Enemy>(); actor.Configure(role, ordinal);
+            TotalEnemies++; return actor;
         }
 
         GameObject Shape(string label, PrimitiveType kind, Vector3 position, Vector3 size, Color color)
@@ -153,13 +212,38 @@ namespace Yendor
         {
             if (!Player || Ended || Player.GetComponent<Health>().Dead) return;
             if (!HasRelic && Vector3.Distance(Player.transform.position, RelicPosition) < 4)
-            { HasRelic = true; Destroy(relic); Player.GetComponent<Health>().Heal(35); return; }
+            { HasRelic = true; Destroy(relic); Player.GetComponent<Health>().Heal(35); RaiseAlarm(); return; }
             if (HasRelic && Vector3.Distance(Player.transform.position, ExitPosition) < 4) { Finish(true); return; }
             NearbyPickup()?.TryCollect(Player, Ended);
         }
 
+        void RaiseAlarm()
+        {
+            if (AlarmRaised || Ended || !Player || Player.GetComponent<Health>().Dead) return;
+            AlarmRaised = true;
+            // Fixed, supported road positions remain over 10m from every legal relic interaction.
+            // A single mixed encounter changes the return without closing either route or the exit.
+            foreach (var position in new[] { new Vector3(0, .2f, 18), new Vector3(-3, .2f, 6), new Vector3(3, .2f, -4) })
+            {
+                SpawnEnemy(position, ReturnEnemiesSpawned);
+                ReturnEnemiesSpawned++;
+            }
+            Debug.Log($"YENDOR_STARHEART_ALARM: seed={Seed} spawned={ReturnEnemiesSpawned} total={TotalEnemies}");
+        }
+
+        public string ObjectiveBearing()
+        {
+            if (!Player || !Player.View) return "";
+            Vector3 target = HasRelic ? ExitPosition : RelicPosition;
+            Vector3 delta = target - Player.transform.position; delta.y = 0;
+            Vector3 forward = Player.View.transform.forward; forward.y = 0;
+            float angle = Vector3.SignedAngle(forward, delta, Vector3.up);
+            string direction = Mathf.Abs(angle) > 130 ? "BEHIND" : angle > 25 ? "RIGHT" : angle < -25 ? "LEFT" : "AHEAD";
+            return $"{(HasRelic ? "TURQUOISE WAYSTONE" : "GOLD STARHEART")} · {delta.magnitude:F0}m · {direction}";
+        }
+
         void Finish(bool success) { if (Ended) return; Ended = true; escaped = success; finishedAt = Time.time; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
-        void Restart(bool fresh) { nextSeed = fresh ? Seed + 1 : Seed; SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+        public void Restart(bool fresh) { if (!Ended) return; nextSeed = fresh ? Seed + 1 : Seed; SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
 
         void OnGUI()
         {
@@ -168,8 +252,10 @@ namespace Yendor
             var title = new GUIStyle(GUI.skin.label) { fontSize = 28, fontStyle = FontStyle.Bold };
             var label = new GUIStyle(GUI.skin.label) { fontSize = 18, wordWrap = true };
             GUI.Label(new Rect(30, 24, 800, 45), "YENDOR / THE COPPER WILD", title);
-            GUI.Label(new Rect(30, 70, 900, 35), $"LIFE {Mathf.CeilToInt(Player.GetComponent<Health>().Current)}/{Mathf.CeilToInt(Player.GetComponent<Health>().Maximum)}     REVENANTS {Kills}/7     SEED {Seed}", label);
-            GUI.Label(new Rect(30, 110, 750, 60), HasRelic ? "Return the Starheart to the turquoise waystone. Press E to escape." : "Follow the old road. Recover the Starheart from the ruins [E].", label);
+            GUI.Label(new Rect(30, 70, 900, 35), $"LIFE {Mathf.CeilToInt(Player.GetComponent<Health>().Current)}/{Mathf.CeilToInt(Player.GetComponent<Health>().Maximum)}     REVENANTS {Kills}/{TotalEnemies}     SEED {Seed}     {Phase.ToUpperInvariant()}", label);
+            GUI.Label(new Rect(30, 110, 1050, 60), ObjectiveBearing() + "\n" + (HasRelic ? "ALARM — three sentries on the return road. Escape [E]; overlook stays open." : "Recover the relic [E]. Amber trail on the right: overlook, cover and supplies."), label);
+            if (!Ended && Vector3.Distance(Player.transform.position, OverlookCachePosition) < 14)
+                GUI.Label(new Rect(30, 610, 900, 60), "AMBER OVERLOOK · Heartwood + salve cache · ramps join the road at both ends", label);
             GUI.Label(new Rect(30, 175, 920, 65), "BUILD: " + Player.Build.Summary, label);
             var nearby = NearbyPickup();
             bool comparingCores = !Ended && !Player.Build.Core.HasValue && Vector3.Distance(Player.transform.position, ShrinePosition) < 9;
