@@ -14,6 +14,7 @@ namespace Yendor
         public float BurningUntil { get; private set; }
         public System.Action Died;
         public System.Action<Element> Hit;
+        public System.Action<float, Element> Damaged;
 
         void Awake() => Current = Maximum;
 
@@ -22,7 +23,9 @@ namespace Yendor
             if (Dead) return;
             if (element == Element.Ember && !Wet) BurningUntil = Time.time + 3;
             if (element == Element.Storm && Wet) amount *= 2;
+            float previous = Current;
             Current = Mathf.Max(0, Current - amount);
+            Damaged?.Invoke(previous - Current, element);
             Hit?.Invoke(element);
             if (Dead) Died?.Invoke();
         }

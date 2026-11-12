@@ -18,7 +18,7 @@ namespace Yendor
         {
             yield return null;
             yield return null;
-            try { Check(); Debug.Log("YENDOR_RUNTIME_SMOKE_OK: spawns, ground, elemental damage, death, relic and extraction."); Exit(0); }
+            try { Check(); Debug.Log("YENDOR_RUNTIME_SMOKE_OK: spawns, ground, elemental damage, mixed roles, feedback, death, relic and extraction."); Exit(0); }
             catch (Exception error) { Debug.LogException(error); Exit(1); }
         }
 
@@ -47,6 +47,9 @@ namespace Yendor
             Require(!run.Ended && !run.HasRelic, "Incorrect initial run state.");
             var enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
             Require(enemies.Length == 7, "Expected seven revenants.");
+            Require(Array.FindAll(enemies, enemy => enemy.Role == EnemyRole.Brute).Length == 3 &&
+                Array.FindAll(enemies, enemy => enemy.Role == EnemyRole.Spitter).Length == 2 &&
+                Array.FindAll(enemies, enemy => enemy.Role == EnemyRole.Flanker).Length == 2, "Mixed role roster must be 3 brutes, 2 spitters and 2 flankers.");
             Require(Physics.Raycast(run.ExitPosition + Vector3.up * 4, Vector3.down, 6), "No ground at extraction.");
             // Starting positions are distinct on this authored route. Root sibling
             // indices are not reliable ordering keys in the packaged player.
@@ -56,6 +59,7 @@ namespace Yendor
                 if (order == 0) order = a.x.CompareTo(b.x);
                 return order == 0 ? a.y.CompareTo(b.y) : order;
             });
+            for (int i = 0; i < enemies.Length; i++) Require(enemies[i].Role == (EnemyRole)(i % 3), "Spawn role ordering changed.");
             Debug.Log($"YENDOR_SMOKE_WORLD: seed={run.Seed} enemies={string.Join(";", Array.ConvertAll(enemies, enemy => enemy.transform.position.ToString("F3")))}");
             // Prefer an ambient wet target to exercise the regression: water may
             // already have applied before this synchronous fixture runs.
@@ -69,6 +73,7 @@ namespace Yendor
             Require(!health.Wet, "Dry smoke precondition was not established.");
             health.Damage(10, Element.Ember);
             Require(health.BurningUntil > Time.time, "Dry ember hit did not ignite.");
+            Require(target.DamageVisibleUntil > Time.time && Mathf.Approximately(target.LastDamage, 10), "Direct hit feedback did not receive actual damage.");
             health.Wet = true;
             Require(health.Wet, "Wet smoke precondition was not established.");
             float before = health.Current;
@@ -76,6 +81,7 @@ namespace Yendor
             Require(Mathf.Approximately(before - health.Current, 20), "Wet storm multiplier failed.");
             health.Damage(1000, Element.Kinetic);
             Require(run.Kills == 1 && health.Dead, "Enemy death did not update the run.");
+            Require(run.Player.KillVisibleUntil > Time.time && run.Player.LastKill == target.RoleName, "Kill confirmation missing.");
             health.Damage(10, Element.Kinetic);
             Require(run.Kills == 1, "Death counted twice.");
             run.Interact();
@@ -86,6 +92,10 @@ namespace Yendor
             Teleport(run.Player, run.ExitPosition);
             run.Interact();
             Require(run.Ended, "Extraction failed.");
+            float playerLife = run.Player.GetComponent<Health>().Current;
+            foreach (var enemy in enemies) enemy.TickCombat(Time.time + 100, 0, run.Player, run.Ended);
+            Require(run.Player.GetComponent<Health>().Current == playerLife, "Combat damaged player after extraction.");
+            Require(run.Player.DashReadyAt <= Time.time && run.Player.StormReadyAt <= Time.time, "Initial abilities must be ready.");
             var diagnostics = FindFirstObjectByType<RunDiagnostics>();
             Require(diagnostics, "Missing run diagnostics.");
             string report = diagnostics.WriteReport();

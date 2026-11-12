@@ -84,16 +84,18 @@ namespace Yendor
                 var pool = Shape(i == 0 ? "Rain pool" : "Oil seep", PrimitiveType.Cylinder, new Vector3(i == 0 ? -4 : 4, .09f, 14 + i * 12), new Vector3(8, .07f, 8), Color.cyan);
                 var surface = pool.AddComponent<Surface>(); surface.Water = i == 0;
             }
-            for (int i = 0; i < 7; i++) SpawnEnemy(new Vector3((i % 2 == 0 ? -1 : 1) * (3 + random.Next(5)), 1, 4 + i * 5));
+            for (int i = 0; i < 7; i++) SpawnEnemy(new Vector3((i % 2 == 0 ? -1 : 1) * (3 + random.Next(5)), 1, 4 + i * 5), i);
         }
 
-        void SpawnEnemy(Vector3 position)
+        void SpawnEnemy(Vector3 position, int ordinal)
         {
             var enemy = new GameObject("Briar revenant"); enemy.transform.position = position;
             var cc = enemy.AddComponent<CharacterController>(); cc.center = Vector3.up; cc.height = 2; cc.radius = .55f;
-            var body = Shape("Revenant shell", PrimitiveType.Capsule, position + Vector3.up, new Vector3(1, 1, 1), new Color(.65f, .2f, .32f));
+            var role = (EnemyRole)(ordinal % 3);
+            var size = role == EnemyRole.Brute ? new Vector3(1.35f, 1.1f, 1.35f) : role == EnemyRole.Spitter ? new Vector3(.85f, 1.3f, .85f) : new Vector3(.7f, .8f, .7f);
+            var body = Shape("Revenant shell", role == EnemyRole.Spitter ? PrimitiveType.Cube : PrimitiveType.Capsule, position + Vector3.up, size, new Color(.65f, .2f, .32f));
             Destroy(body.GetComponent<Collider>()); body.transform.SetParent(enemy.transform, true);
-            enemy.AddComponent<Health>(); enemy.AddComponent<Enemy>();
+            enemy.AddComponent<Health>(); enemy.AddComponent<Enemy>().Configure(role, ordinal);
         }
 
         GameObject Shape(string label, PrimitiveType kind, Vector3 position, Vector3 size, Color color)
@@ -132,6 +134,42 @@ namespace Yendor
             GUI.Label(new Rect(30, 24, 800, 45), "YENDOR / THE COPPER WILD", title);
             GUI.Label(new Rect(30, 70, 900, 35), $"LIFE {Mathf.CeilToInt(Player.GetComponent<Health>().Current)}     REVENANTS {Kills}/7     SEED {Seed}", label);
             GUI.Label(new Rect(30, 110, 750, 60), HasRelic ? "Return the Starheart to the turquoise waystone. Press E to escape." : "Follow the old road. Recover the Starheart from the ruins [E].", label);
+            float hudWidth = Screen.width / (Screen.height / 900f);
+            float dash = Mathf.Max(0, Player.DashReadyAt - Time.time), storm = Mathf.Max(0, Player.StormReadyAt - Time.time);
+            GUI.color = dash == 0 ? new Color(.5f, 1, .8f) : Color.white;
+            GUI.Label(new Rect(30, 690, 330, 35), dash == 0 ? "[SHIFT] DASH READY" : $"[SHIFT] DASH  {dash:F1}s", label);
+            GUI.color = storm == 0 ? Color.cyan : Color.white;
+            GUI.Label(new Rect(30, 728, 330, 35), storm == 0 ? "[Q] STORM READY" : $"[Q] STORM  {storm:F1}s", label);
+            GUI.color = Color.white;
+            if (!Ended && Time.time < Player.HitVisibleUntil)
+            {
+                GUI.color = Player.LastHitKilled ? new Color(1, .75f, .2f) : Color.white;
+                GUI.Label(new Rect(hudWidth / 2 - 8, 437, 40, 40), "×", title);
+                GUI.color = Color.white;
+            }
+            if (Time.time < Player.KillVisibleUntil) GUI.Label(new Rect(hudWidth / 2 - 140, 505, 400, 40), Player.LastKill + " DEFEATED", label);
+            if (!Ended && Time.time < Player.HurtVisibleUntil)
+            {
+                GUI.color = new Color(1, .12f, .1f, .65f);
+                GUI.DrawTexture(new Rect(0, 0, hudWidth, 10), Texture2D.whiteTexture);
+                GUI.DrawTexture(new Rect(0, 890, hudWidth, 10), Texture2D.whiteTexture);
+                GUI.DrawTexture(new Rect(0, 0, 10, 900), Texture2D.whiteTexture);
+                GUI.DrawTexture(new Rect(hudWidth - 10, 0, 10, 900), Texture2D.whiteTexture);
+                GUI.color = Color.white;
+            }
+            if (!Ended) foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+            {
+                if (Vector3.Distance(Player.transform.position, enemy.transform.position) > 30) continue;
+                Vector3 point = Player.View.WorldToViewportPoint(enemy.transform.position + Vector3.up * 2.8f);
+                if (point.z <= 0 || point.x < 0 || point.x > 1 || point.y < 0 || point.y > 1) continue;
+                float x = point.x * hudWidth - 48, y = (1 - point.y) * 900;
+                GUI.color = enemy.RoleColor;
+                GUI.DrawTexture(new Rect(x, y, 96 * enemy.GetComponent<Health>().Current / enemy.GetComponent<Health>().Maximum, 5), Texture2D.whiteTexture);
+                GUI.color = enemy.WindingUp ? Color.yellow : Color.white;
+                GUI.Label(new Rect(x - 12, y - 27, 160, 30), enemy.RoleName + (enemy.WindingUp ? " !" : ""), label);
+                if (Time.time < enemy.DamageVisibleUntil) GUI.Label(new Rect(x + 28, y - 55, 90, 30), Mathf.CeilToInt(enemy.LastDamage).ToString(), label);
+                GUI.color = Color.white;
+            }
             GUI.Label(new Rect(30, 775, 1000, 100), "WASD move · Mouse aim · Space double jump · Shift dash\nLMB carbine · RMB ember · Q storm · E interact · Esc release cursor\nEmber ignites oil. Water extinguishes fire and doubles storm damage.", label);
             GUI.Label(new Rect(Screen.width / (Screen.height / 900f) / 2 - 6, 440, 30, 30), "+", label);
             if (Ended)
