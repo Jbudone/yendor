@@ -16,6 +16,8 @@ jobs:
     runs-on: [self-hosted, linux, yendor-unity]
     timeout-minutes: 45
     steps:
+      - name: Scope npm cache to this runner
+        run: echo "NPM_CONFIG_CACHE=$RUNNER_TEMP/yendor-npm-cache" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
         with:
           lfs: true

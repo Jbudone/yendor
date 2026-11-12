@@ -1,11 +1,22 @@
 # Yendor
 
+[Interactive roadmap](https://github.com/Jbudone/yendor/issues/15) ·
+[Illustrated progress report](docs/reporting/updates/2026-11-11.md) ·
+[Feature notes](docs/reporting/README.md) · [PR-Agent setup](docs/reporting/review-automation.md)
+
+
 A third-person expedition roguelike shooter: systemic discovery, inviting wilds,
 and fast movement combat. Built with Unity; developed with a Mastra supervisor,
 specialist agents, LiteLLM, Unity AI and Meshy.
 
 Start with [the shared context](CONTEXT.md), [the first expedition design](docs/design/first-expedition.md)
 and [the agent architecture](docs/adr/0001-development-agents.md).
+
+Follow the [roadmap](docs/reporting/roadmap.md) and
+[feature reports](docs/reporting/README.md) for progress, verification evidence
+and remaining acceptance gates. Feature reports are maintained in GitHub with
+the source; [GitHub Releases](https://github.com/Jbudone/yendor/releases) are
+reserved for verified playable checkpoints.
 
 ## Working together
 
@@ -26,8 +37,8 @@ npm run workflow -- recall "seed replay"
 npm run agents -- --task-id yen-ID --single combat "A bounded task"
 ```
 
-On a fresh clone initialize Beads with `.tools/bin/bd init --prefix yen
---skip-agents --skip-hooks --non-interactive`, then run `npm run tasks:seed`.
+On a fresh clone restore the shared task graph with `.tools/bin/bd bootstrap
+--yes`, then run `npm run tasks:seed` only to add missing initial tasks.
 Existing checkouts retain their database. Never reinitialize a populated store.
 Gitleaks runs on commits, pushes and CI. Full-history scanning must pass before
 public publication. Keys belong only in ignored `.env`; account activation and

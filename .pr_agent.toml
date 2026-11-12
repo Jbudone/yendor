@@ -1,7 +1,7 @@
 [config]
-model = "openrouter/anthropic/claude-sonnet-5.5"
 fallback_models = []
-num_retries = 1
+num_retries = 0
+output_run_details = true
 max_model_tokens = 16000
 
 [pr_reviewer]

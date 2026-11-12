@@ -1,6 +1,6 @@
 {
   "repo": "Jbudone/yendor",
-  "updatedAt": "2026-11-09T01:20:53.122Z",
+  "updatedAt": "2026-11-11T03:50:00Z",
   "tasks": {
     "yen-m27": {
       "issue": 1,
@@ -49,6 +49,14 @@
     "yen-apc": {
       "issue": 12,
       "url": "https://github.com/Jbudone/yendor/issues/12"
+    },
+    "yen-lmb": {
+      "issue": 15,
+      "url": "https://github.com/Jbudone/yendor/issues/15"
+    },
+    "yen-0r8": {
+      "issue": 16,
+      "url": "https://github.com/Jbudone/yendor/issues/16"
     }
   }
 }

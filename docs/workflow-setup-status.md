@@ -81,14 +81,32 @@ adopted. No paid model or asset requests have been made during this setup.
   label yendor-unity. Unity CI is restricted to owner-controlled main/master
   pushes and manual runs; PR checks use GitHub-hosted runners.
 
-Hosted CI results are appended only once observed.
+- Hosted Node/Gitleaks checks passed for setup commit 4dc6dac:
+  https://github.com/Jbudone/yendor/actions/runs/42576852702.
+- Unity CI passed every verification/build/player-smoke step and uploaded its
+  artifact, then stalled in setup-node's post-job cache of the developer's 7.8 GB
+  npm cache. That run was cancelled; the workflow now scopes NPM_CONFIG_CACHE to
+  runner.temp instead, set during runner initialization.
+- The corrected Unity workflow completed successfully, including packaged-player
+  smoke, artifact upload and post-job cache cleanup:
+  https://github.com/Jbudone/yendor/actions/runs/42579329482 (source 6700bfe).
+- Master branch protection requires the actual `node` check and PR-based changes;
+  force pushes/deletions are disabled. External-contributor workflows require
+  approval, and the local Unity workflow has no PR trigger.
+- Beads history was pushed to the public repository's Dolt data ref. Native
+  bootstrap restores that task graph on a fresh clone; initial seeding remains
+  idempotent rather than a second authority.
+- A disposable fresh-clone bootstrap restored all twelve tasks, preserving task
+  IDs. Evidence: artifacts/pilots/task-restore.json. This verifies GitHub task
+  recovery; it does not back up ignored local histories, credentials or artifacts.
 
 ## Live/account/environment gates
 
 The ignored .env file has been prepared with local gateway keys and candidate
-upstream models. It still needs OPENROUTER_API_KEY, MESHY_API_KEY and the actual
-Langfuse Cloud project's public/secret keys and region. Enable Langfuse only
-when these are present. No live provider compatibility, paid model comparison,
+upstream models. Live checks require OPENROUTER_API_KEY, MESHY_API_KEY and the
+Langfuse Cloud project's public/secret keys and correct region. Credential
+presence has been detected; the user is finishing configuration. Enable Langfuse
+for its delivery audit. No live provider compatibility, paid model comparison,
 Meshy account/generation or real Langfuse trace audit is claimed.
 
 The primary Unity project reports an existing lock, while CLI instance discovery
