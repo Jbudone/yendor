@@ -21,10 +21,12 @@ pause. Continue automatically through these named increments after verified resu
 3. `yen-kn2`: rewarded optional route and Starheart return pressure.
 
 Integration branch `gameplay/expedition-batch` starts at master `12cc7c9` in
-`.worktrees/gameplay-batch`. Current worker `/root/combat_iteration` owns
-`.worktrees/yen-gh7`. Combat compile, fourteen tests and smoke have passed;
-final exact-source cleanup gates are running. First checkpoint 04:07 UTC
-(start 03:27). Next boundary: review/merge combat, then fresh pickup worker.
+`.worktrees/gameplay-batch`. Combat integrated at `4023f12` (worker `9142a4d`), with
+fourteen Unity tests, validation and smoke passed; coordinator log/XML/game-hash
+audit saved in `artifacts/pilots/yen-gh7/coordinator-audit.json`.
+Current worker task `yen-7a1` owns `.worktrees/yen-7a1`, starting `4023f12`.
+Second increment starts 03:38 UTC; checkpoint 04:18 UTC. Next boundary:
+review/merge pickups and then fresh exploration worker.
 Stop on failed acceptance evidence, ownership conflict, ambiguous paid side effect,
 scope expansion, per-increment checkpoint or user pause; preserve running jobs.
 
