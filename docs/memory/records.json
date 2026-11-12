@@ -77,5 +77,18 @@
     ],
     "text": "Maintain GitHub-readable roadmap and feature notes at outcome/blocker boundaries. Show implementation, verification and release separately with source evidence. GitHub Releases represent verified playable checkpoints; Beads remains task authority and accepted design owns milestone gates.",
     "sourceHash": "19ff0da9fa13b65f5ddbf7a49f3fa94f318c027d2cd6445f652d1fcc1a1442a5"
+  },
+  {
+    "id": "gameplay-batch-2026-11-12",
+    "status": "accepted",
+    "source": "docs/design/first-expedition.md",
+    "sourceHash": "5a69ecaee04d22bf923786cd89aa3a9652541ba769327fba303a5928893e7200",
+    "tags": [
+      "gameplay",
+      "sequential-workers",
+      "playtest",
+      "milestone"
+    ],
+    "text": "User authorized several substantial gameplay increments before another playtest, using fresh subagents one at a time. Batch is mixed combat/feedback, deterministic pickups/build choices, optional exploration and Starheart return pressure. Old manual foundation gate is deferred as an implementation prerequisite for this batch; feel/performance/fresh-player acceptance remains unpassed. Source: user instruction 2026-11-12 and linked design batch."
   }
 ]

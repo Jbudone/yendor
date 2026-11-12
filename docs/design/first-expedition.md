@@ -55,3 +55,26 @@ Does the trip back change after taking the relic? Which death teaches something?
 The current greybox lacks relic escalation, rich itemization, mixed enemies,
 authored environmental storytelling and production visuals. Measure these as
 work remaining, not features implied by the reference games.
+
+## 2026-11-12 — Authorized gameplay batch
+
+The user reported that the integrated foundation feels unchanged and authorized
+several substantial gameplay iterations before testing again. Execute fresh
+subagents sequentially, reviewing and integrating each chunk before the next.
+For this batch, the old manual foundation gate does not block implementation;
+manual feel, performance and fresh-player milestone gates remain unpassed.
+
+1. `yen-gh7`: mixed melee, ranged and flanker encounters, dodgeable attack
+   telegraphs, hit/kill/damage feedback and visible ability cooldowns.
+2. `yen-7a1`: five meaningful seeded pickups, including healing and three
+   run modifiers, with visible effects and no persistent inventory. Independent
+   random streams preserve world generation; replay restores offerings and clears power.
+3. `yen-kn2`: a rewarded authored optional route, navigation landmarks, and
+   bounded Starheart escalation that changes the return trip without sealing escape.
+
+These are implementation directions inside the accepted first slice. Specific
+balance values are provisional until playtested. Preserve the accepted Ember,
+water and Storm rules, same-seed input reproducibility and one death per actor.
+Exclude production-art migration, paid authoring calls, persistence and multiplayer.
+Completion means an exact playable bundle with automated evidence and a concise
+change list; it does not establish subjective fun or rendered hardware performance.
