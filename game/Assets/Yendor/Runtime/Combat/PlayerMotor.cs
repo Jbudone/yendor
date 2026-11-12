@@ -6,6 +6,7 @@ namespace Yendor
     public sealed class PlayerMotor : MonoBehaviour
     {
         public Camera View;
+        public RunBuild Build { get; } = new RunBuild();
         public float Speed = 9;
         public float HitVisibleUntil { get; private set; }
         public float HurtVisibleUntil { get; private set; }
@@ -93,18 +94,9 @@ namespace Yendor
             vertical -= 26 * Time.deltaTime;
             motor.Move(((Time.time < dashUntil ? dashDirection * 29 : move * Speed) + Vector3.up * vertical) * Time.deltaTime);
             if (transform.position.y < -12) health.Damage(1000, Element.Kinetic);
-            if (Input.GetMouseButton(0) && Time.time >= shotAt) { shotAt = Time.time + .14f; Fire(Element.Kinetic, 15); }
-            if (Input.GetMouseButton(1) && Time.time >= emberAt) { emberAt = Time.time + .65f; Fire(Element.Ember, 22); }
-            if (Input.GetKeyDown(KeyCode.Q) && Time.time >= StormReadyAt)
-            {
-                StormReadyAt = Time.time + 5;
-                foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
-                    if (Vector3.Distance(transform.position, enemy.transform.position) < 14)
-                    {
-                        ConfirmHit(enemy.GetComponent<Health>(), 28, Element.Storm);
-                        Expedition.Beam(transform.position + Vector3.up, enemy.transform.position + Vector3.up, Color.cyan);
-                    }
-            }
+            if (Input.GetMouseButton(0)) TryFire(Element.Kinetic, Time.time, Expedition.Instance.Ended);
+            if (Input.GetMouseButton(1)) TryFire(Element.Ember, Time.time, Expedition.Instance.Ended);
+            if (Input.GetKeyDown(KeyCode.Q)) TryStorm(Time.time, Expedition.Instance.Ended);
             if (Input.GetKeyDown(KeyCode.E)) Expedition.Instance.Interact();
         }
 
@@ -118,6 +110,29 @@ namespace Yendor
             if (Physics.SphereCast(pivot, .2f, offset.normalized, out var hit, distance, ~(1 << 2), QueryTriggerInteraction.Ignore))
                 distance = Mathf.Max(.1f, hit.distance - .1f);
             View.transform.SetPositionAndRotation(pivot + offset.normalized * distance, look);
+        }
+
+        public bool TryFire(Element element, float now, bool runEnded)
+        {
+            if (runEnded || health.Dead || !View || element == Element.Storm) return false;
+            if (now < (element == Element.Ember ? emberAt : shotAt)) return false;
+            if (element == Element.Ember) emberAt = now + Build.ShotInterval(element);
+            else shotAt = now + Build.ShotInterval(element);
+            Fire(element, Build.Damage(element));
+            return true;
+        }
+
+        public bool TryStorm(float now, bool runEnded)
+        {
+            if (runEnded || health.Dead || now < StormReadyAt) return false;
+            StormReadyAt = now + Build.StormCooldown;
+            foreach (var enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+                if (Vector3.Distance(transform.position, enemy.transform.position) < Build.StormRadius)
+                {
+                    ConfirmHit(enemy.GetComponent<Health>(), Build.Damage(Element.Storm), Element.Storm);
+                    Expedition.Beam(transform.position + Vector3.up, enemy.transform.position + Vector3.up, Color.cyan);
+                }
+            return true;
         }
 
         void Fire(Element element, float damage)

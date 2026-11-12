@@ -13,6 +13,7 @@ namespace Yendor
         public bool HasRelic { get; private set; }
         public Vector3 RelicPosition { get; private set; }
         public Vector3 ExitPosition => new Vector3(0, 0, -28);
+        public Vector3 ShrinePosition => new Vector3(0, .8f, -24);
         GameObject relic;
         bool escaped;
         float startedAt;
@@ -36,6 +37,7 @@ namespace Yendor
             sun.transform.rotation = Quaternion.Euler(35, -35, 0);
             sun.shadows = LightShadows.Soft;
             BuildWorld();
+            BuildPickups();
             var hero = new GameObject("Wayfarer");
             hero.layer = 2;
             hero.transform.position = ExitPosition + Vector3.up * 2;
@@ -87,6 +89,36 @@ namespace Yendor
             for (int i = 0; i < 7; i++) SpawnEnemy(new Vector3((i % 2 == 0 ? -1 : 1) * (3 + random.Next(5)), 1, 4 + i * 5), i);
         }
 
+        void BuildPickups()
+        {
+            Shape("Shrine: choose one core", PrimitiveType.Cylinder, ShrinePosition + Vector3.down * .65f, new Vector3(6, .15f, 3), new Color(.35f, .35f, .45f));
+            var offerings = PickupCatalog.Offerings(Seed);
+            for (int i = 0; i < offerings.Length; i++) SpawnPickup("shrine-" + i, offerings[i], ShrinePosition + Vector3.right * ((i - 1) * 3.5f));
+            SpawnPickup("road-heartwood", PickupKind.Heartwood, new Vector3(-3, .8f, -5));
+            SpawnPickup("road-salve", PickupKind.Salve, new Vector3(3, .8f, 20));
+        }
+
+        public RunPickup SpawnPickup(string id, PickupKind kind, Vector3 position)
+        {
+            var definition = PickupCatalog.Get(kind);
+            var item = Shape(definition.Name, definition.IsModifier ? PrimitiveType.Sphere : PrimitiveType.Cube, position, Vector3.one * .8f, definition.Color);
+            Destroy(item.GetComponent<Collider>());
+            var light = item.AddComponent<Light>(); light.color = definition.Color; light.range = 5; light.intensity = 1.6f;
+            var pickup = item.AddComponent<RunPickup>(); pickup.Configure(id, kind); return pickup;
+        }
+
+        public RunPickup NearbyPickup()
+        {
+            RunPickup closest = null; float distance = RunPickup.Reach;
+            foreach (var pickup in FindObjectsByType<RunPickup>(FindObjectsSortMode.None))
+            {
+                if (!pickup.Available(Player)) continue;
+                float candidate = Vector3.Distance(Player.transform.position, pickup.transform.position);
+                if (candidate < distance) { distance = candidate; closest = pickup; }
+            }
+            return closest;
+        }
+
         void SpawnEnemy(Vector3 position, int ordinal)
         {
             var enemy = new GameObject("Briar revenant"); enemy.transform.position = position;
@@ -110,6 +142,8 @@ namespace Yendor
         void Update()
         {
             if (!Player) return;
+            foreach (var pickup in FindObjectsByType<RunPickup>(FindObjectsSortMode.None))
+                if (!pickup.Available(Player)) pickup.gameObject.SetActive(false);
             if (relic) relic.transform.Rotate(0, 65 * Time.deltaTime, 0);
             if (Ended && Input.GetKeyDown(KeyCode.R)) Restart(false);
             if (Ended && Input.GetKeyDown(KeyCode.N)) Restart(true);
@@ -117,9 +151,11 @@ namespace Yendor
 
         public void Interact()
         {
+            if (!Player || Ended || Player.GetComponent<Health>().Dead) return;
             if (!HasRelic && Vector3.Distance(Player.transform.position, RelicPosition) < 4)
-            { HasRelic = true; Destroy(relic); Player.GetComponent<Health>().Heal(35); }
-            if (HasRelic && Vector3.Distance(Player.transform.position, ExitPosition) < 4) Finish(true);
+            { HasRelic = true; Destroy(relic); Player.GetComponent<Health>().Heal(35); return; }
+            if (HasRelic && Vector3.Distance(Player.transform.position, ExitPosition) < 4) { Finish(true); return; }
+            NearbyPickup()?.TryCollect(Player, Ended);
         }
 
         void Finish(bool success) { if (Ended) return; Ended = true; escaped = success; finishedAt = Time.time; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
@@ -132,8 +168,30 @@ namespace Yendor
             var title = new GUIStyle(GUI.skin.label) { fontSize = 28, fontStyle = FontStyle.Bold };
             var label = new GUIStyle(GUI.skin.label) { fontSize = 18, wordWrap = true };
             GUI.Label(new Rect(30, 24, 800, 45), "YENDOR / THE COPPER WILD", title);
-            GUI.Label(new Rect(30, 70, 900, 35), $"LIFE {Mathf.CeilToInt(Player.GetComponent<Health>().Current)}     REVENANTS {Kills}/7     SEED {Seed}", label);
+            GUI.Label(new Rect(30, 70, 900, 35), $"LIFE {Mathf.CeilToInt(Player.GetComponent<Health>().Current)}/{Mathf.CeilToInt(Player.GetComponent<Health>().Maximum)}     REVENANTS {Kills}/7     SEED {Seed}", label);
             GUI.Label(new Rect(30, 110, 750, 60), HasRelic ? "Return the Starheart to the turquoise waystone. Press E to escape." : "Follow the old road. Recover the Starheart from the ruins [E].", label);
+            GUI.Label(new Rect(30, 175, 920, 65), "BUILD: " + Player.Build.Summary, label);
+            var nearby = NearbyPickup();
+            bool comparingCores = !Ended && !Player.Build.Core.HasValue && Vector3.Distance(Player.transform.position, ShrinePosition) < 9;
+            if (comparingCores)
+            {
+                GUI.Box(new Rect(25, 255, 790, 275), "");
+                GUI.Label(new Rect(40, 262, 760, 30), "SHRINE — choose one core. Approach a light and press E.", label);
+                var choices = PickupCatalog.Offerings(Seed);
+                for (int i = 0; i < choices.Length; i++)
+                {
+                    var choice = PickupCatalog.Get(choices[i]);
+                    GUI.color = choice.Color;
+                    string side = i == 0 ? "LEFT" : i == 1 ? "MIDDLE" : "RIGHT";
+                    GUI.Label(new Rect(40, 300 + i * 75, 755, 75), side + " · " + choice.Name + (nearby && nearby.Kind == choice.Kind ? " [E]" : "") + "\n" + choice.Description, label);
+                }
+                GUI.color = Color.white;
+            }
+            else if (!Ended && nearby)
+            {
+                GUI.Box(new Rect(25, 255, 750, 90), "");
+                GUI.Label(new Rect(40, 265, 720, 80), "[E] " + nearby.Definition.Name + "\n" + nearby.Definition.Description, label);
+            }
             float hudWidth = Screen.width / (Screen.height / 900f);
             float dash = Mathf.Max(0, Player.DashReadyAt - Time.time), storm = Mathf.Max(0, Player.StormReadyAt - Time.time);
             GUI.color = dash == 0 ? new Color(.5f, 1, .8f) : Color.white;
@@ -168,6 +226,16 @@ namespace Yendor
                 GUI.color = enemy.WindingUp ? Color.yellow : Color.white;
                 GUI.Label(new Rect(x - 12, y - 27, 160, 30), enemy.RoleName + (enemy.WindingUp ? " !" : ""), label);
                 if (Time.time < enemy.DamageVisibleUntil) GUI.Label(new Rect(x + 28, y - 55, 90, 30), Mathf.CeilToInt(enemy.LastDamage).ToString(), label);
+                GUI.color = Color.white;
+            }
+            if (!Ended) foreach (var pickup in FindObjectsByType<RunPickup>(FindObjectsSortMode.None))
+            {
+                if (!pickup.Available(Player)) continue;
+                if (Vector3.Distance(Player.transform.position, pickup.transform.position) > 24) continue;
+                Vector3 point = Player.View.WorldToViewportPoint(pickup.transform.position + Vector3.up);
+                if (point.z <= 0 || point.x < 0 || point.x > 1 || point.y < 0 || point.y > 1) continue;
+                GUI.color = pickup.Definition.Color;
+                GUI.Label(new Rect(point.x * hudWidth - 85, (1 - point.y) * 900, 220, 55), pickup.Definition.Name + (pickup == nearby ? " [E]" : ""), label);
                 GUI.color = Color.white;
             }
             GUI.Label(new Rect(30, 775, 1000, 100), "WASD move · Mouse aim · Space double jump · Shift dash\nLMB carbine · RMB ember · Q storm · E interact · Esc release cursor\nEmber ignites oil. Water extinguishes fire and doubles storm damage.", label);

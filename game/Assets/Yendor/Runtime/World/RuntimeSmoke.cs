@@ -18,7 +18,7 @@ namespace Yendor
         {
             yield return null;
             yield return null;
-            try { Check(); Debug.Log("YENDOR_RUNTIME_SMOKE_OK: spawns, ground, elemental damage, mixed roles, feedback, death, relic and extraction."); Exit(0); }
+            try { Check(); Debug.Log("YENDOR_RUNTIME_SMOKE_OK: spawns, ground, elemental damage, mixed roles, feedback, pickups, build choices, death, relic and extraction."); Exit(0); }
             catch (Exception error) { Debug.LogException(error); Exit(1); }
         }
 
@@ -84,14 +84,39 @@ namespace Yendor
             Require(run.Player.KillVisibleUntil > Time.time && run.Player.LastKill == target.RoleName, "Kill confirmation missing.");
             health.Damage(10, Element.Kinetic);
             Require(run.Kills == 1, "Death counted twice.");
+            var pickups = FindObjectsByType<RunPickup>(FindObjectsSortMode.None);
+            Require(pickups.Length == 5, "Expected three shrine cores and two supply pickups.");
+            foreach (var offering in pickups)
+                if (offering.Definition.IsModifier)
+                    foreach (var enemy in enemies)
+                        Require(Vector3.Distance(offering.transform.position, enemy.transform.position) > 27, "Starting shrine must be outside initial enemy aggro.");
+            Require(!run.Player.Build.Core.HasValue && run.Player.Build.Supplies == 0, "New run must have no powers.");
+            var core = Array.Find(pickups, item => item.Definition.IsModifier);
+            Require(!core.TryCollect(run.Player, false), "Distant core collected.");
+            Teleport(run.Player, core.transform.position);
+            run.Interact();
+            Require(run.Player.Build.Core == core.Kind, "E interaction did not choose the nearest core.");
+            Require(!core.TryCollect(run.Player, false), "Core collected twice.");
+            var otherCore = Array.Find(pickups, item => item.Definition.IsModifier && item != core);
+            Teleport(run.Player, otherCore.transform.position);
+            Require(!otherCore.TryCollect(run.Player, false), "Mutually exclusive core collected.");
+            Debug.Log($"YENDOR_SMOKE_BUILD: seed={run.Seed} core={run.Player.Build.Core} offerings={string.Join(",", PickupCatalog.Offerings(run.Seed))}");
+            Teleport(run.Player, run.ExitPosition);
             run.Interact();
             Require(!run.HasRelic && !run.Ended, "Distant interaction collected the relic.");
             Teleport(run.Player, run.RelicPosition);
+            run.SpawnPickup("smoke-relic-priority", PickupKind.Heartwood, run.RelicPosition);
             run.Interact();
             Require(run.HasRelic && !run.Ended, "Relic pickup failed.");
+            Require(!run.Player.Build.HasCollected("smoke-relic-priority"), "Supply consumed instead of relic priority.");
             Teleport(run.Player, run.ExitPosition);
+            run.SpawnPickup("smoke-exit-priority", PickupKind.Heartwood, run.ExitPosition);
             run.Interact();
             Require(run.Ended, "Extraction failed.");
+            Require(!run.Player.Build.HasCollected("smoke-exit-priority"), "Supply consumed instead of extraction priority.");
+            var supply = Array.Find(pickups, item => item.Kind == PickupKind.Heartwood);
+            Teleport(run.Player, supply.transform.position);
+            Require(!supply.TryCollect(run.Player, run.Ended), "Supply collected after run ended.");
             float playerLife = run.Player.GetComponent<Health>().Current;
             foreach (var enemy in enemies) enemy.TickCombat(Time.time + 100, 0, run.Player, run.Ended);
             Require(run.Player.GetComponent<Health>().Current == playerLife, "Combat damaged player after extraction.");
