@@ -1,0 +1,48 @@
+{
+  "task": "yen-897",
+  "sourceIntegration": "Publication worktree based on upstream3b6fbba; game Assets/Packages/ProjectSettings matched exact tested build snapshot before commit",
+  "player": {
+    "taskIds": [
+      "yen-rgi",
+      "yen-gh7",
+      "yen-7a1",
+      "yen-kn2"
+    ],
+    "buildRevision": "090a40c48b4aad79454cf12b970990564b09c25b",
+    "sourceHash": "82d4a6243af92b80ec839440919450f0071955d53a09978a09188a5bb5baa06c",
+    "buildGuid": "31c46702cf284f51a9998c3ebc8ab443",
+    "bundleHash": "51e4a84538d74865406f53089b154300fe51222396e06e56ef8f21cd2b0715ce",
+    "fileCount": 255,
+    "copiedBundleVerified": true,
+    "buildRun": "2026-11-13T22-17-48-937Z-fc65ce47",
+    "gameSourceHashes": {
+      "Assets": "6bbd6e16cc1a4fc4d1f283e2d7fc898a635e1c3f6e592a7d42c0b7a7ef43af9d",
+      "Packages": "615253580193d5e495444d6913d7840d83b3a5749c7d56cb148831df5169e883",
+      "ProjectSettings": "458d7ab1be21887f17a68a44f7a4a68b8bf16e6761e439ad20c63dd171b0c48b"
+    },
+    "artPresentation": "Waystone, sandstone paving and extraction sound included. New ruin studies remain unplaced.",
+    "limitations": "Headless smoke; human art/audio/feel and measured performance remain open."
+  },
+  "checks": {
+    "UnityEditMode": {
+      "passed": 26,
+      "failed": 0,
+      "run": "2026-11-13T22-14-24-251Z-8031ae65"
+    },
+    "audit": "2026-11-13T22-16-54-232Z-0f02257b",
+    "build": "2026-11-13T22-17-48-937Z-fc65ce47",
+    "editorSmoke": "2026-11-13T22-19-04-328Z-d17e11fc",
+    "playerSmoke": "Passed, graphicsVerified=false",
+    "node": "Syntax and11tests passed"
+  },
+  "captures": {
+    "mode": "Native Unity Camera.Render during controlled runtime review; no HUD",
+    "hardware": "NVIDIA GTX1070Ti",
+    "performanceClaim": false
+  },
+  "limitations": [
+    "Human style/audio/feel/fresh-player acceptance and hardware timing remain open",
+    "New arch/masonry studies unplaced",
+    "Full machine-local logs are retained under artifacts; this receipt is a summary, not hosted CI proof"
+  ]
+}

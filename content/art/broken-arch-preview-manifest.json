@@ -1,0 +1,56 @@
+{
+  "task": "yen-8ji",
+  "direction": "Copper Wild sandstone ruin kit; provisional study, no human style acceptance",
+  "provider": "Meshy",
+  "model": "meshy-7.1",
+  "provider_task": "01a1d6f2-0dfe-74a1-86a7-d5258ae83aeb",
+  "generated_at_unix_ms": 1794607594622,
+  "seed": 4010102739,
+  "brief": "content/art/broken-arch.json",
+  "license_context": "Existing authenticated project subscription; account plan terms unchanged, no new license entitlement assertion",
+  "credits": {
+    "before": 1950,
+    "after": 1930,
+    "consumed": 20
+  },
+  "original_exports": [
+    {
+      "path": "artifacts/pilots/yen-8ji/arch-preview.fbx",
+      "bytes": 185388,
+      "sha256": "ca8405f985c2f2bd63961b40f987c24f4c766a30ebbfaed73ffb0c1599fed210"
+    },
+    {
+      "path": "artifacts/pilots/yen-8ji/arch-preview.glb",
+      "bytes": 279252,
+      "sha256": "237f448b93199e959853b82c522e60869d6dbc93be49a6fc02150981e2ec7b25"
+    },
+    {
+      "path": "artifacts/pilots/yen-8ji/arch-preview.obj",
+      "bytes": 410090,
+      "sha256": "e123aa8f34084c3d6b8a86f358005eb7a3a6d75daefa44b61bdecaa352ea1ebd"
+    },
+    {
+      "path": "artifacts/pilots/yen-8ji/preview.png",
+      "bytes": 114539,
+      "sha256": "0d351dbd051d2b2f5dc78930b3ad6774abd5beddd0d2a2f66877ce8982162998"
+    }
+  ],
+  "selected_variant": "One preview, no refinement",
+  "import": "game/Assets/Yendor/Art/Meshy/BrokenArch/arch-preview.fbx",
+  "manual_modifications": [
+    "Original exports unchanged",
+    "Native C# extracted the single arch component; removed two interior columns, floating lintel and two detached slivers",
+    "4 metre height and base-center origin from rendered FBX orientation",
+    "Per-face box UV projection at one metre per repeat"
+  ],
+  "derived": "game/Assets/Yendor/Art/Ruins/BrokenArchStudy.prefab",
+  "triangles": 1077,
+  "disposition": "Usable unplaced arch study; rejected original combined prop for placement",
+  "limitations": [
+    "Not a complete snapping ruin kit",
+    "No collision or gameplay placement",
+    "Faceted surfaces and two feet require placement review",
+    "No final material/lighting style acceptance"
+  ],
+  "evidence": "artifacts/pilots/yen-8ji/derived-arch.json"
+}

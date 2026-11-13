@@ -102,6 +102,18 @@ adopted. No paid model or asset requests have been made during this setup.
 
 ## Live/account/environment gates
 
+2026-11-10 CI reconciliation (`yen-m27`): PR #13 run
+https://github.com/Jbudone/yendor/actions/runs/42579814055 initially failed with
+HTTP 504 while downloading pinned Gitleaks, before scan/tests. A single failed-job
+rerun passed every step (attempt 2, head `b3dc709`). No source fix was needed.
+Local syntax and all 11 Node tests also passed with the existing documentation
+diff. Independent read-only review confirmed the dedicated runner online/idle,
+`YENDOR_UNITY_CI=true`, and strict required `node` protection. Required PR approvals
+are zero and admin enforcement is disabled. No protection changes were made.
+Unity success remains historical at `6700bfe`; no new Unity execution or merge was
+performed. Evidence/logs: `artifacts/pilots/yen-m27/`. Artifacts are local/ignored;
+the GitHub run is the durable remote CI link.
+
 The ignored .env file has been prepared with local gateway keys and candidate
 upstream models. Live checks require OPENROUTER_API_KEY, MESHY_API_KEY and the
 Langfuse Cloud project's public/secret keys and correct region. Credential

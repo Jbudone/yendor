@@ -10,6 +10,7 @@ namespace Yendor.Editor
     {
         public const string ScenePath = "Assets/Yendor/Scenes/CopperWild.unity";
         public const string GreyboxMaterialPath = "Assets/Yendor/Resources/YendorGreybox.mat";
+        public const string WaystonePrefabPath = "Assets/Yendor/Resources/YendorWaystone.prefab";
 
         [MenuItem("Yendor/Create greybox render resources")]
         public static void CreateRenderResources()
@@ -44,6 +45,13 @@ namespace Yendor.Editor
             if (!File.Exists(ScenePath)) throw new Exception("Required scene is missing: " + ScenePath + ". Run Yendor/Create or reset Copper Wild scene explicitly.");
             if (!AssetDatabase.LoadAssetAtPath<Material>(GreyboxMaterialPath))
                 throw new Exception("Required greybox material is missing. Run Yendor/Create greybox render resources explicitly.");
+            var waystone = AssetDatabase.LoadAssetAtPath<GameObject>(WaystonePrefabPath);
+            if (!waystone) throw new Exception("Required reviewed waystone prefab is missing: " + WaystonePrefabPath);
+            var cue = waystone.GetComponent<AudioSource>();
+            if (!cue || !cue.clip || cue.playOnAwake || cue.loop)
+                throw new Exception("Waystone requires a referenced, non-looping extraction cue with play-on-awake disabled.");
+            if (!waystone.GetComponentInChildren<BoxCollider>())
+                throw new Exception("Waystone requires its authored simple collider.");
             if (EditorUtility.scriptCompilationFailed) throw new Exception("Unity script compilation failed.");
             var scene = EditorSceneManager.OpenScene(ScenePath);
             if (UnityEngine.Object.FindObjectsByType<Expedition>(FindObjectsSortMode.None).Length != 1)

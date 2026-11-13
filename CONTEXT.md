@@ -43,8 +43,10 @@ roles with attack telegraphs and combat feedback, three exclusive tactical cores
 healing/maximum-life supplies, a rewarded elevated overlook, objective beacons and
 a bounded Starheart return alarm. Same-seed replay resets run power and preserves
 physical offerings and initial enemy positions; F8 diagnostics survives reloads.
-Generated geometry is placeholder art. The
-visual target requires a later URP lighting/material/environment pass.
+Most generated geometry is placeholder art. A provisional first art increment
+adds a reviewed Meshy waystone beside the extraction pad, Unity AI sandstone
+paving and a successful-extraction sound. The visual target still requires a
+later URP lighting/material/environment pass; human art/audio acceptance is open.
 
 Runtime source lives in game/Assets/Yendor/Runtime. Editor builders live under
 game/Assets/Yendor/Editor. CopperWild.unity contains a bootstrap; the run builds
@@ -61,7 +63,7 @@ sandbox. Compile validation runs separately from runtime checks and playtesting.
 
 Secrets stay in local environment files, outside Unity Assets. Meshy requests
 record source briefs and task IDs; assets are reviewed before importing. Unity
-AI is activated inside the Editor against the user's linked Cloud project.
+AI is activated inside the Editor against the user's linked Cloud project. Assistant/Generators remain installed; the optional local Asset Knowledge inference addon is disabled and removed to keep batch project settings stable. Credit-funded authoring does not require runtime inference.
 
 The durable workflow is specified in docs/adr/0002-project-workflow.md. Fresh
 sessions follow AGENTS.md and STATUS.md. Beads owns task execution state; Agent

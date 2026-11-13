@@ -1,0 +1,83 @@
+{
+  "task": "yen-7yi",
+  "capturedAt": "2026-11-13T07:20:40.553891+00:00",
+  "cloudProject": "yendor",
+  "assistantPackage": "2.21.0-pre.2",
+  "unityVersion": "6000.6.0f1",
+  "accountContext": "Existing linked organization subscription; read-only balance checked via native account service",
+  "points": {
+    "starting": 1000,
+    "finalObserved": 952,
+    "aggregateDecrease": 48,
+    "materialQuote": 9,
+    "soundQuote": 27,
+    "perItemActualCharges": "not returned by tools; conversation overhead included in aggregate"
+  },
+  "material": {
+    "path": "game/Assets/Yendor/Art/Studies/WaystoneSandstone.mat",
+    "guid": "0a2f591237d24bf60ada5308ceb2cf71",
+    "texturePath": "game/Assets/Yendor/Art/Studies/WaystoneSandstone_Generated Maps/MainTex.jpg",
+    "modelId": "hand-painted-textures-2-0",
+    "modelIdentityEvidence": "Persisted material generation metadata copied to artifacts/pilots/yen-7yi/material-provider-recovery.json",
+    "providerJobId": "01a1d3c2-4c2b-73fd-bb7a-6bf5bf75d467",
+    "prompt": "Stylized weathered warm sandstone for a monumental forest waystone. Broad readable stone forms, subtle warm/cool color variation, sparse deep moss in recesses, restrained detail, painterly fantasy game treatment, no text/logos/cast shadows/dramatic baked lighting. Seamless surface; turquoise rune emission will be authored separately.",
+    "seed": 1693470912,
+    "textureSize": [
+      512,
+      512
+    ],
+    "maps": "base color only; no PBR refinement requested",
+    "review": "Original paving pattern used provisionally on extraction platform; actual native/runtime captures inspected. Human final style acceptance remains open."
+  },
+  "sound": {
+    "path": "game/Assets/Yendor/Art/Studies/WaystoneActivation.wav",
+    "guid": "982587c19b2ea7e60a143d4b96a8b0e0",
+    "requestedModelId": "elevenlabs-sound-effects-v2",
+    "modelIdentityEvidence": "Bounded request and Assistant tool report; actual serving revision not independently exposed",
+    "providerJobId": "01a1d3c5-ee89-7553-b553-7c674ee8648b",
+    "prompt": "Short original magical stone activation cue, 2 seconds. Low warm stone resonance rises into one clear airy crystalline chime with a brief tail. Ancient, inviting and restrained. No speech/music, no harsh piercing frequencies, no clipping. Recognizable during combat without masking enemy warnings.",
+    "analysis": {
+      "channels": 2,
+      "sampleRate": 44100,
+      "sampleWidthBytes": 2,
+      "frames": 89856,
+      "durationSeconds": 2.0375510204081633,
+      "peakNormalized": 0.967559814453125,
+      "clippedSamples": 0,
+      "rmsNormalized": 0.07563068459330138,
+      "listeningReviewed": false
+    },
+    "review": "Native import and waveform checked; listening and combat mix unrun.",
+    "providerJobIdentityEvidence": "Persisted native GeneratedAssets history filename reconciled before publication"
+  },
+  "sourceExportSha256": {
+    "game/Assets/Yendor/Art/Studies/WaystoneSandstone.mat": "f9c856de94acf04158399379a49e59a666c4041311d317ecf11691456f07eb7a",
+    "game/Assets/Yendor/Art/Studies/WaystoneSandstone_Generated Maps/MainTex.jpg": "f7d1c80bff69b61e04b865eaf341860f5d91847d0b6b78ef9c041483acf31ae4",
+    "game/Assets/Yendor/Art/Studies/WaystoneActivation.wav": "35f23b18c8f57c50b24d9de8524d1cac65ff5bc80f35a2dc0b323db368da1ce8"
+  },
+  "manualModifications": [],
+  "runtimeIntegrated": true,
+  "permission": {
+    "AssetGenerationPolicy": "Allow",
+    "scope": "persistent local Unity Editor profile across projects",
+    "otherPolicyChanges": [],
+    "evidence": "artifacts/pilots/yen-7yi/permission-setting-verified.json"
+  },
+  "limitations": [
+    "Assistant orchestration stopped unexpectedly for material while underlying provider job completed; no paid resubmission occurred.",
+    "Native audio actual provider job ID/serving revision not exposed in tool response.",
+    "Native runtime rendered captures and automated player smoke pass; human audio/art/feel acceptance remains open."
+  ],
+  "integration": {
+    "date": "2026-11-13T19:04:33.490335+00:00",
+    "task": "yen-rgi",
+    "sourceStudiesUnmodified": true,
+    "use": "Paving material derived from sandstone study, extraction cue at volume .25 on successful extraction only",
+    "prefab": "game/Assets/Yendor/Resources/YendorWaystone.prefab",
+    "runtimeEvidence": "artifacts/pilots/yen-rgi/integration/runtime-review.json",
+    "humanListeningApproved": false,
+    "productionStyleApproved": false,
+    "packagedPlayerUpdated": true,
+    "buildGuid": "31c46702cf284f51a9998c3ebc8ab443"
+  }
+}

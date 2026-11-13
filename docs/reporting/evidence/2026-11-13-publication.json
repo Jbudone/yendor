@@ -1,0 +1,118 @@
+{
+  "task": "yen-897",
+  "publishedAt": "2026-11-13T22:32:56.805479+00:00",
+  "release": "https://github.com/Jbudone/yendor/releases/tag/playtest-2026-11-13-ai-art",
+  "pr": "https://github.com/Jbudone/yendor/pull/21",
+  "sourceCommit": "92c12e673a240f12ab2b239c5ab08ea450f80ed5",
+  "prerelease": true,
+  "mergedToMaster": false,
+  "branch": "release/ai-art-showcase",
+  "publicDownloads": [
+    {
+      "name": "waystone-integration-near.png",
+      "url": "https://media.githubusercontent.com/media/Jbudone/yendor/playtest-2026-11-13-ai-art/docs/reporting/images/waystone-integration-near.png",
+      "bytes": 797641,
+      "sha256": "80842691ac4be9acae560bedaeed6fd1560263bae44236de1173f0b84357fb89",
+      "contentType": "image/png",
+      "matches": true
+    },
+    {
+      "name": "waystone-integration-40m.png",
+      "url": "https://media.githubusercontent.com/media/Jbudone/yendor/playtest-2026-11-13-ai-art/docs/reporting/images/waystone-integration-40m.png",
+      "bytes": 574301,
+      "sha256": "cc25da8645dc5d91bf7107518db6bde617ff22fcb8d7610c3f407977cfe5bbe2",
+      "contentType": "image/png",
+      "matches": true
+    },
+    {
+      "name": "meshy-waystone-source.png",
+      "url": "https://media.githubusercontent.com/media/Jbudone/yendor/playtest-2026-11-13-ai-art/docs/reporting/images/meshy-waystone-source.png",
+      "bytes": 186380,
+      "sha256": "0cd2a82af9e1530316eb83e120b2aff1cf5b2cf8d65e1cffbd7b2ca6e076781d",
+      "contentType": "image/png",
+      "matches": true
+    },
+    {
+      "name": "meshy-ruin-original.png",
+      "url": "https://media.githubusercontent.com/media/Jbudone/yendor/playtest-2026-11-13-ai-art/docs/reporting/images/meshy-ruin-original.png",
+      "bytes": 236505,
+      "sha256": "85f99527f7f5aa7695bd000ad1a82e214ab7da1d03c89aa9cc598524ba90d631",
+      "contentType": "image/png",
+      "matches": true
+    },
+    {
+      "name": "ruin-arch-study.png",
+      "url": "https://media.githubusercontent.com/media/Jbudone/yendor/playtest-2026-11-13-ai-art/docs/reporting/images/ruin-arch-study.png",
+      "bytes": 151297,
+      "sha256": "f7f0919af4286a46f50ebfb57ad17ab913a674cc70b97951aa6855f7fd40a83e",
+      "contentType": "image/png",
+      "matches": true
+    },
+    {
+      "name": "unity-ai-sandstone-source.jpg",
+      "url": "https://media.githubusercontent.com/media/Jbudone/yendor/playtest-2026-11-13-ai-art/docs/reporting/images/unity-ai-sandstone-source.jpg",
+      "bytes": 44252,
+      "sha256": "f7d1c80bff69b61e04b865eaf341860f5d91847d0b6b78ef9c041483acf31ae4",
+      "contentType": "image/jpeg",
+      "matches": true
+    },
+    {
+      "name": "ruin-masonry-study.jpg",
+      "url": "https://media.githubusercontent.com/media/Jbudone/yendor/playtest-2026-11-13-ai-art/docs/reporting/images/ruin-masonry-study.jpg",
+      "bytes": 32846,
+      "sha256": "1bd67b88c7ef4ae61efbf05af5ec678142e401f8f5ae9af324164fbce5b65ed0",
+      "contentType": "image/jpeg",
+      "matches": true
+    },
+    {
+      "name": "SHA256SUMS",
+      "url": "https://github.com/Jbudone/yendor/releases/download/playtest-2026-11-13-ai-art/SHA256SUMS",
+      "bytes": 375,
+      "sha256": "886f13f7662d06b26a782be4428cda4689639ab0ab43a4dfab33c8b8337445b6",
+      "contentType": "application/octet-stream",
+      "matches": true
+    },
+    {
+      "name": "verification.json",
+      "url": "https://github.com/Jbudone/yendor/releases/download/playtest-2026-11-13-ai-art/verification.json",
+      "bytes": 2015,
+      "sha256": "749789d5920641f53d2355b4d65c0af385ed47f8449ebc2aafc48c018163e540",
+      "contentType": "application/octet-stream",
+      "matches": true
+    },
+    {
+      "name": "WaystoneActivation-showcase.mp4",
+      "url": "https://github.com/Jbudone/yendor/releases/download/playtest-2026-11-13-ai-art/WaystoneActivation-showcase.mp4",
+      "bytes": 165878,
+      "sha256": "fa9bab2c856927fddd6fbc2577a6038562ff682e8f81ce787653de7a915d85d5",
+      "contentType": "application/octet-stream",
+      "matches": true
+    },
+    {
+      "name": "WaystoneActivation.wav",
+      "url": "https://github.com/Jbudone/yendor/releases/download/playtest-2026-11-13-ai-art/WaystoneActivation.wav",
+      "bytes": 359468,
+      "sha256": "35f23b18c8f57c50b24d9de8524d1cac65ff5bc80f35a2dc0b323db368da1ce8",
+      "contentType": "application/octet-stream",
+      "matches": true
+    },
+    {
+      "name": "Yendor-Linux-2026-11-13-AI-Art.tar.gz",
+      "url": "https://github.com/Jbudone/yendor/releases/download/playtest-2026-11-13-ai-art/Yendor-Linux-2026-11-13-AI-Art.tar.gz",
+      "bytes": 67592352,
+      "sha256": "4e7fedb0d92cd1826b6d09059aae256816167e50a30c26b4500a3a3b1a435503",
+      "contentType": "application/octet-stream",
+      "matches": true
+    }
+  ],
+  "archiveIntegrity": "All255player files independently matched verified bundle hashes",
+  "sourceIntegrity": "Assets/Packages/ProjectSettings exact-match verified build snapshot",
+  "checks": {
+    "stagedSecrets": "Passed",
+    "fullHistorySecrets": "Passed39commits",
+    "NodeCommitHook": "11pass0fail0skip",
+    "GitHubNode": "Passed https://github.com/Jbudone/yendor/actions/runs/43519981452",
+    "Unity": "Previously recorded26tests,audit,build,Editor smoke,packaged-player smoke pass; no new hosted Unity run claimed"
+  },
+  "limits": "Human art/audio/feel/fresh-player/performance acceptance remains open. Arch/masonry studies unplaced."
+}

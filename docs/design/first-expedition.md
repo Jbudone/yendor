@@ -78,3 +78,29 @@ water and Storm rules, same-seed input reproducibility and one death per actor.
 Exclude production-art migration, paid authoring calls, persistence and multiplayer.
 Completion means an exact playable bundle with automated evidence and a concise
 change list; it does not establish subjective fun or rendered hardware performance.
+
+## Roadmap continuation — user authorization after gameplay batch
+
+The user authorized starting the next three outcomes: playtest/tune the new
+expedition, assess the first-expedition milestone, and begin art with a bounded
+Meshy waystone pilot and rendered baseline. The pilot may run alongside human
+acceptance preparation. It permits one preview from existing credits; review
+precedes refinement, additional assets and production import. Broader Beauty
+work follows gameplay acceptance and baseline evidence. See
+`docs/playtests/expedition-acceptance.md`; human and hardware gates remain open.
+
+## First presentation integration — provisional
+
+After the authoring pilot, the user authorized proceeding with existing-asset
+review and integration, with zero new paid calls. `yen-rgi` adds the reviewed
+ring-marker waystone beside the existing extraction pad, uses the sandstone
+study as paving rather than on the monolith, and plays the generated cue on
+successful extraction only. Existing route, objective positions, seeded input
+streams and combat rules remain the governing contracts. Authoring is native
+Editor C#; source FBX and original studies are preserved.
+
+This is provisional presentation, not final style or audio acceptance. Native
+compile/resource audit and scripted runtime checks pass. The initial package-driven source-gate failure was resolved by removing the
+unused optional inference addon. Exact-source 26 tests, asset audit, Linux build,
+Editor smoke and packaged-player smoke pass; the art-equipped player is published. See
+`docs/qa/waystone-integration.md` for evidence and next boundary.

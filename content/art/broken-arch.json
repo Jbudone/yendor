@@ -1,0 +1,20 @@
+{
+  "id": "copper-wild-broken-arch",
+  "beads_task": "yen-8ji",
+  "prompt": "Original stylized fantasy ruin arch, one connected freestanding sandstone doorway with two broad square pillars and a single chipped semicircular arch joining them. Fully open empty passage, no door. Thick solid structural stones, flat grounded pillar feet, base-center pivot. Warm weathered sandstone, subtle sparse moss, broad readable handcrafted forms, restrained erosion and copper age stains. Isolated modular game prop, front and back equally finished, no ground slab, no rubble, no floating fragments, no text, no symbols, no vines or thin ornaments. Clean simple silhouette suitable for fast third person combat.",
+  "target_polycount": 4000,
+  "scale_meters": [
+    4,
+    4,
+    1
+  ],
+  "pivot": "base-center",
+  "status": "brief",
+  "acceptance": [
+    "Open traversable passage",
+    "Connected geometry without floating fragments",
+    "No ground plane",
+    "Review four sides and native bounds before placement",
+    "Simple authored collision, preserve gameplay route"
+  ]
+}

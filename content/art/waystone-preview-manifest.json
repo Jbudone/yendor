@@ -1,0 +1,69 @@
+{
+  "task": "yen-rgi",
+  "meshyTaskId": "01a1d392-af59-7346-b974-1dfd2231d776",
+  "state": "SUCCEEDED",
+  "brief": "content/art/waystone.json",
+  "briefFileSha256": "0daa97900571970515ed42349eb1f3625539896db5f28c6873d343a907b42b9f",
+  "request": {
+    "mode": "preview",
+    "prompt": "Original stylized fantasy waystone, single freestanding weathered sandstone monolith, broad readable silhouette, carved concentric rings, recessed turquoise crystal core, copper vine accents, moss around base, warm stone and cool magical contrast, handcrafted painterly surfaces, no text, no logos, isolated game prop, flat grounded base",
+    "ai_model": "meshy-7.1",
+    "should_remesh": true,
+    "topology": "triangle",
+    "target_polycount": 5000
+  },
+  "submittedAt": "2026-11-13T06:22:47.996Z",
+  "generationDateUtc": "2026-11-13T06:23:38.628000+00:00",
+  "providerModelVersion": "requested meshy-7.1; response model_type standard; actual revision unknown",
+  "seed": 575892618,
+  "consumedCredits": 20,
+  "balanceBefore": 1970,
+  "balanceAfter": 1950,
+  "accountLicenseContext": "Existing configured subscription/key; balance endpoint verified. License/export rights not independently reviewed.",
+  "chosenVariant": "single untextured preview; candidate only",
+  "sourceExports": {
+    "preview.png": {
+      "bytes": 88758,
+      "sha256": "591716875df805bef300137c1725326acf45bec3b7a3e160142a51bdd900d908"
+    },
+    "waystone-preview.glb": {
+      "bytes": 369412,
+      "sha256": "8c63b4417f9aa223410025fec8aec5962827736d37346da3aa55110470d4c81c"
+    },
+    "waystone-preview.fbx": {
+      "bytes": 249116,
+      "sha256": "f9bd85e79b2e08c39bad70e5e83ae6386a1a6201332cb8851e7180312b497775"
+    },
+    "waystone-preview.obj": {
+      "bytes": 555129,
+      "sha256": "db4f4834ad0dcd3b1f0de47f9ff0bf944372a0fbd0d8448ac8e77b304ba28eea"
+    }
+  },
+  "manualModifications": [
+    "Native Editor FBX import with materials/animation/collision import disabled; source FBX bytes preserved.",
+    "Prefab normalization preserving FBX root axes, authored flat stone/unlit turquoise materials, core shapes, LOD proxy and box collision.",
+    "Existing Unity AI sandstone study used on inset paving and activation cue referenced by prefab AudioSource."
+  ],
+  "review": "docs/art/waystone-pilot.md",
+  "imported": true,
+  "integration": {
+    "task": "yen-rgi",
+    "date": "2026-11-13T19:04:33.490335+00:00",
+    "status": "provisional gameplay presentation; production style/audio acceptance remains open",
+    "prefab": "game/Assets/Yendor/Resources/YendorWaystone.prefab",
+    "prefabGuid": "58331dd8722108fbe9b60597b501eaf3",
+    "heightMeters": 3,
+    "widthMeters": 1.44583666,
+    "depthMeters": 0.6873863,
+    "pivot": "base center of landmark child; prefab root at extraction-platform center",
+    "nearModelTriangles": 5100,
+    "distantModelTriangles": 396,
+    "persistentGeometry": "two turquoise core primitives and platform inset, outside model LOD group",
+    "collider": "single box on landmark beside spawn; existing extraction platform collision retained",
+    "sourceConnectivity": "one connected component after welding original OBJ positions at 1e-5 units",
+    "runtimeEvidence": "artifacts/pilots/yen-rgi/integration/runtime-review.json",
+    "auditEvidence": "artifacts/pilots/yen-rgi/integration/native-audit.json",
+    "newPaidCalls": 0,
+    "packagedPlayerUpdated": false
+  }
+}

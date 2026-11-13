@@ -37,6 +37,64 @@ Handoffs should explain current source, completed changes, commands actually run
 artifact paths, known failures, unresolved decisions and the next concrete step.
 STATUS.md stays short; it does not duplicate the backlog.
 
+## One outcome per increment
+
+Before implementing, claim the Beads task and put this brief in its description
+or notes. Use task-specific acceptance rather than the seeded generic paragraph.
+
+```text
+Task / coordinator:
+Starting revision / relevant dependencies:
+Observable outcome:
+Owned paths / excluded work:
+Acceptance evidence:
+Execution mode / reason:
+Started at / elapsed checkpoint (trial: 30–45 minutes):
+Paid-call allowance / provider spend control (zero by default):
+Attempts and failures across launches:
+Stopping boundary / authorized continuation:
+```
+
+Use the coordinator directly for small coherent work. Choose fresh bounded workers
+for separable implementation or independent review when useful; retain the worker
+brief, separate worktrees and serialized Unity rules below. Select one supervisor
+path per outcome. Native coordinator, independent mail clients and Mastra have
+different enforcement boundaries; studio tools do not constrain arbitrary shell
+writes. Worker count is not an acceptance measure.
+
+At the elapsed checkpoint, save a reviewable result or blocker with evidence and
+report it before expanding scope. A long running Unity command may exceed the
+checkpoint: record its run/process identity and safe next step; do not launch a
+second command or stop an existing background job without authorization. Routine
+reversible steps inside the outcome continue autonomously. Several named increments
+can be authorized up front, with continuation after each successful result.
+
+Stop on a user pause, unresolved ownership/source conflict, ambiguous paid side
+effect, elapsed/spend boundary, missing acceptance evidence or scope expansion.
+After two same-class failures without new evidence, change the hypothesis or
+return a blocker. Count attempts across worker/coordinator launches. Step limits
+are not currency caps; use provider controls before unattended paid work. Preserve
+ambiguous write/payment records and reconcile before retrying.
+
+On explicit pause, update Beads notes and STATUS.md with owner, outcome, source/diff,
+running jobs, evidence, pause reason and next boundary. Keep the existing task;
+do not close it or invent a second backlog. An explicit user resume supersedes the
+pause only for its stated scope. Record that scope in both places. At a completed
+boundary, record the result and next action without inventing a user pause.
+Handoffs should fit roughly a page with artifact links; fresh sessions belong at
+stable boundaries rather than after every dependent step.
+
+Keep routing/tracing experiments, advisory AI review, memory calibration and new
+adapters optional until a real bounded task proves their value. Gameplay work uses
+source and bounded briefs directly; mail serves actual independent clients. Keep
+Git/PRs, Beads, secret scans, source/build evidence, Unity gates, source-aware writes,
+locks and paid ambiguity handling. No stack replacement is implied by this policy.
+
+Use `npm run workflow -- status` for credential-presence reporting: npm loads the
+ignored `.env`; bare `node tools/workflow.mjs status` sees only the inherited
+environment and may report false negatives. Presence does not verify a provider,
+trace delivery or permission to spend. Never print secret values.
+
 ## Installation and clients
 
 Node 22.18+ is required. Linux x64 binaries are pinned in config/toolchain.json.

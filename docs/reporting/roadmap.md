@@ -85,3 +85,11 @@ work, separate from the gameplay milestone sequence.
 
 _No delivery dates or playable-release claim. Updated at outcome/blocker boundaries
 under the [reporting convention](template.md). Last refreshed November 12, 2026 · gameplay batch._
+
+
+## November 13 art checkpoint
+
+A [verified Linux playtest and AI art showcase](updates/2026-11-13-ruins-and-player.md)
+now includes a Meshy waystone, Unity AI paving and activation audio. A salvaged
+ruin arch and masonry study remain unplaced. Next gates are human gameplay/art/audio
+review and bounded ruin placement; final style and measured performance remain open.

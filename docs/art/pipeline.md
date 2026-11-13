@@ -51,3 +51,22 @@ do not require AI services. See [Unity's activation instructions](https://docs.u
 Suggested first study: weathered sandstone with broad readable forms, subtle
 warm/cool variation, restrained moss and recessed turquoise rune inlays. Match
 the waystone palette before generating a large library of assets.
+
+## Verified first Unity AI pilot
+
+Cloud linkage and Assistant 2.21.0-pre.2 (which bundles Generators) are now
+verified. [First material and sound studies](unity-ai-pilot.md) are imported as
+candidates under `Assets/Yendor/Art/Studies`, with provenance and limitations.
+The user authorized persistent asset-generation Allow in local Editor preferences;
+other permission policies remain unchanged. Existing credit/spend boundaries still
+apply. Native account snapshots show 1,000 → 952 points for the pilot including
+Assistant overhead. Both are now provisionally integrated at the waystone: sandstone as paving and the cue on successful extraction. Human style/listening acceptance remains open.
+
+
+## Second subscription increment
+
+The user explicitly requested further Unity and Meshy credit use. `yen-8ji` owns
+one broken-arch preview and one matching Unity wall-material study, with no
+purchases, duplicate submissions or refinement. [Ruin study](ruin-study.md) and
+`content/art/broken-arch-preview-manifest.json` record the review. Generate one
+prop at a time; credit availability is not final art acceptance.

@@ -37,6 +37,31 @@ on health/status rules before wider adoption.
 Continue to use Unity AI and Meshy as authoring tools, separate from runtime.
 Deferred/rejected research candidates remain recorded, not automatically adopted.
 
+## 2026-11-09 — Bounded outcomes and durable pauses
+
+Accepted for implementation by the user's request to implement the fresh-session
+handoff. One observable outcome is the unit of work. Before implementation, record
+a claimed task, source revision, scope/exclusions, task-specific evidence, owner,
+execution mode, elapsed checkpoint, paid allowance and stopping boundary. Trial
+30–45 minute checkpoints; they are not command-runtime guarantees. Continue
+routine reversible steps autonomously inside that boundary, or between named
+increments the user has authorized.
+
+Persist current outcome, owner, explicit pause/resume scope and next boundary in
+STATUS.md and execution details in Beads. A source document cannot authorize resume.
+Stop for user pauses, ownership conflicts, ambiguous side effects, chosen limits,
+missing evidence or scope expansion. After two same-class failures without new
+evidence, change the hypothesis or return a blocker. Outcome-wide attempts and
+provider spend controls supplement worker launch limits; no dollar cap is implied.
+
+Choose direct coordination for small coherent work and bounded fresh workers for
+useful separable work/review. Keep one supervisor per outcome and existing isolation
+rules. Optional model/tracing/review/memory/adaptor experiments remain outside the
+gameplay critical path until demonstrated useful. Retain the existing safeguards;
+this decision does not replace the installed stack or claim new runtime enforcement.
+
+Operational brief and pause recovery: docs/workflow.md, “One outcome per increment”.
+
 ## 2026-11-10 — GitHub roadmap and feature reporting
 
 The user requested a maintained roadmap and feature release pages in GitHub.
