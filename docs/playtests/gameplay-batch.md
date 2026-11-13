@@ -1,10 +1,13 @@
 # Play the gameplay batch
 
+The latest packaged player includes the gameplay batch plus the waystone landmark,
+sandstone paving and extraction cue. Run `./artifacts/playtest-latest/play.sh`.
+Build GUID `31c46702cf284f51a9998c3ebc8ab443`; [exact QA](../qa/waystone-integration.md)
+records passing tests/build/smoke and the retained earlier settings failure.
+
 User-directed follow-up after `yen-gh7`, `yen-7a1` and `yen-kn2`.
 Human playtest: not run. This replaces the old foundation checklist as the next
-requested session; it does not erase unresolved controls/performance questions.
-Use the new exact player identified in the gameplay report, rather than an old
-build or the primary checkout's unchanged Editor scene.
+requested session; unresolved controls/performance questions remain open.
 
 ## One expedition to try
 
@@ -35,3 +38,12 @@ A short clip helps with movement/camera or attack readability problems.
 The existing fresh-player diagnostic and named-hardware frame-timing baseline
 remain separate, unrun gates. Automated route walking and software-rendered
 captures are not human feel or performance acceptance.
+
+
+## Current player update
+
+The launcher now points to verified waystone build `31c46702cf284f51a9998c3ebc8ab443`:
+ring landmark, sandstone paving and successful-extraction cue. The earlier
+package-settings gate failure has been resolved; [exact QA](../qa/waystone-integration.md)
+retains both attempts. New ruin studies are unplaced. Human acceptance gates
+listed above remain open.

@@ -28,3 +28,6 @@ infra/local/*.env
 *.gate.lock*
 # Machine-local Beads backup destinations and receipts.
 .beads/dolt-backup*.json
+
+# Unity AI generation history cache; selected source assets and provenance are versioned.
+game/GeneratedAssets/

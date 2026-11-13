@@ -10,7 +10,7 @@
       "runtime"
     ],
     "text": "Yendor is a third-person expedition roguelike shooter built in Unity. Models assist development; the game must run without AI services.",
-    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
+    "sourceHash": "3270378741d0eebddb78078b429560d02a332523fa92560a62a4be958a38a180"
   },
   {
     "id": "seed-contract",
@@ -23,7 +23,7 @@
       "determinism"
     ],
     "text": "A seed currently controls decoration and enemy-position inputs; topology is fixed. This does not guarantee exact cross-machine gameplay replay.",
-    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
+    "sourceHash": "3270378741d0eebddb78078b429560d02a332523fa92560a62a4be958a38a180"
   },
   {
     "id": "scene-authoring",
@@ -36,7 +36,7 @@
       "unity"
     ],
     "text": "Author scenes and prefabs through Editor tooling. Preserve asset meta identity; never manually rewrite Unity scene or prefab YAML.",
-    "sourceHash": "b4c012f1f6a4d42b4f0a69e70fc4984407a97eb75676cbd5a6344824391d4062"
+    "sourceHash": "3270378741d0eebddb78078b429560d02a332523fa92560a62a4be958a38a180"
   },
   {
     "id": "verification",
@@ -62,7 +62,22 @@
       "beads"
     ],
     "text": "Beads is the local task authority. GitHub issues present user-facing work when connected. Avoid independent backlogs or automatic promotion of agent observations to decisions.",
-    "sourceHash": "19ff0da9fa13b65f5ddbf7a49f3fa94f318c027d2cd6445f652d1fcc1a1442a5"
+    "sourceHash": "7ec04275163970c0332434e65fee818a11ddec95e2e9c438c45e35ba3a4fbb91"
+  },
+  {
+    "id": "bounded-outcomes",
+    "status": "accepted",
+    "source": "docs/adr/0002-project-workflow.md",
+    "date": "2026-11-09",
+    "tags": [
+      "workflow",
+      "pause",
+      "increment",
+      "delegation",
+      "budget"
+    ],
+    "text": "Claim one observable outcome with source, scope, evidence, execution mode, checkpoint and paid allowance. Persist explicit pause/resume scope in STATUS and Beads. Trial 30\u201345 minute checkpoints; stop or change hypothesis after two same-class failures without new evidence. Optional integrations stay off the gameplay critical path; worker limits are not session or currency limits.",
+    "sourceHash": "7ec04275163970c0332434e65fee818a11ddec95e2e9c438c45e35ba3a4fbb91"
   },
   {
     "id": "github-reporting",
@@ -76,13 +91,26 @@
       "github"
     ],
     "text": "Maintain GitHub-readable roadmap and feature notes at outcome/blocker boundaries. Show implementation, verification and release separately with source evidence. GitHub Releases represent verified playable checkpoints; Beads remains task authority and accepted design owns milestone gates.",
-    "sourceHash": "19ff0da9fa13b65f5ddbf7a49f3fa94f318c027d2cd6445f652d1fcc1a1442a5"
+    "sourceHash": "7ec04275163970c0332434e65fee818a11ddec95e2e9c438c45e35ba3a4fbb91"
+  },
+  {
+    "id": "roadmap-presentation",
+    "status": "accepted",
+    "source": "docs/reporting/template.md",
+    "date": "2026-11-11",
+    "tags": [
+      "reporting",
+      "roadmap",
+      "presentation"
+    ],
+    "text": "User requested an attractive colourful roadmap with art and clear progression. Use the Copper Wild illustrated Now/Next/Later guide; keep actions and status in accessible Markdown, label aspirational art, and retain accepted milestone gates. Published roadmap discussion: GitHub issue 15.",
+    "sourceHash": "17925a9bb409e3e8cb483aaaf83e572a471171f8d4c8def51c7e73facab2ac68"
   },
   {
     "id": "gameplay-batch-2026-11-12",
     "status": "accepted",
     "source": "docs/design/first-expedition.md",
-    "sourceHash": "5a69ecaee04d22bf923786cd89aa3a9652541ba769327fba303a5928893e7200",
+    "sourceHash": "0440ca20dbadcd52da0d41e9499570ef9ffcac28fdebc4b10fca6950d86f74af",
     "tags": [
       "gameplay",
       "sequential-workers",
@@ -90,5 +118,76 @@
       "milestone"
     ],
     "text": "User authorized several substantial gameplay increments before another playtest, using fresh subagents one at a time. Batch is mixed combat/feedback, deterministic pickups/build choices, optional exploration and Starheart return pressure. Old manual foundation gate is deferred as an implementation prerequisite for this batch; feel/performance/fresh-player acceptance remains unpassed. Source: user instruction 2026-11-12 and linked design batch."
+  },
+  {
+    "id": "roadmap-start-waystone-pilot",
+    "status": "accepted",
+    "source": "docs/design/first-expedition.md",
+    "date": "2026-11-13",
+    "tags": [
+      "roadmap",
+      "art",
+      "meshy",
+      "playtest"
+    ],
+    "text": "User authorized starting gameplay playtest/tuning, first-expedition acceptance and art baseline with one Meshy waystone preview alongside human acceptance preparation. Broader Beauty follows gameplay acceptance/baseline; refinement and further paid assets remain review boundaries. Human feel, fresh-player and hardware timing are still unpassed.",
+    "sourceHash": "0440ca20dbadcd52da0d41e9499570ef9ffcac28fdebc4b10fca6950d86f74af"
+  },
+  {
+    "id": "unity-ai-authoring-and-permissions",
+    "status": "accepted",
+    "source": "docs/art/unity-ai-pilot.md",
+    "date": "2026-11-13",
+    "tags": [
+      "unity-ai",
+      "art",
+      "permissions",
+      "budget"
+    ],
+    "text": "User authorized using existing Unity AI budget and persistent asset-generation Allow. Cloud yendor linked, Assistant 2.21.0-pre.2 includes Generators; first sandstone material and activation sound studies generated. Native asset-generation policy Allow persists across local Editor projects; other policies unchanged. Authoring studies are not production or human acceptance. Pilot snapshots show 1000 to 952 points; no top-up/refinement.",
+    "sourceHash": "30f288b07c91eb4e7b32610929e41851c72686ff18735e425981c840f844c5c3"
+  },
+  {
+    "id": "waystone-provisional-integration",
+    "status": "superseded",
+    "source": "docs/design/first-expedition.md",
+    "date": "2026-11-13",
+    "tags": [
+      "art",
+      "waystone",
+      "unity-ai",
+      "meshy",
+      "verification"
+    ],
+    "text": "User authorized proceeding with existing-asset review and provisional integration, zero new paid calls. Waystone ring marker, sandstone paving and success-only extraction cue are now in Editor source. Final style/audio acceptance remains open. Native compile/audit and scripted runtime checks pass; isolated XML26 passes but overall source gate fails on package settings drift. Prior packaged player is unchanged; do not claim a new verified build.",
+    "sourceHash": "0d41faa48d221bc6198ca42e24fb95b5071590b24b9188220793665f687c1089"
+  },
+  {
+    "id": "second-subscription-art-studies",
+    "status": "accepted",
+    "source": "docs/art/ruin-study.md",
+    "sourceHash": "32ba0ad3392222b0df4d50d57abdb6ed7602b4fc3c97cda220a0f09d105cf6f9",
+    "date": "2026-11-13",
+    "tags": [
+      "art",
+      "unity-ai",
+      "meshy",
+      "budget"
+    ],
+    "text": "User explicitly requested further existing Unity/Meshy credit use. Bounded round used20 Meshy credits and12 Unity points inclAssistant, balances1930/940. Original combined ruin result rejected; native extraction yielded unplaced1077-triangle arch study. Unity generated brick texture rejected for continuous arch stone, retained masonry study. Human finalstyle/placement acceptance remains open. No topup/refinement or ambiguous retry."
+  },
+  {
+    "id": "waystone-package-stable-player",
+    "status": "accepted",
+    "source": "docs/qa/waystone-integration.md",
+    "sourceHash": "7c65d5c614f12a5897c4289ecf7f833076335c2ab2dbddec5a8e64d2407d83eb",
+    "date": "2026-11-13",
+    "tags": [
+      "waystone",
+      "verification",
+      "unity-ai",
+      "playtest"
+    ],
+    "text": "Optional inference/AppUI removed through native package API to resolve reproducibility drift; local AssetKnowledge was alreadyfalse. Assistant/Generators and analytics preference retained. Exact-source26tests,audit,build,Editor smoke and packaged-player smoke pass. Latest launcher now buildGUID31c46702cf284f51a9998c3ebc8ab443; original player archived. Human style/audio/feel/fresh-player/performance gates remain open. Supersedes previous unchanged-player/package-blocker snapshot."
   }
 ]

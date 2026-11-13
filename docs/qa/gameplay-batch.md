@@ -128,3 +128,23 @@ salve and did not collect Heartwood; the route was adjusted and the first attemp
 retained. Mouse-look, subjective feel, audio mix, hardware timing and human
 acceptance remain unverified. Known Editor SearchDatabase startup exception
 remains in Editor logs; no runtime exception observed during these player captures.
+
+## Post-merge completion — 2026-11-12 04:21 UTC
+
+[PR #20](https://github.com/Jbudone/yendor/pull/20) merged exact reviewed head
+`cf9212a` to master `3b6fbbaa7217b4a9423efbe168ded02ac9438d13`. Trees match.
+[Node](https://github.com/Jbudone/yendor/actions/runs/43153750972) and
+[full Unity CI](https://github.com/Jbudone/yendor/actions/runs/43153751116) pass
+at the exact merge, including tests, Editor/player smoke, audit/build and artifact
+upload. Full CI logs/metadata are preserved at primary
+`artifacts/pilots/yen-kn2/post-merge-{node,unity}.{log,json}`.
+
+The primary game had no changes against baseline `12cc7c9`, so it was safely
+synchronized to merged gameplay while preserving prior dirty documentation and
+the running Editor process. All Assets/Packages/ProjectSettings hashes match
+integration. Ledger: `artifacts/gameplay-batch/editor-source-sync.json`; prior
+local patch preserved alongside it. Interactive Editor compilation/feel is not
+claimed. All three workers and batch jobs finished; saved before 04:29 checkpoint.
+External paid calls zero. New accepted context/design/memory and next playtest
+packet are in place. Mainline reporting already contains exact build/screenshots;
+this final CI/status closure is saved locally and in Beads.

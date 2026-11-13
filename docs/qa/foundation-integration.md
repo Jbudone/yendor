@@ -40,3 +40,22 @@ The controls/camera playtest (`yen-kk5`), hardware/rendered baseline (`yen-g8n`)
 fresh-player diagnostic remain unrun. The known Editor SearchDatabase exception
 is still a limitation of headless startup logs, not a new gameplay acceptance.
 Paid calls zero. No accepted design changes.
+
+## Integration disposition — 2026-11-12
+
+The user's “please proceed” as project orchestrator continued the recommended
+combined path. PR #19 merged at `12cc7c9addc3e4e67ee334bc31c74ab4884bd7e7`
+on 2026-11-12 at 03:04:59 UTC. Its tree equals reviewed head `196cef3`;
+game files equal the earlier Unity-tested candidate. This resolves the preparation
+boundary above. Original PRs were left untouched.
+
+Post-merge [Node checks](https://github.com/Jbudone/yendor/actions/runs/43145761860)
+and [Unity verification](https://github.com/Jbudone/yendor/actions/runs/43145762111)
+passed on the exact merge revision. Unity includes validation, tests, Editor smoke,
+asset audit, Linux build, packaged-player smoke and artifact upload. Full CI logs
+and run metadata are saved as `artifacts/pilots/yen-7mm/post-merge-{node,unity}.{log,json}`;
+`integration-merge.json` records identity and disposition. No new independent
+bundle audit or human acceptance is claimed. Coordinator Codex executed directly,
+03:04–03:08 UTC before the 03:34 checkpoint; paid calls zero. The next gate is the
+prepared human desktop controls/camera pass, with hardware timing and fresh-player
+diagnostic still separate. Primary dirty documents and existing worktrees remain.

@@ -1,7 +1,7 @@
 # Yendor
 
 [Interactive roadmap](https://github.com/Jbudone/yendor/issues/15) ·
-[Illustrated progress report](docs/reporting/updates/2026-11-12-gameplay.md) ·
+[Illustrated progress report](docs/reporting/updates/2026-11-13-ruins-and-player.md) ·
 [Feature notes](docs/reporting/README.md) · [PR-Agent setup](docs/reporting/review-automation.md)
 
 
@@ -17,6 +17,16 @@ Follow the [roadmap](docs/reporting/roadmap.md) and
 and remaining acceptance gates. Feature reports are maintained in GitHub with
 the source; [GitHub Releases](https://github.com/Jbudone/yendor/releases) are
 reserved for verified playable checkpoints.
+
+## Latest playable checkpoint
+
+[Download the Linux art playtest](https://github.com/Jbudone/yendor/releases/tag/playtest-2026-11-13-ai-art)
+with a Meshy waystone, Unity AI sandstone paving and generated extraction audio.
+[See the AI art showcase](docs/reporting/updates/2026-11-13-ruins-and-player.md)
+for actual gameplay captures, source assets, the salvaged ruin arch and material studies.
+The arch and masonry studies are unplaced; human art/audio/feel review remains open.
+
+![Actual Unity play-mode waystone capture](docs/reporting/images/waystone-integration-near.png)
 
 ## Working together
 

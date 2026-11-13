@@ -20,6 +20,7 @@ namespace Yendor
         public Vector3 ExitPosition => new Vector3(0, 0, -28);
         public Vector3 ShrinePosition => new Vector3(0, .8f, -24);
         GameObject relic;
+        AudioSource waystoneActivation;
         bool escaped;
         float startedAt;
         float finishedAt;
@@ -89,6 +90,10 @@ namespace Yendor
             Destroy(relic.GetComponent<Collider>());
             var glow = relic.AddComponent<Light>(); glow.color = new Color(1, .7f, .25f); glow.range = 12; glow.intensity = 4;
             var exit = Shape("Waystone", PrimitiveType.Cylinder, ExitPosition + Vector3.up * .15f, new Vector3(5, .15f, 5), new Color(.2f, .75f, .7f));
+            var waystonePrefab = Resources.Load<GameObject>("YendorWaystone");
+            if (!waystonePrefab) throw new System.InvalidOperationException("Missing YendorWaystone prefab resource. Author the reviewed waystone in the Editor.");
+            var waystone = Instantiate(waystonePrefab, ExitPosition, Quaternion.identity);
+            waystoneActivation = waystone.GetComponent<AudioSource>();
             for (int i = 0; i < 2; i++)
             {
                 var pool = Shape(i == 0 ? "Rain pool" : "Oil seep", PrimitiveType.Cylinder, new Vector3(i == 0 ? -4 : 4, .09f, 14 + i * 12), new Vector3(8, .07f, 8), Color.cyan);
@@ -242,7 +247,13 @@ namespace Yendor
             return $"{(HasRelic ? "TURQUOISE WAYSTONE" : "GOLD STARHEART")} · {delta.magnitude:F0}m · {direction}";
         }
 
-        void Finish(bool success) { if (Ended) return; Ended = true; escaped = success; finishedAt = Time.time; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; }
+        void Finish(bool success)
+        {
+            if (Ended) return;
+            Ended = true; escaped = success; finishedAt = Time.time;
+            if (success && waystoneActivation) waystoneActivation.Play();
+            Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
+        }
         public void Restart(bool fresh) { if (!Ended) return; nextSeed = fresh ? Seed + 1 : Seed; SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
 
         void OnGUI()
