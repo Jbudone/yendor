@@ -3,15 +3,19 @@
 Yendor is a Unity third-person expedition shooter. Direction: `CONTEXT.md` and
 `docs/design/first-expedition.md`. Beads owns execution detail.
 
-## GitHub publication — yen-897
+## GitHub publication complete — yen-897
 
-User authorized commit, push and a release update with screenshots/art showcases.
-Coordinator Codex, direct; started 2026-11-13 22:25 UTC, checkpoint 23:00 UTC.
-Publication branch `release/ai-art-showcase` is based on current upstream master
-`3b6fbba`, preserving the earlier Editor checkout. Assets, Packages and
-ProjectSettings exactly match the verified player snapshot. No paid calls.
-Next boundary: pushed source, illustrated prerelease and verified Linux archive;
-no merge to master is implied. Human acceptance gates remain open.
+[Published illustrated Linux prerelease](https://github.com/Jbudone/yendor/releases/tag/playtest-2026-11-13-ai-art)
+· [Source PR21](https://github.com/Jbudone/yendor/pull/21). Tag points to source
+`92c12e673a240f12ab2b239c5ab08ea450f80ed5`, based on upstream master3b6fbba.
+Direct coordinator Codex; no paid calls or master merge. Seven actual showcase
+images and five downloadable assets publicly fetched and hash-verified. Release
+archive contains all255 exact verified player files; includes WAV/MP4 audio,
+checksums and verification receipt. Staged/history secrets and local11Node tests
+pass; GitHub Node checks pass. Full publication receipt:
+`docs/reporting/evidence/2026-11-13-publication.json`.
+Next boundary: human art/audio/feel review and bounded ruin placement. No explicit
+pause; no publication/generation/batch job remains running.
 
 ## Completed art and player outcome
 
